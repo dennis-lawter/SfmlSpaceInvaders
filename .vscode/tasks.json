@@ -1,0 +1,55 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Clean",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak clean",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak all",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Run",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak run",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Build_Run",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak build_run",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "Clean_Build_Run",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak clean_build_run",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		}
+	]
+}
