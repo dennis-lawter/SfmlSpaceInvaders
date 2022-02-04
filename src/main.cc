@@ -3,7 +3,18 @@
 #include <SFML/Graphics.hpp>
 
 int main(int argc, char** argv) {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "Test");
+	sf::RenderWindow window(sf::VideoMode(128, 128), "Test");
+	
+	sf::Texture enemyTexture;
+	enemyTexture.setSmooth(false);
+	enemyTexture.setRepeated(false);
+	if (!enemyTexture.loadFromFile("res/resource/enemy.png"))
+	{
+		return EXIT_FAILURE;
+	}
+
+	sf::Sprite enemySprite;
+	enemySprite.setTexture(enemyTexture);
 
 	while(window.isOpen()) {
 		sf::Event event;
@@ -14,6 +25,8 @@ int main(int argc, char** argv) {
 		}
 
 		window.clear(sf::Color::Black);
+
+		window.draw(enemySprite);
 
 		window.display();
 	}
