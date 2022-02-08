@@ -1,33 +1,139 @@
 #include <cstdlib>
-
+#include <iostream>
 #include <SFML/Graphics.hpp>
+using namespace sf;
+using namespace std;
+
+class GameObject {
+	public:
+		Sprite sprite;
+		GameObject(Texture& texture, int x, int y) {
+			this->sprite.setTexture(texture);
+			this->sprite.move(x, y);
+		}
+		void update() {}
+		void draw(sf::RenderWindow& window) {
+			window.draw(this->sprite);
+		}
+};
+
+class Player : public GameObject {
+	public:
+		bool playerIsMovingLeft = false;
+		bool playerIsMovingRight = false;
+		bool playerIsFire = false;
+		int playerLives = 3;
+		//todo add damage indicator, death "animation", score
+		Player(Texture& texture) : GameObject(texture, 60, 120) {}
+		void update() {
+			if (this->playerIsMovingLeft) {
+				if(this->sprite.getPosition().x > 0) {
+					this->sprite.move(-.7,0);
+				}
+			}
+			if (this->playerIsMovingRight) {
+				if(this->sprite.getPosition().x < 120) {
+					this->sprite.move(.7,0);
+				}
+			}
+			cout << sprite.getPosition().x << "  " << sprite.getPosition().y << endl;
+		}
+
+
+};
+
+class Bullet : public GameObject {
+	public: 
+		bool isFired = false;
+		Bullet(Texture& texture, int fired) : GameObject (texture, fired, 112) {}
+		void update() {
+			this->sprite.move(0,-6);
+		}
+
+};
+
 
 int main(int argc, char** argv) {
-	sf::RenderWindow window(sf::VideoMode(128, 128), "Test");
+
 	
-	sf::Texture enemyTexture;
+
+	RenderWindow window(VideoMode(128, 128), "Totally Invading Space");
+	window.setKeyRepeatEnabled(false);
+	window.setFramerateLimit(60);
+	
+	Texture enemyTexture;
 	enemyTexture.setSmooth(false);
 	enemyTexture.setRepeated(false);
-	if (!enemyTexture.loadFromFile("res/resource/enemy.png"))
-	{
+	if (!enemyTexture.loadFromFile("res/resource/enemy.png")) {
 		return EXIT_FAILURE;
 	}
 
-	sf::Sprite enemySprite;
+	Sprite enemySprite;
 	enemySprite.setTexture(enemyTexture);
 
+	Texture playerTexture;
+	if (!playerTexture.loadFromFile("res/resource/player.png")) {
+		return EXIT_FAILURE;
+	}
+
+	Texture bulletTexture;
+	if (!bulletTexture.loadFromFile("res/resource/bullet.png")) {
+		return EXIT_FAILURE;
+	}
+
+	Player defender (playerTexture);
+
+
+
 	while(window.isOpen()) {
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
+		Event currentEvent;
+		while (window.pollEvent(currentEvent)) {
+			switch (currentEvent.type) {
+				case Event::Closed:
+					window.close();
+					break;
+				case Event::KeyPressed:
+					switch(currentEvent.key.code) {
+						case Keyboard::Key::Escape:
+							window.close();
+							break;
+						case Keyboard::Key::A:
+						case Keyboard::Key::Left: //Move Left
+							defender.playerIsMovingLeft = true;
+							break;
+						case Keyboard::Key::D:
+						case Keyboard::Key::Right: //Move Right
+							defender.playerIsMovingRight = true;
+							break;
+						case Keyboard::W:
+						case Keyboard::Up:
+						case Keyboard::Space:
+							defender.playerIsFire = true;
+							break;
+					}
+					break;
+
+				case Event::KeyReleased:
+					switch(currentEvent.key.code) {
+						case Keyboard::Key::A:
+						case Keyboard::Key::Left:
+							defender.playerIsMovingLeft = false;
+							break;
+						case Keyboard::Key::D:
+						case Keyboard::Key::Right:
+							defender.playerIsMovingRight = false;
+							break;
+					}
 			}
+
 		}
 
-		window.clear(sf::Color::Black);
+		defender.update();
+
+		window.clear(Color::Black);
 
 		window.draw(enemySprite);
-
+		defender.draw(window);
 		window.display();
 	}
 
