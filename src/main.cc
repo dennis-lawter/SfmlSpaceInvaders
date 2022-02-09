@@ -4,6 +4,7 @@
 using namespace sf;
 using namespace std;
 
+
 class GameObject {
 	public:
 		Sprite sprite;
@@ -36,7 +37,7 @@ class Player : public GameObject {
 					this->sprite.move(.7,0);
 				}
 			}
-			cout << sprite.getPosition().x << "  " << sprite.getPosition().y << endl;
+			//cout << sprite.getPosition().x << "  " << sprite.getPosition().y << endl;
 		}
 
 
@@ -44,12 +45,11 @@ class Player : public GameObject {
 
 class Bullet : public GameObject {
 	public: 
-		bool isFired = false;
+		bool playerIsFire = false;
 		Bullet(Texture& texture, int fired) : GameObject (texture, fired, 112) {}
 		void update() {
-			this->sprite.move(0,-6);
+			this->sprite.move(0,-1);
 		}
-
 };
 
 
@@ -82,7 +82,7 @@ int main(int argc, char** argv) {
 	}
 
 	Player defender (playerTexture);
-
+	Bullet* pew = nullptr;
 
 
 	while(window.isOpen()) {
@@ -108,7 +108,8 @@ int main(int argc, char** argv) {
 						case Keyboard::W:
 						case Keyboard::Up:
 						case Keyboard::Space:
-							defender.playerIsFire = true;
+							if (!pew)
+								pew = new Bullet(bulletTexture, defender.sprite.getPosition().x + 3.5);
 							break;
 					}
 					break;
@@ -129,9 +130,21 @@ int main(int argc, char** argv) {
 		}
 
 		defender.update();
-
+		if (pew) {
+			pew->update();
+			if (pew->sprite.getGlobalBounds().intersects(enemySprite.getGlobalBounds())) {
+				delete pew;
+				pew = nullptr;
+			}
+			else if (pew->sprite.getPosition().y <= -6) {
+				delete pew;
+				pew = nullptr;
+			}
+		}
 		window.clear(Color::Black);
-
+		if (pew) {
+			pew->draw(window);
+		}
 		window.draw(enemySprite);
 		defender.draw(window);
 		window.display();
