@@ -5,10 +5,10 @@
 using namespace sf;
 
 class Bullet : public GameObject {
-	public: 
-		bool playerIsFire = false;
-		Bullet(Texture& texture, float fired) : GameObject (texture, fired, 112) {}
-		void update();
+public:
+	bool playerIsFire = false;
+	Bullet(Texture& texture, float fired) : GameObject(texture, fired, 112) {}
+	void update();
 };
 
 #endif

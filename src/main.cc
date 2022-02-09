@@ -14,8 +14,8 @@ Texture bulletTexture;
 Player* defender = nullptr; //No memory reserved
 Baddie* killem = nullptr;
 Bullet* pew = nullptr;
+
 int init() {
-	
 	if (!enemyTexture.loadFromFile("res/resource/enemy.png")) {
 		return EXIT_FAILURE;
 	}
@@ -41,46 +41,46 @@ int main(int argc, char** argv) {
 	window.setKeyRepeatEnabled(false);
 	window.setFramerateLimit(60);
 
-	while(window.isOpen()) {
+	while (window.isOpen()) {
 		Event currentEvent;
 		while (window.pollEvent(currentEvent)) {
 			switch (currentEvent.type) {
-				case Event::Closed:
+			case Event::Closed:
+				window.close();
+				break;
+			case Event::KeyPressed:
+				switch (currentEvent.key.code) {
+				case Keyboard::Key::Escape:
 					window.close();
 					break;
-				case Event::KeyPressed:
-					switch(currentEvent.key.code) {
-						case Keyboard::Key::Escape:
-							window.close();
-							break;
-						case Keyboard::Key::A:
-						case Keyboard::Key::Left: //Move Left
-							defender->playerIsMovingLeft = true;
-							break;
-						case Keyboard::Key::D:
-						case Keyboard::Key::Right: //Move Right
-							defender->playerIsMovingRight = true;
-							break;
-						case Keyboard::W:
-						case Keyboard::Up:
-						case Keyboard::Space:
-							if (!pew)
-								pew = new Bullet(bulletTexture, defender->getX() + 3);
-							break;
-					}
+				case Keyboard::Key::A:
+				case Keyboard::Key::Left: //Move Left
+					defender->playerIsMovingLeft = true;
 					break;
+				case Keyboard::Key::D:
+				case Keyboard::Key::Right: //Move Right
+					defender->playerIsMovingRight = true;
+					break;
+				case Keyboard::W:
+				case Keyboard::Up:
+				case Keyboard::Space:
+					if (!pew)
+						pew = new Bullet(bulletTexture, defender->getX() + 3);
+					break;
+				}
+				break;
 
-				case Event::KeyReleased:
-					switch(currentEvent.key.code) {
-						case Keyboard::Key::A:
-						case Keyboard::Key::Left:
-							defender->playerIsMovingLeft = false;
-							break;
-						case Keyboard::Key::D:
-						case Keyboard::Key::Right:
-							defender->playerIsMovingRight = false;
-							break;
-					}
+			case Event::KeyReleased:
+				switch (currentEvent.key.code) {
+				case Keyboard::Key::A:
+				case Keyboard::Key::Left:
+					defender->playerIsMovingLeft = false;
+					break;
+				case Keyboard::Key::D:
+				case Keyboard::Key::Right:
+					defender->playerIsMovingRight = false;
+					break;
+				}
 			}
 
 		}
@@ -92,8 +92,7 @@ int main(int argc, char** argv) {
 			if (pew->collision().intersects(killem->collision())) {
 				delete pew; //frees memory
 				pew = nullptr;
-			}
-			else if (pew->getY() <= -6) {
+			} 			else if (pew->getY() <= -6) {
 				delete pew;
 				pew = nullptr;
 			}

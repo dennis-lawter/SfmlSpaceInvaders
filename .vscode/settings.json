@@ -43,5 +43,9 @@
         "streambuf": "cpp",
         "typeinfo": "cpp"
     },
-    "C_Cpp.errorSquiggles": "Enabled"
+	"C_Cpp.errorSquiggles": "Enabled",
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.wrappingIndent": "indent",
+	"diffEditor.wordWrap": "off"
 }

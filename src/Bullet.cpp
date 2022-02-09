@@ -1,5 +1,5 @@
 #include "Bullet.hpp"
 
 void Bullet::update() {
-    this->sprite.move(0,-1);
+    this->sprite.move(0, -1);
 }
