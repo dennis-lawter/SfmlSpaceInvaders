@@ -8,6 +8,8 @@ class GameObject {
 protected:
 	Sprite sprite;
 public:
+	float speed;
+	
 	GameObject(Texture& texture, float x, float y);
 	void update();
 	void draw(sf::RenderWindow& window);

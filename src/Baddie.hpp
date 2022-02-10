@@ -6,7 +6,10 @@ using namespace sf;
 
 class Baddie : public GameObject {
 public:
-	Baddie(Texture& texture, int x = 0, int y = 0) : GameObject(texture, 0, 0) {}
+	float speed = 0.3;
+	int speedTracker = 0;
+	bool isMovingRight = true;
+	Baddie(Texture& texture, int x, int y) : GameObject(texture, x, y) {}
 	void update();
 };
 

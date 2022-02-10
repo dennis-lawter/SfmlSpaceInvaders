@@ -4,6 +4,7 @@
 #include "Player.hpp"
 #include "Baddie.hpp"
 #include "Bullet.hpp"
+#include "BaddieGroup.hpp"
 using namespace sf;
 using namespace std;
 
@@ -12,15 +13,11 @@ Texture enemyTexture;
 Texture playerTexture;
 Texture bulletTexture;
 Player* defender = nullptr; //No memory reserved
-Baddie* killem = nullptr;
 Bullet* pew = nullptr;
+BaddieGroup killemAll;
 
 int init() {
-	if (!enemyTexture.loadFromFile("res/resource/enemy.png")) {
-		return EXIT_FAILURE;
-	}
-
-	if (!playerTexture.loadFromFile("res/resource/player.png")) {
+	if (!playerTexture.loadFromFile("res/resource/defender.png")) {
 		return EXIT_FAILURE;
 	}
 
@@ -29,7 +26,6 @@ int init() {
 	}
 
 	defender = new Player(playerTexture); //reserves memory for new object
-	killem = new Baddie(enemyTexture);
 
 	return EXIT_SUCCESS;
 }
@@ -67,6 +63,8 @@ int main(int argc, char** argv) {
 					if (!pew)
 						pew = new Bullet(bulletTexture, defender->getX() + 3);
 					break;
+				default:
+					break;
 				}
 				break;
 
@@ -80,33 +78,36 @@ int main(int argc, char** argv) {
 				case Keyboard::Key::Right:
 					defender->playerIsMovingRight = false;
 					break;
+				default:
+					break;
 				}
+			default:
+				break;
 			}
 
 		}
 
 		defender->update();
-		killem->update();
 		if (pew) {
 			pew->update();
-			if (pew->collision().intersects(killem->collision())) {
-				delete pew; //frees memory
-				pew = nullptr;
-			} 			else if (pew->getY() <= -6) {
+			// if (pew->collision().intersects(killem->collision())) {
+			// 	delete pew; //frees memory
+			// 	pew = nullptr;}
+			if (pew->getY() <= -6) {
 				delete pew;
 				pew = nullptr;
 			}
 		}
+		killemAll.update();
 		window.clear(Color::Black);
 		if (pew) {
 			pew->draw(window);
 		}
 		defender->draw(window);
-		killem->draw(window);
+		killemAll.draw(window);
 		window.display();
 	}
 	delete defender;
-	delete killem;
 	if (pew)
 		delete pew;
 	return EXIT_SUCCESS;
