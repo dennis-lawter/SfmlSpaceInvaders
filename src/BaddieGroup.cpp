@@ -12,6 +12,21 @@ BaddieGroup::BaddieGroup() {
 	}
 }
 
+bool BaddieGroup::testHit(Bullet &pew) {
+	for (int x = 0; x < COLUMNS; x++) {
+		for (int y = 0; y < ROWS; y++) {
+			if (baddies[x][y]){
+				if (baddies[x][y]->collision().intersects(pew.collision())) {
+					delete baddies[x][y];
+					baddies[x][y] = nullptr;
+					return true;
+				}	
+			}
+		}
+	}
+	return false;
+}
+
 void BaddieGroup::update() {
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
@@ -21,6 +36,7 @@ void BaddieGroup::update() {
 		}
 	}
 }
+
 
 void BaddieGroup::draw(RenderWindow& window) {
 	for (int x = 0; x < COLUMNS; x++) {

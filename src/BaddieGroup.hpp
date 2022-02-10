@@ -2,6 +2,7 @@
 #define BADDIEGROUP_HPP_
 #include <SFML/Graphics.hpp>
 #include "Baddie.hpp"
+#include "Bullet.hpp"
 using namespace sf;
 
 class BaddieGroup {
@@ -14,6 +15,7 @@ class BaddieGroup {
 		Baddie* baddies[COLUMNS][ROWS];
 		
 		BaddieGroup();
+		bool testHit(Bullet &pew);
 		void update();
 		void draw(RenderWindow& window);
 };

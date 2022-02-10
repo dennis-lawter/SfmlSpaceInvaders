@@ -90,10 +90,11 @@ int main(int argc, char** argv) {
 		defender->update();
 		if (pew) {
 			pew->update();
-			// if (pew->collision().intersects(killem->collision())) {
-			// 	delete pew; //frees memory
-			// 	pew = nullptr;}
-			if (pew->getY() <= -6) {
+			if (killemAll.testHit(*pew)) {
+				delete pew; //frees memory
+				pew = nullptr;
+			}
+			else if (pew->getY() <= -6) {
 				delete pew;
 				pew = nullptr;
 			}

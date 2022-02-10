@@ -22,7 +22,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [ ] Pressing any keyboard key advances to the gameplay
 - [ ] Gameplay screen
   - [x] Black background
-  - [ ] Several dozen invaders spawn in a grid formation
+  - [x] Several dozen invaders spawn in a grid formation
   - [x] One defender spawns at the center in the bottom of the screen
   - [ ] Several barriers spawn just above the defender
   - [ ] A short "intro" sound plays
@@ -33,16 +33,16 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [ ] The game begins with three player lives
     - [ ] The player score is displayed on the screen
     - [ ] The indication of the 3 lives is displayed on screen
-    - [ ] Pressing space fires a bullet from the center of the defender
-    - [ ] The defender may not fire a new bullet when one is already on screen
+    - [x] Pressing space fires a bullet from the center of the defender
+    - [x] The defender may not fire a new bullet when one is already on screen
     - [ ] When the bullet is fired the "defender fire" sound effect is played
     - [ ] If the bullet collides with a barrier, that barrier is destroyed and the bullet is removed from the screen
-    - [ ] If the bullet collides with an invader, that invader is destroyed and the bullet is removed from the screen
+    - [x] If the bullet collides with an invader, that invader is destroyed and the bullet is removed from the screen
       - [ ] When an invader is destroyed his texture is replaced with a flasihng explosion for 1 second before being removed from the screen entirely
       - [ ] For every invader destroyed the player gains 100 points
       - [ ] For every invader destroyed, the remaining invaders move faster
-    - [ ] The invaders alternate moving right then left, each time advancing then switching direction when they reach the edge of the screen
-      - [ ] Each advancement happens by 2 pixels
+    - [x] The invaders alternate moving right then left, each time advancing then switching direction when they reach the edge of the screen
+      - [x] Each advancement happens by 10 pixels
       - [ ] The advancement only occurs when an invader on screen touches the edge of the screen
     - [ ] If an invader collides with a barrier the barrier is destroyed
     - [ ] Every second one invader in the "front line" is selected at random to fire an invader bullet and play the "invader fire" sound effect
