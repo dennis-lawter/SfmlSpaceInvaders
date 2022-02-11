@@ -75,10 +75,12 @@ void BaddieGroup::update() {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]){
 					baddies[x][y]->speed +=.05;
-					didDieThisFrame = false;
+					cout << currentBaddies << endl;
 				}
 			}
-		}			
+		}
+		didDieThisFrame = false;
+		currentBaddies--;			
 	}
 
 }

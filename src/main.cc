@@ -43,6 +43,9 @@ void update() {
 		}
 	}
 	killemAll.update();
+	if (killemAll.currentBaddies <= 0) {
+		window.close();
+	}
 }
 void draw() {
 	window.clear(Color::Black);

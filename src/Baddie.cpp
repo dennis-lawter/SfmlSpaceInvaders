@@ -2,6 +2,7 @@
 #include "Baddie.hpp"
 using namespace std;
 
+
 void Baddie::moveRight() {
 	this->sprite.move(speed, 0);
 }
