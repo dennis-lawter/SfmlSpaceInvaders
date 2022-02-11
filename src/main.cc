@@ -9,6 +9,7 @@ using namespace sf;
 using namespace std;
 
 RenderWindow window;
+View kamera;
 Texture enemyTexture;
 Texture playerTexture;
 Texture bulletTexture;
@@ -30,6 +31,20 @@ int init() {
 	return EXIT_SUCCESS;
 }
 
+void windowInit() {
+	int width = VideoMode::getDesktopMode().width - 100;
+	int height = VideoMode::getDesktopMode().height - 120;
+	int widthMulti = width / 128;
+	int heightMulti = height / 128;
+	int smallestMulti = (widthMulti > heightMulti) ? heightMulti : widthMulti;
+	window.create(VideoMode(smallestMulti * 128, smallestMulti * 128), "Totally Invading Space");
+	kamera.setSize(128, 128);
+	kamera.setCenter(128 / 2, 128 / 2);
+	window.setView(kamera);
+	window.setKeyRepeatEnabled(false);
+	window.setFramerateLimit(60);
+}
+
 void update() {
 	defender->update();
 	if (pew) {
@@ -46,7 +61,7 @@ void update() {
 	if (killemAll.currentBaddies <= 0) {
 		window.close();
 	}
-	if (killemAll.baddiesWin()){
+	if (killemAll.baddiesWin()) {
 		window.close();
 	}
 }
@@ -63,9 +78,7 @@ void draw() {
 int main(int argc, char** argv) {
 	if (init() != EXIT_SUCCESS)
 		return EXIT_FAILURE;
-	window.create(VideoMode(128, 128), "Totally Invading Space");
-	window.setKeyRepeatEnabled(false);
-	window.setFramerateLimit(60);
+	windowInit();
 
 	while (window.isOpen()) {
 		Event currentEvent;
