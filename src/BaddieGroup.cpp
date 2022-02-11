@@ -28,6 +28,17 @@ bool BaddieGroup::testHit(Bullet &pew) {
 	return false;
 }
 
+bool BaddieGroup::baddiesWin() {
+	for (int y = ROWS - 1; y >= 0; y--) {	
+		for (int x = COLUMNS - 1; x >= 0; x--) {
+			if (baddies[x][y]){
+				return (baddies[x][y]->getY() >= 120);				
+			}
+		}	
+	}
+	return false;
+}
+
 void BaddieGroup::update() {
 	bool allMoveDown = false;
 	for (int x = 0; x < COLUMNS; x++) {

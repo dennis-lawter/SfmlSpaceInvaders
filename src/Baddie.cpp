@@ -15,6 +15,7 @@ void Baddie::moveDown() {
 	this->sprite.move(0, 10);
 }
 
+
 // void Baddie::update() {
 // 	if (isMovingRight) {
 // 		this->sprite.move(speed,0);

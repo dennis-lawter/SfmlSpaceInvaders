@@ -21,6 +21,7 @@ class BaddieGroup {
 
 		BaddieGroup();
 		bool testHit(Bullet &pew);
+		bool baddiesWin();
 		void update();
 		void draw(RenderWindow& window);
 };
