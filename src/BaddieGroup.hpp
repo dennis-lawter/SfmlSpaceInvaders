@@ -15,6 +15,7 @@ class BaddieGroup {
 		Texture textureArray[ROWS]; 
 		Baddie* baddies[COLUMNS][ROWS];
 		bool allMoveRight = true;
+		bool didDieThisFrame = false;
 
 		BaddieGroup();
 		bool testHit(Bullet &pew);

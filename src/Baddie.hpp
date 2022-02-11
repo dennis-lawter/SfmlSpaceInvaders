@@ -6,7 +6,7 @@ using namespace sf;
 
 class Baddie : public GameObject {
 public:
-	float speed = 0.3;
+	float speed = 0.1;
 	Baddie(Texture& texture, int x, int y) : GameObject(texture, x, y) {}
 	void moveRight();
 	void moveLeft();

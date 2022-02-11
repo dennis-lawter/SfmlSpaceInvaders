@@ -19,6 +19,7 @@ bool BaddieGroup::testHit(Bullet &pew) {
 				if (baddies[x][y]->collision().intersects(pew.collision())) {
 					delete baddies[x][y];
 					baddies[x][y] = nullptr;
+					didDieThisFrame = true;
 					return true;
 				}	
 			}
@@ -50,7 +51,7 @@ void BaddieGroup::update() {
 	if (allMoveRight && allMoveDown){
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
-					if (baddies[x][y]){
+				if (baddies[x][y]){
 					baddies[x][y]->moveDown();
 				}
 			}			
@@ -61,7 +62,7 @@ void BaddieGroup::update() {
 	if (!allMoveRight && allMoveDown){
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
-					if (baddies[x][y]){
+				if (baddies[x][y]){
 					baddies[x][y]->moveDown();
 				}
 			}			
@@ -69,6 +70,17 @@ void BaddieGroup::update() {
 		allMoveDown = false;
 		allMoveRight = true;
 	}
+	if (didDieThisFrame) {
+		for (int x = 0; x < COLUMNS; x++) {
+			for (int y = 0; y < ROWS; y++) {
+				if (baddies[x][y]){
+					baddies[x][y]->speed +=.05;
+					didDieThisFrame = false;
+				}
+			}
+		}			
+	}
+
 }
 
 
