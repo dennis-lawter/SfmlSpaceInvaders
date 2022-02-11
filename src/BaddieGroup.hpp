@@ -5,6 +5,7 @@
 #include "Bullet.hpp"
 using namespace sf;
 
+
 class BaddieGroup {
 	public:
 		const static int ROWS = 3;
@@ -13,7 +14,8 @@ class BaddieGroup {
 		int currentBaddies = 0;
 		Texture textureArray[ROWS]; 
 		Baddie* baddies[COLUMNS][ROWS];
-		
+		bool allMoveRight = true;
+
 		BaddieGroup();
 		bool testHit(Bullet &pew);
 		void update();

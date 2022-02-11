@@ -30,6 +30,30 @@ int init() {
 	return EXIT_SUCCESS;
 }
 
+void update() {
+	defender->update();
+	if (pew) {
+		pew->update();
+		if (killemAll.testHit(*pew)) {
+			delete pew; //frees memory
+			pew = nullptr;
+		} else if (pew->getY() <= -6) {
+			delete pew;
+			pew = nullptr;
+		}
+	}
+	killemAll.update();
+}
+void draw() {
+	window.clear(Color::Black);
+	if (pew) {
+		pew->draw(window);
+	}
+	defender->draw(window);
+	killemAll.draw(window);
+	window.display();
+}
+
 int main(int argc, char** argv) {
 	if (init() != EXIT_SUCCESS)
 		return EXIT_FAILURE;
@@ -87,26 +111,8 @@ int main(int argc, char** argv) {
 
 		}
 
-		defender->update();
-		if (pew) {
-			pew->update();
-			if (killemAll.testHit(*pew)) {
-				delete pew; //frees memory
-				pew = nullptr;
-			}
-			else if (pew->getY() <= -6) {
-				delete pew;
-				pew = nullptr;
-			}
-		}
-		killemAll.update();
-		window.clear(Color::Black);
-		if (pew) {
-			pew->draw(window);
-		}
-		defender->draw(window);
-		killemAll.draw(window);
-		window.display();
+		update();
+		draw();
 	}
 	delete defender;
 	if (pew)
