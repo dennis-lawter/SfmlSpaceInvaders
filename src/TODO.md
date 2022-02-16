@@ -43,7 +43,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [ ] For every invader destroyed, the remaining invaders move faster
     - [x] The invaders alternate moving right then left, each time advancing then switching direction when they reach the edge of the screen
       - [x] Each advancement happens by 10 pixels
-      - [ ] The advancement only occurs when an invader on screen touches the edge of the screen
+      - [x] The advancement only occurs when an invader on screen touches the edge of the screen
     - [ ] If an invader collides with a barrier the barrier is destroyed
     - [ ] Every second one invader in the "front line" is selected at random to fire an invader bullet and play the "invader fire" sound effect
     - [ ] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
@@ -96,7 +96,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Save the high score to a file on the player's device
 - [ ] Load the high score from the file on the player's device upon starting the game
 - [ ] Allow the player to enter their initials when they achieve a new high score
-- [ ] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
+- [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [ ] Animate the defender and invader sprites
 - [ ] Show the amount of score gained on screen near the location where the score gaining event occurred
 - [ ] Background music

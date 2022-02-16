@@ -3,19 +3,21 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
 #include "Baddie.hpp"
-#include "Bullet.hpp"
+#include "PlayerBullet.hpp"
 #include "BaddieGroup.hpp"
 using namespace sf;
 using namespace std;
 
 RenderWindow window;
 View kamera;
+Font gameFont;
 Texture enemyTexture;
 Texture playerTexture;
 Texture bulletTexture;
 Player* defender = nullptr; //No memory reserved
-Bullet* pew = nullptr;
+PlayerBullet* pew = nullptr;
 BaddieGroup killemAll;
+RectangleShape background;
 
 int init() {
 	if (!playerTexture.loadFromFile("res/resource/defender.png")) {
@@ -26,7 +28,14 @@ int init() {
 		return EXIT_FAILURE;
 	}
 
+	if (!gameFont.loadFromFile("res/resource/PressStart2P.ttf")) {
+		return EXIT_FAILURE;
+	}
+
 	defender = new Player(playerTexture); //reserves memory for new object
+	background.setFillColor(Color::Black);
+	background.setSize(Vector2f(128,128));
+	background.setPosition(0,0);
 
 	return EXIT_SUCCESS;
 }
@@ -66,7 +75,8 @@ void update() {
 	}
 }
 void draw() {
-	window.clear(Color::Black);
+	window.clear(Color(0x000022ff));
+	window.draw(background);
 	if (pew) {
 		pew->draw(window);
 	}
@@ -87,6 +97,30 @@ int main(int argc, char** argv) {
 			case Event::Closed:
 				window.close();
 				break;
+			case Event::Resized:
+			{
+				double w, h, goal, x, y;
+				double windowWidth = window.getSize().x;
+				double windowHeight = window.getSize().y;
+				double aspectRatio = windowWidth / windowHeight;
+				if (aspectRatio > 1) {
+					goal = windowHeight;
+					w = goal / windowWidth;
+					x = (1.0 - w) / 2.0;
+					h = 1.0;
+					y = 0.0;
+				} 				
+				else {
+					goal = windowWidth;
+					h = goal / windowHeight;
+					y = (1.0 - h) / 2.0;
+					w = 1.0;
+					x = 0.0;
+				}
+				kamera.setViewport(FloatRect (x,y,w,h));
+				window.setView(kamera);
+			break;
+			}
 			case Event::KeyPressed:
 				switch (currentEvent.key.code) {
 				case Keyboard::Key::Escape:
@@ -104,7 +138,7 @@ int main(int argc, char** argv) {
 				case Keyboard::Up:
 				case Keyboard::Space:
 					if (!pew)
-						pew = new Bullet(bulletTexture, defender->getX() + 3);
+						pew = new PlayerBullet(bulletTexture, defender->getX() + 3);
 					break;
 				default:
 					break;
@@ -126,15 +160,15 @@ int main(int argc, char** argv) {
 				}
 			default:
 				break;
-			}
-
 		}
 
-		update();
-		draw();
 	}
-	delete defender;
-	if (pew)
-		delete pew;
-	return EXIT_SUCCESS;
+
+	update();
+	draw();
+}
+delete defender;
+if (pew)
+delete pew;
+return EXIT_SUCCESS;
 }
