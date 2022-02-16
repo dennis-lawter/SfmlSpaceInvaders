@@ -2,6 +2,7 @@
 #define BADDIEBULLET_HPP_
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
+#include "Player.hpp"
 using namespace sf;
 
 class BaddieBullet : public GameObject {

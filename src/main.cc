@@ -5,6 +5,7 @@
 #include "Baddie.hpp"
 #include "PlayerBullet.hpp"
 #include "BaddieGroup.hpp"
+#include "BaddieBullet.hpp"
 using namespace sf;
 using namespace std;
 
@@ -56,6 +57,7 @@ void windowInit() {
 
 void update() {
 	defender->update();
+	defender->testHit(killemAll.bulletArray);
 	if (pew) {
 		pew->update();
 		if (killemAll.testHit(*pew)) {
