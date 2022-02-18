@@ -12,7 +12,6 @@ using namespace sf;
 using namespace std;
 
 namespace resources {
-	extern string dirRoot;
 	extern map<string, Texture> textures;
 	extern Font font;
 

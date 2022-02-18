@@ -28,7 +28,6 @@ namespace resources {
 		} else {
 			throwFileError(defines::TEXTURE_FILE_NAMES[0]);
 		}
-		cout << "yep: " << resources::dirRoot << endl;
 	}
 
 	void loadTextures() {

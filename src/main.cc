@@ -28,7 +28,7 @@ int init() {
 	killemAll = new BaddieGroup();
 
 	background.setFillColor(Color::Black);
-	background.setSize(Vector2f(128, 128));
+	background.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
 	background.setPosition(0, 0);
 
 	return EXIT_SUCCESS;
@@ -37,12 +37,12 @@ int init() {
 void windowInit() {
 	int width = VideoMode::getDesktopMode().width - 100;
 	int height = VideoMode::getDesktopMode().height - 120;
-	int widthMulti = width / 128;
-	int heightMulti = height / 128;
+	int widthMulti = width / defines::WIDTH;
+	int heightMulti = height / defines::HEIGHT;
 	int smallestMulti = (widthMulti > heightMulti) ? heightMulti : widthMulti;
-	window.create(VideoMode(smallestMulti * 128, smallestMulti * 128), "Totally Invading Space");
-	kamera.setSize(128, 128);
-	kamera.setCenter(128 / 2, 128 / 2);
+	window.create(VideoMode(smallestMulti * defines::WIDTH, smallestMulti * defines::HEIGHT), defines::GAME_NAME);
+	kamera.setSize(defines::WIDTH, defines::HEIGHT);
+	kamera.setCenter(defines::WIDTH / 2, defines::HEIGHT / 2);
 	window.setView(kamera);
 	window.setKeyRepeatEnabled(false);
 	window.setFramerateLimit(60);
@@ -97,15 +97,16 @@ int main(int argc, char** argv) {
 				double w, h, goal, x, y;
 				double windowWidth = window.getSize().x;
 				double windowHeight = window.getSize().y;
-				double aspectRatio = windowWidth / windowHeight;
-				if (aspectRatio > 1) {
-					goal = windowHeight;
+				double screenAspectRatio = windowWidth / windowHeight;
+				double gameAspectRatio = ((double)defines::WIDTH) / defines::HEIGHT;
+				if (screenAspectRatio > 1) {
+					goal = windowHeight / gameAspectRatio;
 					w = goal / windowWidth;
 					x = (1.0 - w) / 2.0;
 					h = 1.0;
 					y = 0.0;
-				} 				else {
-					goal = windowWidth;
+				} else {
+					goal = windowWidth / gameAspectRatio;
 					h = goal / windowHeight;
 					y = (1.0 - h) / 2.0;
 					w = 1.0;

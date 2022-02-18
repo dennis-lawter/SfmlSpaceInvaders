@@ -8,7 +8,10 @@ class Baddie : public GameObject {
 public:
 	float speed = 0.05;
 	bool didHitBottom = false;
-	Baddie(Texture& texture, int x, int y) : GameObject(texture, x, y) {}
+
+	Baddie(Texture& texture, int x, int y)
+		: GameObject(texture, x, y) {}
+
 	void moveRight();
 	void moveLeft();
 	void moveDown();
