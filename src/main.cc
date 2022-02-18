@@ -1,42 +1,35 @@
 #include <cstdlib>
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "BaddieGroup.hpp"
 #include "Player.hpp"
 #include "Baddie.hpp"
 #include "PlayerBullet.hpp"
-#include "BaddieGroup.hpp"
 #include "BaddieBullet.hpp"
 using namespace sf;
 using namespace std;
 
 RenderWindow window;
 View kamera;
-Font gameFont;
-Texture enemyTexture;
-Texture playerTexture;
-Texture bulletTexture;
-Player* defender = nullptr; //No memory reserved
-PlayerBullet* pew = nullptr;
-BaddieGroup killemAll;
 RectangleShape background;
 
+Player* defender = nullptr;
+PlayerBullet* pew = nullptr;
+BaddieGroup* killemAll = nullptr;
+
 int init() {
-	if (!playerTexture.loadFromFile("res/resource/defender.png")) {
+	try {
+		resources::loadResources();
+	} catch (runtime_error e) {
 		return EXIT_FAILURE;
 	}
 
-	if (!bulletTexture.loadFromFile("res/resource/bullet.png")) {
-		return EXIT_FAILURE;
-	}
+	defender = new Player();
+	killemAll = new BaddieGroup();
 
-	if (!gameFont.loadFromFile("res/resource/PressStart2P.ttf")) {
-		return EXIT_FAILURE;
-	}
-
-	defender = new Player(playerTexture); //reserves memory for new object
 	background.setFillColor(Color::Black);
-	background.setSize(Vector2f(128,128));
-	background.setPosition(0,0);
+	background.setSize(Vector2f(128, 128));
+	background.setPosition(0, 0);
 
 	return EXIT_SUCCESS;
 }
@@ -57,22 +50,22 @@ void windowInit() {
 
 void update() {
 	defender->update();
-	defender->testHit(killemAll.bulletArray);
+	defender->testHit(killemAll->bulletArray);
 	if (pew) {
 		pew->update();
-		if (killemAll.testHit(*pew)) {
-			delete pew; //frees memory
+		if (killemAll->testHit(*pew)) {
+			delete pew;
 			pew = nullptr;
 		} else if (pew->getY() <= -6) {
 			delete pew;
 			pew = nullptr;
 		}
 	}
-	killemAll.update();
-	if (killemAll.currentBaddies <= 0) {
+	killemAll->update();
+	if (killemAll->currentBaddies <= 0) {
 		window.close();
 	}
-	if (killemAll.baddiesWin()) {
+	if (killemAll->baddiesWin()) {
 		window.close();
 	}
 }
@@ -83,7 +76,7 @@ void draw() {
 		pew->draw(window);
 	}
 	defender->draw(window);
-	killemAll.draw(window);
+	killemAll->draw(window);
 	window.display();
 }
 
@@ -111,17 +104,16 @@ int main(int argc, char** argv) {
 					x = (1.0 - w) / 2.0;
 					h = 1.0;
 					y = 0.0;
-				} 				
-				else {
+				} 				else {
 					goal = windowWidth;
 					h = goal / windowHeight;
 					y = (1.0 - h) / 2.0;
 					w = 1.0;
 					x = 0.0;
 				}
-				kamera.setViewport(FloatRect (x,y,w,h));
+				kamera.setViewport(FloatRect(x, y, w, h));
 				window.setView(kamera);
-			break;
+				break;
 			}
 			case Event::KeyPressed:
 				switch (currentEvent.key.code) {
@@ -140,7 +132,7 @@ int main(int argc, char** argv) {
 				case Keyboard::Up:
 				case Keyboard::Space:
 					if (!pew)
-						pew = new PlayerBullet(bulletTexture, defender->getX() + 3);
+						pew = new PlayerBullet(defender->getX() + 3);
 					break;
 				default:
 					break;
@@ -162,15 +154,16 @@ int main(int argc, char** argv) {
 				}
 			default:
 				break;
+			}
+
 		}
 
+		update();
+		draw();
 	}
-
-	update();
-	draw();
-}
-delete defender;
-if (pew)
-delete pew;
-return EXIT_SUCCESS;
+	delete defender;
+	delete killemAll;
+	if (pew)
+		delete pew;
+	return EXIT_SUCCESS;
 }

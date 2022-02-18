@@ -1,6 +1,8 @@
 #ifndef GAMEOBJECT_HPP_
 #define GAMEOBJECT_HPP_
+
 #include <SFML/Graphics.hpp>
+#include "resources.hh"
 
 using namespace sf;
 

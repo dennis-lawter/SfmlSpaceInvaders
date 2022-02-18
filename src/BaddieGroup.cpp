@@ -1,14 +1,14 @@
 #include "BaddieGroup.hpp"
 
 BaddieGroup::BaddieGroup() {
-	textureArray[0].loadFromFile("res/resource/invader3.png");
-	textureArray[1].loadFromFile("res/resource/invader2.png");
-	textureArray[2].loadFromFile("res/resource/invader1.png");
-	bulletTexture.loadFromFile("res/resource/bullet.png");
+	Texture* textureArray [ROWS];
+	textureArray[0] = &resources::textures["invader3"];
+	textureArray[1] = &resources::textures["invader2"];
+	textureArray[2] = &resources::textures["invader1"];
 
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
-			baddies[x][y] = new Baddie(textureArray[y], x * 12, 10.1 + (y * 14));
+			baddies[x][y] = new Baddie(*textureArray[y], x * 12, 10.1 + (y * 14));
 		}
 	}
 }
@@ -47,7 +47,7 @@ void BaddieGroup::baddieShoot() {
 			if (baddies[randomColumn][y]) {
 				baddieCurrentX = baddies[randomColumn][y]->getX() + 3;
 				baddieCurrentY = baddies[randomColumn][y]->getY() + 8;
-				bulletArray.emplace(bulletArray.end(), BaddieBullet(bulletTexture, baddieCurrentX, baddieCurrentY));
+				bulletArray.emplace(bulletArray.end(), BaddieBullet(baddieCurrentX, baddieCurrentY));
 				shootTimer = 0;
 				return;
 			}
@@ -67,7 +67,7 @@ void BaddieGroup::update() {
 					if (baddies[x][y]->getX() >= 120) {
 						allMoveDown = true;
 					}
-				} 				else if (!allMoveRight) {
+				} else if (!allMoveRight) {
 					baddies[x][y]->moveLeft();
 					if (baddies[x][y]->getX() <= 0) {
 						allMoveDown = true;

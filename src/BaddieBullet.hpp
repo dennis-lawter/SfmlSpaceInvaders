@@ -2,12 +2,12 @@
 #define BADDIEBULLET_HPP_
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include "Player.hpp"
 using namespace sf;
 
 class BaddieBullet : public GameObject {
 public:
-	BaddieBullet(Texture& texture, float baddieCurrentX, float baddieCurrentY) : GameObject(texture, baddieCurrentX, baddieCurrentY) {}
+	BaddieBullet(float baddieCurrentX, float baddieCurrentY)
+		: GameObject(resources::textures["bullet"], baddieCurrentX, baddieCurrentY) {}
 
 	void update();
 };
