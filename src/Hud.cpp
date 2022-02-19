@@ -2,7 +2,6 @@
 
 Hud::Hud() {
 	lives.setTexture(resources::textures["1up"]);
-	cout << lives.getLocalBounds().width << endl;
 }
 
 void Hud::draw(RenderWindow& window) {

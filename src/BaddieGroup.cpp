@@ -111,7 +111,7 @@ void BaddieGroup::update() {
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]) {
-					baddies[x][y]->speed += .02;
+					baddies[x][y]->speed += (.02 * (double(MAXBADDIES)/currentBaddies));
 				}
 			}
 		}
