@@ -3,9 +3,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include "Baddie.hpp"
-#include "PlayerBullet.hpp"
-#include "BaddieBullet.hpp"
+#include "gameObj/Baddie.hpp"
+#include "gameObj/PlayerBullet.hpp"
+#include "gameObj/BaddieBullet.hpp"
 using namespace sf;
 using namespace std;
 

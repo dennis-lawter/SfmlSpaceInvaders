@@ -2,7 +2,7 @@
 #define GAMEOBJECT_HPP_
 
 #include <SFML/Graphics.hpp>
-#include "resources.hh"
+#include "../resources.hh"
 
 using namespace sf;
 
