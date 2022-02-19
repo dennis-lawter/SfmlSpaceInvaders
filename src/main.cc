@@ -8,6 +8,7 @@
 #include "gameObj/PlayerBullet.hpp"
 #include "gameObj/BaddieBullet.hpp"
 #include "gameStates/GamePlayState.hpp"
+#include "gameStates/TitleState.hpp"
 using namespace sf;
 using namespace std;
 
@@ -17,13 +18,11 @@ RectangleShape background;
 
 GameState* gameplay = nullptr;
 
-BaddieGroup* killemAll = nullptr;
-
-
+int stateLevel = 0;
 
 int init() {
 	/* a try catch will run the first function and catches a RUNTIME ERROR
-	
+
 	*/
 	try {
 		resources::loadResources();
@@ -31,7 +30,7 @@ int init() {
 		return EXIT_FAILURE;
 	}
 
-	gameplay = new GamePlayState();
+	gameplay = new TitleState();
 
 	background.setFillColor(Color::Black);
 	background.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
@@ -42,7 +41,7 @@ int init() {
 
 
 /*Creates the window within a certain range of the user screen and creates
-a square screen that makes the game large enough to see the models at a 
+a square screen that makes the game large enough to see the models at a
 proper aspect ratio
 */
 void windowInit() {
@@ -61,6 +60,19 @@ void windowInit() {
 
 void update() {
 	gameplay->update(window);
+	if (gameplay->isEnding) {
+		switch (stateLevel) {
+		case 0:
+			delete gameplay;
+			gameplay = new GamePlayState();
+			stateLevel++;
+			break;
+		case 1:
+		default:
+			window.close();
+			break;
+		}
+	}
 }
 
 void draw() {
@@ -82,8 +94,8 @@ int main(int argc, char** argv) {
 			case Event::Closed:
 				window.close();
 				break;
-/* This case allows the game to become fullscreen and maintain aspect ratio
-*/
+				/* This case allows the game to become fullscreen and maintain aspect ratio
+				*/
 			case Event::Resized:
 			{
 				double w, h, goal, x, y;

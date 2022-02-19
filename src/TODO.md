@@ -13,13 +13,13 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [ ] Once the font file loads, display "LOADING..."
   - [ ] After all files load go to the start screen
 - [ ] Start screen
-  - [ ] Black background
+  - [x] Black background
   - [ ] Centered text at the top reads "TOTALLY INVADING SPACE"
   - [ ] Left-aligned text near the top reads "HIGH SCORE: " followed by the highest score the player has achieved since the game has opened, starting at 0 when the game is first opened
   - [ ] Centered text at the middle says "MOVE: A D ⬅ ➡"
   - [ ] Centered text below that says "FIRE: W ⬆ ➖"
   - [ ] Centered text at the bottom says "PRESS ANY KEY"
-  - [ ] Pressing any keyboard key advances to the gameplay
+  - [x] Pressing any keyboard key advances to the gameplay
 - [ ] Gameplay screen
   - [x] Black background
   - [x] Several dozen invaders spawn in a grid formation

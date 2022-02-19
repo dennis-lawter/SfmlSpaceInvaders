@@ -70,10 +70,10 @@ void GamePlayState::update(RenderWindow& window) {
 	}
 	killemAll->update();
 	if (killemAll->currentBaddies <= 0) { //Win Condition
-		window.close();
+		isEnding = true;
 	}
 	if (killemAll->baddiesWin() || hud->currentLives < 0) { //Lose Condition
-		window.close();
+		isEnding = true;
 	}
 }
 
