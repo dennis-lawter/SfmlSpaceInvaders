@@ -22,6 +22,16 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "Build_Release",
+			"type": "shell",
+			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Release.mak all",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
 			"label": "Run",
 			"type": "shell",
 			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak run",

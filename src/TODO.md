@@ -29,31 +29,34 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [ ] After three seconds the game begins and player input is accepted
   - [x] Pressing left/right moves the defender
     - [x] The defender cannot move off of the screen
-    - [ ] The game begins with a player score of 0
-    - [ ] The game begins with three player lives
-    - [ ] The player score is displayed on the screen
-    - [ ] The indication of the 3 lives is displayed on screen
+    - [x] The game begins with a player score of 0
+    - [x] The game begins with two player lives
+    - [x] The player score is displayed on the screen
+    - [x] The indication of the current lives is displayed on screen
     - [x] Pressing space fires a bullet from the center of the defender
     - [x] The defender may not fire a new bullet when one is already on screen
     - [ ] When the bullet is fired the "defender fire" sound effect is played
     - [ ] If the bullet collides with a barrier, that barrier is destroyed and the bullet is removed from the screen
     - [x] If the bullet collides with an invader, that invader is destroyed and the bullet is removed from the screen
       - [ ] When an invader is destroyed his texture is replaced with a flasihng explosion for 1 second before being removed from the screen entirely
-      - [ ] For every invader destroyed the player gains 100 points
-      - [ ] For every invader destroyed, the remaining invaders move faster
+      - [x] For every invader destroyed the player gains 100 points
+      - [x] For every invader destroyed, the remaining invaders move faster
     - [x] The invaders alternate moving right then left, each time advancing then switching direction when they reach the edge of the screen
       - [x] Each advancement happens by 10 pixels
       - [x] The advancement only occurs when an invader on screen touches the edge of the screen
     - [ ] If an invader collides with a barrier the barrier is destroyed
-    - [ ] Every second one invader in the "front line" is selected at random to fire an invader bullet and play the "invader fire" sound effect
+    - [x] Every second one invader in the "front line" is selected at random to fire an invader bullet 
+      - [ ] Upon firing play the "invader fire" sound effect
     - [ ] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
-    - [ ] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
+    - [x] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
       - [ ] Upon losing a life the defender's texture is swapped for a flashing explosion for three seconds
-      - [ ] If the player has a remaining life, decrease lives and return the player's texture to normal
-      - [ ] If the player has on remaining lives, go to the game over screen
+      - [x] If the player has a remaining life, decrease lives
+      - [ ] If the player has no remaining lives, go to the game over screen
       - [ ] During the explosion the player may not move or shoot
+      - [ ] During explosion, played may not be hit by bullets
       - [ ] During the explosion the invaders continue moving, advancing, and firing as normal
-    - [ ] If after advancing any of the invaders is touching the bottom of the screen go directly to the game over screen
+    - [x] Detect if any advancing invaders touch the bottom of the screen
+      - [ ] When they do go directly to the game over screen
     - [ ] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [ ] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
@@ -102,7 +105,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Background music
 - [ ] Title music
 - [ ] Game over music
-- [ ] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
+- [x] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
 - [ ] More power ups
 - [ ] Clear power up sprites
 - [ ] Power up descriptions on the start screen
