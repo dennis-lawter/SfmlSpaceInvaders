@@ -7,6 +7,7 @@
 #include "gameObj/Baddie.hpp"
 #include "gameObj/PlayerBullet.hpp"
 #include "gameObj/BaddieBullet.hpp"
+#include "gameStates/GamePlayState.hpp"
 using namespace sf;
 using namespace std;
 
@@ -14,10 +15,10 @@ RenderWindow window;
 View kamera;
 RectangleShape background;
 
-Player* defender = nullptr;
-PlayerBullet* pew = nullptr;
+GamePlayState* gameplay = nullptr;
+
 BaddieGroup* killemAll = nullptr;
-Hud* hud = nullptr;
+
 
 
 int init() {
@@ -30,9 +31,7 @@ int init() {
 		return EXIT_FAILURE;
 	}
 
-	defender = new Player();
-	killemAll = new BaddieGroup();
-	hud = new Hud();
+	gameplay = new GamePlayState();
 
 	background.setFillColor(Color::Black);
 	background.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
@@ -61,39 +60,13 @@ void windowInit() {
 }
 
 void update() {
-	defender->update();
-	if(defender->testHit(killemAll->bulletArray)) {
-		hud->currentLives--;
-	}
-	if (pew) {
-		pew->update();
-		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
-			delete pew;
-			pew = nullptr;
-			hud->score += 100;
-		} else if (pew->getY() <= 6) { //deletes bullet when it leaves screen
-			delete pew;
-			pew = nullptr;
-		}
-	}
-	killemAll->update();
-	if (killemAll->currentBaddies <= 0) { //Win Condition
-		window.close();
-	}
-	if (killemAll->baddiesWin() || hud->currentLives < 0) { //Lose Condition
-		window.close();
-	}
+	gameplay->update(window);
 }
 
 void draw() {
 	window.clear(Color(0x000022ff)); //The background of the game when in fullscreen
 	window.draw(background);
-	if (pew) {
-		pew->draw(window);
-	}
-	hud->draw(window);
-	defender->draw(window);
-	killemAll->draw(window);
+	gameplay->draw(window);
 	window.display();
 }
 
@@ -135,48 +108,9 @@ int main(int argc, char** argv) {
 				window.setView(kamera);
 				break;
 			}
-/* This case is for player controls
-*/
-			case Event::KeyPressed:
-				switch (currentEvent.key.code) {
-				case Keyboard::Key::Escape: //Manual game close
-					window.close();
-					break;
-				case Keyboard::Key::A:
-				case Keyboard::Key::Left: //Move Left
-					defender->playerIsMovingLeft = true;
-					break;
-				case Keyboard::Key::D:
-				case Keyboard::Key::Right: //Move Right
-					defender->playerIsMovingRight = true;
-					break;
-				case Keyboard::W: //Player fires
-				case Keyboard::Up:
-				case Keyboard::Space:
-					if (!pew)
-						pew = new PlayerBullet(defender->getX() + 3);
-					break;
-				default:
-					break;
-				}
-				break;
 
-/* This case allows for smooth player movement left and right
-*/
-			case Event::KeyReleased:
-				switch (currentEvent.key.code) {
-				case Keyboard::Key::A:
-				case Keyboard::Key::Left:
-					defender->playerIsMovingLeft = false;
-					break;
-				case Keyboard::Key::D:
-				case Keyboard::Key::Right:
-					defender->playerIsMovingRight = false;
-					break;
-				default:
-					break;
-				}
 			default:
+				gameplay->processInput(currentEvent);
 				break;
 			}
 
@@ -185,9 +119,6 @@ int main(int argc, char** argv) {
 		update();
 		draw();
 	}
-	delete defender;
-	delete killemAll;
-	if (pew)
-		delete pew;
+	delete gameplay;
 	return EXIT_SUCCESS;
 }
