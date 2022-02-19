@@ -62,7 +62,9 @@ void windowInit() {
 
 void update() {
 	defender->update();
-	defender->testHit(killemAll->bulletArray);
+	if(defender->testHit(killemAll->bulletArray)) {
+		hud->currentLives--;
+	}
 	if (pew) {
 		pew->update();
 		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
@@ -78,7 +80,7 @@ void update() {
 	if (killemAll->currentBaddies <= 0) { //Win Condition
 		window.close();
 	}
-	if (killemAll->baddiesWin()) { //Lose Condition
+	if (killemAll->baddiesWin() || hud->currentLives < 0) { //Lose Condition
 		window.close();
 	}
 }
