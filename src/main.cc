@@ -6,6 +6,7 @@
 #include "Baddie.hpp"
 #include "PlayerBullet.hpp"
 #include "BaddieBullet.hpp"
+#include "Hud.hpp"
 using namespace sf;
 using namespace std;
 
@@ -16,7 +17,7 @@ RectangleShape background;
 Player* defender = nullptr;
 PlayerBullet* pew = nullptr;
 BaddieGroup* killemAll = nullptr;
-
+Hud* hud = nullptr;
 
 
 int init() {
@@ -31,6 +32,7 @@ int init() {
 
 	defender = new Player();
 	killemAll = new BaddieGroup();
+	hud = new Hud();
 
 	background.setFillColor(Color::Black);
 	background.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
@@ -66,7 +68,8 @@ void update() {
 		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
 			delete pew;
 			pew = nullptr;
-		} else if (pew->getY() <= -6) { //deletes bullet when it leaves screen
+			hud->score += 100;
+		} else if (pew->getY() <= 6) { //deletes bullet when it leaves screen
 			delete pew;
 			pew = nullptr;
 		}
@@ -86,6 +89,7 @@ void draw() {
 	if (pew) {
 		pew->draw(window);
 	}
+	hud->draw(window);
 	defender->draw(window);
 	killemAll->draw(window);
 	window.display();

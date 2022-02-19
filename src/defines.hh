@@ -11,6 +11,7 @@ namespace defines {
 	static const int HEIGHT = 128;
 	static const string IMAGE_FILE_TYPE = ".png";
 	static const string FONT_FILE_TYPE = ".ttf";
+	static const int LIVES_CAP = 3;
 
 	static const string FONT_FILE_NAME = "PressStart2P";
 

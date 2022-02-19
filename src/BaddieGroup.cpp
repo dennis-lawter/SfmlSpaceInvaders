@@ -120,7 +120,7 @@ void BaddieGroup::update() {
 	}
 	baddieShoot();
 	//for (auto i = bulletArray.begin(); i != bulletArray.end(); i++) {
-	for (int i=0; i < bulletArray.size(); i++) {
+	for (unsigned int i=0; i < bulletArray.size(); i++) {
 		BaddieBullet & bullet = bulletArray[i];
 		bullet.update();
 		if (bullet.offScreen()) {

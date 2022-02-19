@@ -6,5 +6,4 @@ bool BaddieBullet::offScreen() {
 
 void BaddieBullet::update() {
     this->sprite.move(0, 1);
-	this->offScreen();
 }
