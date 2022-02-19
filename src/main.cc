@@ -15,7 +15,7 @@ RenderWindow window;
 View kamera;
 RectangleShape background;
 
-GamePlayState* gameplay = nullptr;
+GameState* gameplay = nullptr;
 
 BaddieGroup* killemAll = nullptr;
 
