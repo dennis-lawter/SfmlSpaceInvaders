@@ -17,7 +17,12 @@ Player* defender = nullptr;
 PlayerBullet* pew = nullptr;
 BaddieGroup* killemAll = nullptr;
 
+
+
 int init() {
+	/* a try catch will run the first function and catches a RUNTIME ERROR
+	
+	*/
 	try {
 		resources::loadResources();
 	} catch (runtime_error e) {
@@ -34,6 +39,11 @@ int init() {
 	return EXIT_SUCCESS;
 }
 
+
+/*Creates the window within a certain range of the user screen and creates
+a square screen that makes the game large enough to see the models at a 
+proper aspect ratio
+*/
 void windowInit() {
 	int width = VideoMode::getDesktopMode().width - 100;
 	int height = VideoMode::getDesktopMode().height - 120;
@@ -53,24 +63,25 @@ void update() {
 	defender->testHit(killemAll->bulletArray);
 	if (pew) {
 		pew->update();
-		if (killemAll->testHit(*pew)) {
+		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
 			delete pew;
 			pew = nullptr;
-		} else if (pew->getY() <= -6) {
+		} else if (pew->getY() <= -6) { //deletes bullet when it leaves screen
 			delete pew;
 			pew = nullptr;
 		}
 	}
 	killemAll->update();
-	if (killemAll->currentBaddies <= 0) {
+	if (killemAll->currentBaddies <= 0) { //Win Condition
 		window.close();
 	}
-	if (killemAll->baddiesWin()) {
+	if (killemAll->baddiesWin()) { //Lose Condition
 		window.close();
 	}
 }
+
 void draw() {
-	window.clear(Color(0x000022ff));
+	window.clear(Color(0x000022ff)); //The background of the game when in fullscreen
 	window.draw(background);
 	if (pew) {
 		pew->draw(window);
@@ -92,6 +103,8 @@ int main(int argc, char** argv) {
 			case Event::Closed:
 				window.close();
 				break;
+/* This case allows the game to become fullscreen and maintain aspect ratio
+*/
 			case Event::Resized:
 			{
 				double w, h, goal, x, y;
@@ -116,9 +129,11 @@ int main(int argc, char** argv) {
 				window.setView(kamera);
 				break;
 			}
+/* This case is for player controls
+*/
 			case Event::KeyPressed:
 				switch (currentEvent.key.code) {
-				case Keyboard::Key::Escape:
+				case Keyboard::Key::Escape: //Manual game close
 					window.close();
 					break;
 				case Keyboard::Key::A:
@@ -129,7 +144,7 @@ int main(int argc, char** argv) {
 				case Keyboard::Key::Right: //Move Right
 					defender->playerIsMovingRight = true;
 					break;
-				case Keyboard::W:
+				case Keyboard::W: //Player fires
 				case Keyboard::Up:
 				case Keyboard::Space:
 					if (!pew)
@@ -140,6 +155,8 @@ int main(int argc, char** argv) {
 				}
 				break;
 
+/* This case allows for smooth player movement left and right
+*/
 			case Event::KeyReleased:
 				switch (currentEvent.key.code) {
 				case Keyboard::Key::A:

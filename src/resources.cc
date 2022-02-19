@@ -29,7 +29,8 @@ namespace resources {
 			throwFileError(defines::TEXTURE_FILE_NAMES[0]);
 		}
 	}
-
+	
+	
 	void loadTextures() {
 		string fullFileName = "";
 		for (string fileName : defines::TEXTURE_FILE_NAMES) {

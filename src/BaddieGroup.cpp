@@ -1,7 +1,9 @@
 #include "BaddieGroup.hpp"
 
+/* Builds all baddies and assigns texture based off the row its in
+*/
 BaddieGroup::BaddieGroup() {
-	Texture* textureArray [ROWS];
+	Texture* textureArray[ROWS];
 	textureArray[0] = &resources::textures["invader3"];
 	textureArray[1] = &resources::textures["invader2"];
 	textureArray[2] = &resources::textures["invader1"];
@@ -13,6 +15,9 @@ BaddieGroup::BaddieGroup() {
 	}
 }
 
+/*Tests to see if player's bullet intercepts with a baddie.
+Baddie will die on execution.
+*/
 bool BaddieGroup::testHit(PlayerBullet& pew) {
 	for (int y = ROWS - 1; y >= 0; y--) {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
@@ -29,6 +34,9 @@ bool BaddieGroup::testHit(PlayerBullet& pew) {
 	return false;
 }
 
+/*Will pass true when a baddie hits the bottom of the screen.
+Registers from the bottom row on furthest right column.
+*/
 bool BaddieGroup::baddiesWin() {
 	for (int y = ROWS - 1; y >= 0; y--) {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
@@ -39,6 +47,7 @@ bool BaddieGroup::baddiesWin() {
 	}
 	return false;
 }
+
 
 void BaddieGroup::baddieShoot() {
 	if (SHOOTDELAY <= shootTimer) {
@@ -110,8 +119,13 @@ void BaddieGroup::update() {
 		currentBaddies--;
 	}
 	baddieShoot();
-	for (BaddieBullet& bullet : bulletArray) {
+	//for (auto i = bulletArray.begin(); i != bulletArray.end(); i++) {
+	for (int i=0; i < bulletArray.size(); i++) {
+		BaddieBullet & bullet = bulletArray[i];
 		bullet.update();
+		if (bullet.offScreen()) {
+			bulletArray.erase(bulletArray.begin() + i);
+		}
 	}
 }
 

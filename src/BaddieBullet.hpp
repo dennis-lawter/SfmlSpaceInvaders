@@ -9,6 +9,7 @@ public:
 	BaddieBullet(float baddieCurrentX, float baddieCurrentY)
 		: GameObject(resources::textures["bullet"], baddieCurrentX, baddieCurrentY) {}
 
+	bool offScreen();
 	void update();
 };
 
