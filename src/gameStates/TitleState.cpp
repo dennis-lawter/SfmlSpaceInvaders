@@ -6,12 +6,14 @@ TitleState::TitleState() {
 
 
 void TitleState::processInput(Event& event) {
-	switch (event.type) {
-	case Event::KeyReleased:
-		isEnding = true;
-		break;
-	default:
-		break;
+	if (bufferTick == BUFFERTIMER) {
+		switch (event.type) {
+		case Event::KeyReleased:
+			isEnding = true;
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -19,10 +21,12 @@ void TitleState::processInput(Event& event) {
 void TitleState::update(RenderWindow& window) {
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
-	}
-	else {
+	} 	else {
 		isBlink = !isBlink;
 		blinkBuffer = 0;
+	}
+	if (bufferTick < BUFFERTIMER) {
+		bufferTick++;
 	}
 }
 
@@ -40,11 +44,10 @@ void TitleState::draw(RenderWindow& window) {
 	drawToStart.setScale(.03, .03);
 	drawToStart.setPosition(35, 100);
 	window.draw(drawToStart);
-	
+
 	if (isBlink) {
 		pressAnyKey = "";
-	}
-	else {
+	} 	else {
 		pressAnyKey = "Press Any Key To Start";
 	}
 }

@@ -17,6 +17,8 @@ private:
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
 	bool isBlink = false;
+	const int BUFFERTIMER = 90;
+	int bufferTick = 0;
 
 public:
 	TitleState();

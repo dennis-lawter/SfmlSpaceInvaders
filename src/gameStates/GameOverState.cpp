@@ -6,11 +6,17 @@ GameOverState::GameOverState(bool didWin) {
 
 void GameOverState::processInput(Event& event) {
 	switch (event.type) {
+	case Event::KeyPressed:
+		holdBuffer = false;
+		break;
 	case Event::KeyReleased:
-		isEnding = true;
+		if (!holdBuffer && bufferTick == BUFFERTIMER) {
+			isEnding = true;
+		}
 		break;
 	default:
 		break;
+
 	}
 }
 
@@ -33,8 +39,7 @@ void GameOverState::draw(RenderWindow& window) {
 
 	if (isBlink) {
 		pressAnyKey = "";
-	}
-	else {
+	} else {
 		pressAnyKey = "Press Any Key To Reset";
 	}
 
@@ -48,10 +53,12 @@ void GameOverState::draw(RenderWindow& window) {
 void GameOverState::update(RenderWindow& window) {
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
-	}
-	else {
+	} else {
 		isBlink = !isBlink;
 		blinkBuffer = 0;
+	}
+	if (bufferTick < BUFFERTIMER) {
+		bufferTick++;
 	}
 }
 
