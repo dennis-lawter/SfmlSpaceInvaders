@@ -9,6 +9,7 @@ namespace score {
 	extern vector<int> scoreList;
 	bool compareScores(int first,int second);
 	void addScore();
+	int matchScore();
 }
 
 #endif

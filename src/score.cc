@@ -7,8 +7,19 @@ namespace score {
 		return first > second;
 	}
 	void addScore() {
-		score::scoreList.push_back(score::score);
-		sort(score::scoreList.begin(), score::scoreList.end(), score::compareScores);
-		score::scoreList.pop_back();
+		scoreList.push_back(score);
+		sort(scoreList.begin(), scoreList.end(), compareScores);
+		scoreList.pop_back();
+	}
+	int matchScore() {
+		if (score == 0) {
+			return -1;
+		}
+		for (int i = scoreList.size() - 1; i >= 0; i--) {
+			if (score == scoreList[i]) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }

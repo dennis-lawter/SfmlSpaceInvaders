@@ -4,9 +4,6 @@ GameOverState::GameOverState(bool didWin) {
 	this->didWin = didWin;
 	hud = new Hud();
 	score::addScore();
-	for (int score : score::scoreList) {
-		highScores << setfill('0') << setw(8) << score << endl;
-	}
 }
 
 void GameOverState::processInput(Event& event) {
@@ -29,10 +26,10 @@ void GameOverState::processInput(Event& event) {
 void GameOverState::draw(RenderWindow& window) {
 
 	Text highScoreText(highScores.str(), font, 80);
-	highScoreText.setScale(.05,.05);
+	highScoreText.setScale(.05, .05);
 	highScoreText.setPosition(44, 50);
 	window.draw(highScoreText);
-	
+
 	Text gameOverText(gameOver, font, 80);
 	gameOverText.setScale(.1, .1);
 	gameOverText.setPosition(28, 25);
@@ -59,7 +56,19 @@ void GameOverState::draw(RenderWindow& window) {
 	pressReset.setScale(.03, .03);
 	pressReset.setPosition(36, 95);
 	window.draw(pressReset);
-
+	int matchScore = score::matchScore();
+	highScores.str("");
+	for (size_t score = 0; score < score::scoreList.size(); score++) {
+		if (matchScore == (int)score) {
+			if (isBlink) {
+				highScores << "" << endl;
+			} else {
+				highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
+			}
+		} else {
+			highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
+		}
+	}
 }
 
 void GameOverState::update(RenderWindow& window) {
