@@ -62,7 +62,7 @@ void GamePlayState::update(RenderWindow& window) {
 		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
 			delete pew;
 			pew = nullptr;
-			hud->score += 100;
+			score::score += 100;
 		} else if (pew->getY() <= 6) { //deletes bullet when it leaves screen
 			delete pew;
 			pew = nullptr;

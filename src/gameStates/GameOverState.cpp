@@ -2,6 +2,11 @@
 
 GameOverState::GameOverState(bool didWin) {
 	this->didWin = didWin;
+	hud = new Hud();
+	score::addScore();
+	for (int score : score::scoreList) {
+		highScores << setfill('0') << setw(8) << score << endl;
+	}
 }
 
 void GameOverState::processInput(Event& event) {
@@ -11,6 +16,7 @@ void GameOverState::processInput(Event& event) {
 		break;
 	case Event::KeyReleased:
 		if (!holdBuffer && bufferTick == BUFFERTIMER) {
+			score::score = 0;
 			isEnding = true;
 		}
 		break;
@@ -21,7 +27,13 @@ void GameOverState::processInput(Event& event) {
 }
 
 void GameOverState::draw(RenderWindow& window) {
-	Text gameOverText = Text(gameOver, font, 80);
+
+	Text highScoreText(highScores.str(), font, 80);
+	highScoreText.setScale(.05,.05);
+	highScoreText.setPosition(44, 50);
+	window.draw(highScoreText);
+	
+	Text gameOverText(gameOver, font, 80);
 	gameOverText.setScale(.1, .1);
 	gameOverText.setPosition(28, 25);
 	window.draw(gameOverText);
@@ -42,10 +54,10 @@ void GameOverState::draw(RenderWindow& window) {
 	} else {
 		pressAnyKey = "Press Any Key To Reset";
 	}
-
+	hud->draw(window);
 	Text pressReset = Text(pressAnyKey, font, 80);
 	pressReset.setScale(.03, .03);
-	pressReset.setPosition(38, 90);
+	pressReset.setPosition(36, 95);
 	window.draw(pressReset);
 
 }

@@ -3,13 +3,17 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <iomanip>
+#include <vector>
 #include "GameState.hpp"
 #include "GamePlayState.hpp"
+#include "../Hud.hpp"
+#include "../score.hh"
 #include "../resources.hh"
 using namespace std;
 using namespace sf;
 
 class GameOverState : public GameState {
+	Hud* hud = nullptr;
 	Font& font = resources::font;
 	string gameOver = "GAME OVER";
 	string pressAnyKey = "Press Any Key To Reset";
@@ -21,6 +25,7 @@ class GameOverState : public GameState {
 	const int BUFFERTIMER = 90;
 	int bufferTick = 0;
 	bool holdBuffer = true;
+	stringstream highScores;
 public:
 	bool didWin;
 	GameOverState(bool didWin);
