@@ -77,7 +77,7 @@ void update() {
 
 void draw() {
 	window.clear(Color(0x000022ff)); //The background of the game when in fullscreen
-	window.draw(background);
+	window.draw(background);	
 	gameplay->draw(window);
 	window.display();
 }
