@@ -4,8 +4,11 @@
 #include "GameState.hpp"
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
+#include "../gameObj/Barrier.hpp"
 #include "../BaddieGroup.hpp"
 #include "../Hud.hpp"
+#include "../BarrierGroup.hpp"
+
 using namespace sf;
 
 class GamePlayState : public GameState {
@@ -14,6 +17,7 @@ protected:
 	PlayerBullet* pew = nullptr;
 	BaddieGroup* killemAll = nullptr;
 	Hud* hud = nullptr;
+	BarrierGroup* saveMe = nullptr;
 public:
 	bool didWin = false;
 

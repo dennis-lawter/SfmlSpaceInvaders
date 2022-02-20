@@ -4,6 +4,7 @@ GamePlayState::GamePlayState() {
 	defender = new Player();
 	killemAll = new BaddieGroup();
 	hud = new Hud();
+	saveMe = new BarrierGroup();
 }
 
 void GamePlayState::processInput(Event& event) {
@@ -86,6 +87,7 @@ void GamePlayState::draw(RenderWindow& window) {
 	hud->draw(window);
 	defender->draw(window);
 	killemAll->draw(window);
+	saveMe->draw(window);
 }
 
 GamePlayState::~GamePlayState() {

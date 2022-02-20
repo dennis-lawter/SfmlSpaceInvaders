@@ -51,12 +51,12 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
       - [ ] Upon losing a life the defender's texture is swapped for a flashing explosion for three seconds
       - [x] If the player has a remaining life, decrease lives
-      - [ ] If the player has no remaining lives, go to the game over screen
+      - [x] If the player has no remaining lives, go to the game over screen
       - [ ] During the explosion the player may not move or shoot
       - [ ] During explosion, played may not be hit by bullets
       - [ ] During the explosion the invaders continue moving, advancing, and firing as normal
     - [x] Detect if any advancing invaders touch the bottom of the screen
-      - [ ] When they do go directly to the game over screen
+      - [x] When they do go directly to the game over screen
     - [ ] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [ ] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
