@@ -15,6 +15,7 @@ protected:
 	BaddieGroup* killemAll = nullptr;
 	Hud* hud = nullptr;
 public:
+	bool didWin = false;
 
 	GamePlayState();
 

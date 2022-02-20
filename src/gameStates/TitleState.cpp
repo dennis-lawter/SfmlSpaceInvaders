@@ -30,11 +30,11 @@ void TitleState::update(RenderWindow& window) {
 void TitleState::draw(RenderWindow& window) {
 	Text drawTitle1 = Text(gameTitle1, font, 80);
 	drawTitle1.setScale(.08, .08);
-	drawTitle1.setPosition(10, 20);
+	drawTitle1.setPosition(10, 25);
 	window.draw(drawTitle1);
 	Text drawTitle2 = Text(gameTitle2, font, 80);
 	drawTitle2.setScale(.08, .08);
-	drawTitle2.setPosition(42, 30);
+	drawTitle2.setPosition(44, 35);
 	window.draw(drawTitle2);
 	Text drawToStart = Text(pressAnyKey, font, 80);
 	drawToStart.setScale(.03, .03);

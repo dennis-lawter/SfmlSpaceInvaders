@@ -9,6 +9,7 @@
 #include "gameObj/BaddieBullet.hpp"
 #include "gameStates/GamePlayState.hpp"
 #include "gameStates/TitleState.hpp"
+#include "gameStates/GameOverState.hpp"
 using namespace sf;
 using namespace std;
 
@@ -67,7 +68,19 @@ void update() {
 			gameplay = new GamePlayState();
 			stateLevel++;
 			break;
-		case 1:
+		case 1: {
+			GamePlayState* thisGameState = (GamePlayState*)gameplay;
+			bool didWin = thisGameState->didWin;
+			delete gameplay;
+			gameplay = new GameOverState(didWin);
+			stateLevel++;
+			break;
+		}
+		case 2:
+			delete gameplay;
+			gameplay = new TitleState();
+			stateLevel = 0;
+			break;
 		default:
 			window.close();
 			break;
