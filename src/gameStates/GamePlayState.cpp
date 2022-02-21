@@ -11,8 +11,8 @@ void GamePlayState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
-		// case Keyboard::Key::Escape: //Manual game close
-		// 	break;
+			// case Keyboard::Key::Escape: //Manual game close
+			// 	break;
 		case Keyboard::Key::A:
 		case Keyboard::Key::Left: //Move Left
 			defender->playerIsMovingLeft = true;
@@ -58,6 +58,7 @@ void GamePlayState::update(RenderWindow& window) {
 	if (defender->testHit(killemAll->bulletArray)) {
 		hud->currentLives--;
 	}
+	saveMe->testHitMany(killemAll->bulletArray);
 	if (pew) {
 		pew->update();
 		if (killemAll->testHit(*pew)) { //deletes bullet on enemy contact
@@ -65,6 +66,9 @@ void GamePlayState::update(RenderWindow& window) {
 			pew = nullptr;
 			score::score += 100;
 		} else if (pew->getY() <= 6) { //deletes bullet when it leaves screen
+			delete pew;
+			pew = nullptr;
+		} else if (saveMe->testHit(*pew)) { //deletes bullet when hits barrier
 			delete pew;
 			pew = nullptr;
 		}

@@ -1,5 +1,7 @@
 #include "Player.hpp"
 
+/* Bullet gets erased when it hits a player
+*/
 bool Player::testHit(vector<BaddieBullet>& pew) {
 	for (auto i = pew.begin(); i != pew.end(); i++) {
 		if (this->collision().intersects(i->collision())) {

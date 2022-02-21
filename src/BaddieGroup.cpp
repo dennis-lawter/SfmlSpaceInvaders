@@ -18,7 +18,7 @@ BaddieGroup::BaddieGroup() {
 /*Tests to see if player's bullet intercepts with a baddie.
 Baddie will die on execution.
 */
-bool BaddieGroup::testHit(PlayerBullet& pew) {
+bool BaddieGroup::testHit(GameObject& pew) {
 	for (int y = ROWS - 1; y >= 0; y--) {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
 			if (baddies[x][y]) {

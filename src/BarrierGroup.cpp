@@ -2,22 +2,30 @@
 
 BarrierGroup::BarrierGroup() {
 	for (auto coord : COORDS) {
-		barrierVector.emplace_back(coord.first * 8, coord.second * 8-4);
+		barrierVector.emplace_back(coord.first * 8, coord.second * 8 - 4);
 	}
-
-	// for (int y : BARRIERPOSITIONY) {
-	// 	for (int x : BARRIERPOSITIONX) {
-	// 		barrierVector.emplace_back(x , y);
-	// 	}
-	// }
 }
 
-bool BarrierGroup::testHit(PlayerBullet& pew) {
+bool BarrierGroup::testHitMany(vector<BaddieBullet>& objects) {
+	for (auto i = objects.begin(); i != objects.end(); i++) {
+		if(this->testHit(*i)) {
+			objects.erase(i);
+			return true;
+		}
+	}
 	return false;
 }
-void BarrierGroup::update() {
 
+bool BarrierGroup::testHit(GameObject& pew) {
+	for (int i = 0; i < barrierVector.size(); i++) {
+		if (pew.collision().intersects(barrierVector[i].collision())) {
+			barrierVector.erase(barrierVector.begin() + i);
+			return true;
+		}
+	}
+	return false;
 }
+
 void BarrierGroup::draw(RenderWindow& window) {
 	for (Barrier& barrier : barrierVector) {
 		barrier.draw(window);

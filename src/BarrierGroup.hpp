@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "gameObj/Barrier.hpp"
 #include "gameObj/PlayerBullet.hpp"
+#include "gameObj/BaddieBullet.hpp"
 
 class BarrierGroup {
 private:
@@ -30,7 +31,8 @@ public:
 	vector<Barrier> barrierVector;
 
 	BarrierGroup();
-	bool testHit(PlayerBullet& pew);
+	bool testHitMany(vector<BaddieBullet>& object);
+	bool testHit(GameObject& pew);
 	void update();
 	void draw(RenderWindow& window);
 

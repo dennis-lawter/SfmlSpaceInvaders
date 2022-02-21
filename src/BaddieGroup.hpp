@@ -27,7 +27,7 @@ public:
 
 
 	BaddieGroup();
-	bool testHit(PlayerBullet& pew);
+	bool testHit(GameObject& pew);
 	bool baddiesWin();
 	void baddieShoot();
 	void update();
