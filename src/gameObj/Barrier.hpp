@@ -4,13 +4,9 @@
 #include "GameObject.hpp"
 #include "../resources.hh"
 
-class Barrier : public GameObject{
+class Barrier : public GameObject {
 public:
-	Barrier(int x, int y) 
-		:GameObject(resources::textures["barrier"], x, y) {}
-
-	void update();
-
+	Barrier(int x, int y);
 };
 
 #endif

@@ -13,16 +13,13 @@ using namespace std;
 class Hud {
 private:
 	Font& font = resources::font;
-	stringstream scoreOut; 
+	stringstream scoreOut;
 public:
 	Sprite lives;
 	int currentLives = 2;
-	// int score = 0;
-	//int secretBonus = 5000;
 	Hud();
 	void draw(RenderWindow& window);
 	void update();
 };
-
 
 #endif

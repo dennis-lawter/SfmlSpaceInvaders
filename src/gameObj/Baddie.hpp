@@ -5,12 +5,12 @@
 using namespace sf;
 
 class Baddie : public GameObject {
+private:
+	const float ADVANCE_DISTANCE = 12;
 public:
-	float speed = 0.05 ;
-	bool didHitBottom = false;
+	float speed = 0.05;
 
-	Baddie(Texture& texture, int x, int y)
-		: GameObject(texture, x, y) {}
+	Baddie(Texture& texture, int x, int y);
 
 	void moveRight();
 	void moveLeft();

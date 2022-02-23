@@ -6,10 +6,11 @@ using namespace sf;
 
 class BaddieBullet : public GameObject {
 public:
-	BaddieBullet(float baddieCurrentX, float baddieCurrentY)
-		: GameObject(resources::textures["bullet"], baddieCurrentX, baddieCurrentY) {}
+	float speed = 1;
 
-	bool offScreen();
+	BaddieBullet(float x, float y);
+
+	bool isOffScreen();
 	void update();
 };
 

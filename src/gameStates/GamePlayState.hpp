@@ -5,19 +5,22 @@
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
 #include "../gameObj/Barrier.hpp"
-#include "../BaddieGroup.hpp"
+#include "../gameObj/groups/BaddieGroup.hpp"
+#include "../gameObj/groups/BarrierGroup.hpp"
 #include "../Hud.hpp"
-#include "../BarrierGroup.hpp"
 
 using namespace sf;
 
 class GamePlayState : public GameState {
 protected:
-	Player* defender = nullptr;
 	PlayerBullet* pew = nullptr;
-	BaddieGroup* killemAll = nullptr;
-	Hud* hud = nullptr;
-	BarrierGroup* saveMe = nullptr;
+
+	Hud hud;
+	Player defender;
+	BaddieGroup killemAll;
+	BarrierGroup saveMe;
+
+	void deletePew();
 public:
 	bool didWin = false;
 
@@ -28,10 +31,6 @@ public:
 	void draw(RenderWindow& window);
 
 	virtual ~GamePlayState();
-	// 	delete defender;
-	// delete killemAll;
-	// if (pew)
-	// 	delete pew;
 };
 
 #endif

@@ -8,7 +8,7 @@ void Hud::draw(RenderWindow& window) {
 	scoreOut.str("");
 	scoreOut << setfill('0') << setw(8) << score::score;
 	Text text = Text(scoreOut.str(), font, 80);
-	text.setScale(.1,.1);
+	text.setScale(.1, .1);
 	text.setFillColor(Color::White);
 	text.setPosition(2, 1);
 	window.draw(text);
@@ -19,7 +19,4 @@ void Hud::draw(RenderWindow& window) {
 	}
 }
 
-void Hud::update() {
-
-};
-
+void Hud::update() {}

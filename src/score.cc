@@ -3,14 +3,17 @@
 namespace score {
 	int score = 0;
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
+
 	bool compareScores(int first, int second) {
 		return first > second;
 	}
+
 	void addScore() {
 		scoreList.push_back(score);
 		sort(scoreList.begin(), scoreList.end(), compareScores);
 		scoreList.pop_back();
 	}
+
 	int matchScore() {
 		if (score == 0) {
 			return -1;

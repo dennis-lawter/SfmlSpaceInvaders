@@ -19,7 +19,6 @@ private:
 	bool isBlink = false;
 	const int BUFFERTIMER = 90;
 	int bufferTick = 0;
-
 public:
 	TitleState();
 

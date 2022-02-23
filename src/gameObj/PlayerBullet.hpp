@@ -6,8 +6,9 @@ using namespace sf;
 
 class PlayerBullet : public GameObject {
 public:
-	PlayerBullet(float fired)
-		: GameObject(resources::textures["bullet"], fired, 112) {}
+	float speed = 2.0;
+	
+	PlayerBullet(float x);
 
 	void update();
 };

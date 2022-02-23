@@ -1,12 +1,6 @@
 #include <cstdlib>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "BaddieGroup.hpp"
-#include "Hud.hpp"
-#include "gameObj/Player.hpp"
-#include "gameObj/Baddie.hpp"
-#include "gameObj/PlayerBullet.hpp"
-#include "gameObj/BaddieBullet.hpp"
 #include "gameStates/GamePlayState.hpp"
 #include "gameStates/TitleState.hpp"
 #include "gameStates/GameOverState.hpp"
@@ -17,13 +11,12 @@ RenderWindow window;
 View kamera;
 RectangleShape background;
 
-GameState* gameplay = nullptr;
+GameState* gameState = nullptr;
 
 int stateLevel = 0;
 
 int init() {
 	/* a try catch will run the first function and catches a RUNTIME ERROR
-
 	*/
 	try {
 		resources::loadResources();
@@ -31,7 +24,7 @@ int init() {
 		return EXIT_FAILURE;
 	}
 
-	gameplay = new TitleState();
+	gameState = new TitleState();
 
 	background.setFillColor(Color::Black);
 	background.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
@@ -60,25 +53,28 @@ void windowInit() {
 }
 
 void update() {
-	gameplay->update(window);
-	if (gameplay->isEnding) {
+	GamePlayState* temp;
+	bool didWin;
+
+	gameState->update(window);
+
+	if (gameState->isEnding) {
 		switch (stateLevel) {
 		case 0:
-			delete gameplay;
-			gameplay = new GamePlayState();
+			delete gameState;
+			gameState = new GamePlayState();
 			stateLevel++;
 			break;
-		case 1: {
-			GamePlayState* thisGameState = (GamePlayState*)gameplay;
-			bool didWin = thisGameState->didWin;
-			delete gameplay;
-			gameplay = new GameOverState(didWin);
+		case 1:
+			temp = (GamePlayState*)gameState;
+			didWin = temp->didWin;
+			delete gameState;
+			gameState = new GameOverState(didWin);
 			stateLevel++;
 			break;
-		}
 		case 2:
-			delete gameplay;
-			gameplay = new TitleState();
+			delete gameState;
+			gameState = new TitleState();
 			stateLevel = 0;
 			break;
 		default:
@@ -90,9 +86,32 @@ void update() {
 
 void draw() {
 	window.clear(Color(0x000022ff)); //The background of the game when in fullscreen
-	window.draw(background);	
-	gameplay->draw(window);
+	window.draw(background);
+	gameState->draw(window);
 	window.display();
+}
+
+void resizeWindow() {
+	double w, h, idealMultiplier, x, y;
+	double windowWidth = window.getSize().x;
+	double windowHeight = window.getSize().y;
+	double screenAspectRatio = windowWidth / windowHeight;
+	double gameAspectRatio = ((double)defines::WIDTH) / defines::HEIGHT;
+	if (screenAspectRatio > 1) {
+		idealMultiplier = windowHeight / gameAspectRatio;
+		w = idealMultiplier / windowWidth;
+		x = (1.0 - w) / 2.0;
+		h = 1.0;
+		y = 0.0;
+	} else {
+		idealMultiplier = windowWidth / gameAspectRatio;
+		h = idealMultiplier / windowHeight;
+		y = (1.0 - h) / 2.0;
+		w = 1.0;
+		x = 0.0;
+	}
+	kamera.setViewport(FloatRect(x, y, w, h));
+	window.setView(kamera);
 }
 
 int main(int argc, char** argv) {
@@ -107,43 +126,18 @@ int main(int argc, char** argv) {
 			case Event::Closed:
 				window.close();
 				break;
-				/* This case allows the game to become fullscreen and maintain aspect ratio
-				*/
 			case Event::Resized:
-			{
-				double w, h, goal, x, y;
-				double windowWidth = window.getSize().x;
-				double windowHeight = window.getSize().y;
-				double screenAspectRatio = windowWidth / windowHeight;
-				double gameAspectRatio = ((double)defines::WIDTH) / defines::HEIGHT;
-				if (screenAspectRatio > 1) {
-					goal = windowHeight / gameAspectRatio;
-					w = goal / windowWidth;
-					x = (1.0 - w) / 2.0;
-					h = 1.0;
-					y = 0.0;
-				} else {
-					goal = windowWidth / gameAspectRatio;
-					h = goal / windowHeight;
-					y = (1.0 - h) / 2.0;
-					w = 1.0;
-					x = 0.0;
-				}
-				kamera.setViewport(FloatRect(x, y, w, h));
-				window.setView(kamera);
+				resizeWindow();
 				break;
-			}
-
 			default:
-				gameplay->processInput(currentEvent);
+				gameState->processInput(currentEvent);
 				break;
 			}
-
 		}
 
 		update();
 		draw();
 	}
-	delete gameplay;
+	delete gameState;
 	return EXIT_SUCCESS;
 }

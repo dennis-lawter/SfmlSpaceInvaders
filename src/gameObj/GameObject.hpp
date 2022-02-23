@@ -13,9 +13,13 @@ public:
 	float speed;
 	
 	GameObject(Texture& texture, float x, float y);
+
 	void update();
 	void draw(sf::RenderWindow& window);
-	FloatRect collision();
+
+	bool testCollision(GameObject& obj);
+
+	FloatRect getHitBox();
 	float getX();
 	float getY();
 };

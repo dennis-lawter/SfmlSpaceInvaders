@@ -13,7 +13,8 @@ using namespace std;
 using namespace sf;
 
 class GameOverState : public GameState {
-	Hud* hud = nullptr;
+private:
+	Hud hud;
 	Font& font = resources::font;
 	string gameOver = "GAME OVER";
 	string pressAnyKey = "Press Any Key To Reset";

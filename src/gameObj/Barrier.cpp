@@ -1,5 +1,4 @@
 #include "Barrier.hpp"
 
-void Barrier::update() {
-
-}
+Barrier::Barrier(int x, int y)
+	: GameObject(resources::textures["barrier"], x, y) {}

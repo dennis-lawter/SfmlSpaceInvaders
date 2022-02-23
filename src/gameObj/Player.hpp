@@ -4,20 +4,18 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include "BaddieBullet.hpp"
 using namespace std;
 using namespace sf;
 
 class Player : public GameObject {
 public:
+	float speed = 0.7;
 	bool playerIsMovingLeft = false;
 	bool playerIsMovingRight = false;
-	int playerLives = 3;
 
-	Player()
-		: GameObject(resources::textures["defender"], 60, 120) {}
+	Player();
 
-	bool testHit(vector<BaddieBullet>& pew);
+	bool testManyForCollision(vector<GameObject>& objs);
 	void update();
 };
 

@@ -2,7 +2,6 @@
 
 GameOverState::GameOverState(bool didWin) {
 	this->didWin = didWin;
-	hud = new Hud();
 	score::addScore();
 }
 
@@ -19,11 +18,11 @@ void GameOverState::processInput(Event& event) {
 		break;
 	default:
 		break;
-
 	}
 }
 
 void GameOverState::draw(RenderWindow& window) {
+	hud.draw(window);
 
 	Text highScoreText(highScores.str(), font, 80);
 	highScoreText.setScale(.05, .05);
@@ -34,6 +33,7 @@ void GameOverState::draw(RenderWindow& window) {
 	gameOverText.setScale(.1, .1);
 	gameOverText.setPosition(28, 25);
 	window.draw(gameOverText);
+
 	if (didWin) {
 		Text youWinText = Text(youWin, font, 80);
 		youWinText.setScale(.1, .1);
@@ -46,16 +46,14 @@ void GameOverState::draw(RenderWindow& window) {
 		window.draw(youLoseText);
 	}
 
-	if (isBlink) {
-		pressAnyKey = "";
-	} else {
+	if (!isBlink) {
 		pressAnyKey = "Press Any Key To Reset";
+		Text pressReset = Text(pressAnyKey, font, 80);
+		pressReset.setScale(.03, .03);
+		pressReset.setPosition(36, 95);
+		window.draw(pressReset);
 	}
-	hud->draw(window);
-	Text pressReset = Text(pressAnyKey, font, 80);
-	pressReset.setScale(.03, .03);
-	pressReset.setPosition(36, 95);
-	window.draw(pressReset);
+
 	int matchScore = score::matchScore();
 	highScores.str("");
 	for (size_t score = 0; score < score::scoreList.size(); score++) {
@@ -84,5 +82,4 @@ void GameOverState::update(RenderWindow& window) {
 }
 
 GameOverState::~GameOverState() {
-
 }

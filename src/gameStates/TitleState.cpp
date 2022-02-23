@@ -1,9 +1,6 @@
 #include "TitleState.hpp"
 
-TitleState::TitleState() {
-
-}
-
+TitleState::TitleState() {}
 
 void TitleState::processInput(Event& event) {
 	if (bufferTick == BUFFERTIMER) {
@@ -21,7 +18,7 @@ void TitleState::processInput(Event& event) {
 void TitleState::update(RenderWindow& window) {
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
-	} 	else {
+	} else {
 		isBlink = !isBlink;
 		blinkBuffer = 0;
 	}
@@ -47,12 +44,10 @@ void TitleState::draw(RenderWindow& window) {
 
 	if (isBlink) {
 		pressAnyKey = "";
-	} 	else {
+	} else {
 		pressAnyKey = "Press Any Key To Start";
 	}
 }
 
 
-TitleState::~TitleState() {
-
-}
+TitleState::~TitleState() {}

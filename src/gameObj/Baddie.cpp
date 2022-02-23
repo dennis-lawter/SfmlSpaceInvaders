@@ -1,5 +1,8 @@
 #include "Baddie.hpp"
 
+Baddie::Baddie(Texture& texture, int x, int y)
+	: GameObject(texture, x, y) {}
+
 void Baddie::moveRight() {
 	this->sprite.move(speed, 0);
 }
@@ -9,26 +12,5 @@ void Baddie::moveLeft() {
 }
 
 void Baddie::moveDown() {
-	this->sprite.move(0, 10);
+	this->sprite.move(0, ADVANCE_DISTANCE);
 }
-
-
-// void Baddie::update() {
-// 	if (isMovingRight) {
-// 		this->sprite.move(speed,0);
-// 		if (this->getX() >= 120) {
-// 			this->sprite.move(0,10);
-// 			isMovingRight = false;
-// 			speed += 0.2;
-
-// 		}
-// 	}	 
-// 	else {
-// 		this->sprite.move(-(speed),0);
-// 		if (this->getX() <= 0) {
-// 			this->sprite.move(0,10);
-// 			isMovingRight = true;
-// 			speed += 0.2;
-// 		}
-// 	}		
-// }

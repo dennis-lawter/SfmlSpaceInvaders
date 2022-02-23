@@ -7,7 +7,8 @@ using namespace std;
 namespace score {
 	extern int score;
 	extern vector<int> scoreList;
-	bool compareScores(int first,int second);
+
+	bool compareScores(int first, int second);
 	void addScore();
 	int matchScore();
 }
