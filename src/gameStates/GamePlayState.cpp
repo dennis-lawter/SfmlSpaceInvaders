@@ -2,11 +2,6 @@
 
 GamePlayState::GamePlayState() {}
 
-void GamePlayState::deletePew() {
-	delete pew;
-	pew = nullptr;
-}
-
 void GamePlayState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::KeyPressed:
@@ -22,8 +17,7 @@ void GamePlayState::processInput(Event& event) {
 		case Keyboard::W: //Player fires
 		case Keyboard::Up:
 		case Keyboard::Space:
-			if (!pew)
-				pew = new PlayerBullet(defender.getX() + 3);
+			defender.fire();
 			break;
 		default:
 			break;
@@ -53,14 +47,13 @@ void GamePlayState::processInput(Event& event) {
 
 void GamePlayState::update(RenderWindow& window) {
 	// update state components
-
 	defender.update();
 	killemAll.update();
-	if (pew) {
-		pew->update();
-	}
 
 	// do collision tests
+
+	// defender's bullet collision tests
+	defender.testBulletCollisions(killemAll, saveMe);
 
 	// defender touches baddie bullet
 	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector)) {
@@ -71,20 +64,6 @@ void GamePlayState::update(RenderWindow& window) {
 	saveMe.testManyForCollision((vector<GameObject>&)killemAll.bulletVector, true, true);
 	// barrier touches baddie
 	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
-
-	if (pew) {
-		if (killemAll.testOneForCollision(*pew, true)) {
-			// bullet hits a baddie
-			deletePew();
-			score::score += 100;
-		} else if (saveMe.testOneForCollision(*pew, true)) {
-			// bullet hits a barrier
-			deletePew();
-		} else if (pew->getY() <= 8) {
-			//deletes bullet when it leaves screen
-			deletePew();
-		}
-	}
 
 	// test if state has been completed
 	if (killemAll.currentBaddies <= 0) {
@@ -99,16 +78,9 @@ void GamePlayState::update(RenderWindow& window) {
 
 void GamePlayState::draw(RenderWindow& window) {
 	hud.draw(window);
-	if (pew) {
-		pew->draw(window);
-	}
 	defender.draw(window);
 	killemAll.draw(window);
 	saveMe.draw(window);
 }
 
-GamePlayState::~GamePlayState() {
-	if (pew) {
-		deletePew();
-	}
-}
+GamePlayState::~GamePlayState() {}

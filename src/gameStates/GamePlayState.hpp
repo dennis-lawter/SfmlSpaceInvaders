@@ -12,15 +12,11 @@
 using namespace sf;
 
 class GamePlayState : public GameState {
-protected:
-	PlayerBullet* pew = nullptr;
-
+private:
 	Hud hud;
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
-
-	void deletePew();
 public:
 	bool didWin = false;
 

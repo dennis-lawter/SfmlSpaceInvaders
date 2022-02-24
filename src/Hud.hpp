@@ -17,6 +17,7 @@ private:
 public:
 	Sprite lives;
 	int currentLives = 2;
+	
 	Hud();
 	void draw(RenderWindow& window);
 	void update();

@@ -10,6 +10,7 @@ public:
 	
 	PlayerBullet(float x);
 
+	bool isOffScreen();
 	void update();
 };
 
