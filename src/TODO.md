@@ -113,3 +113,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Display text on screen when the UFO releases the power up explaining the power up
 
 ### Bugs
+- [ ] Defender jittering at edge of screen
+- [ ] Don't display "press any button" text if it's not possible to press a button yet
+
+### Performance Improvements
+- [ ] Reduce construction of sf::Text objects to be less demanding
