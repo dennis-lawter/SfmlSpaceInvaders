@@ -8,7 +8,11 @@ LIBRARYDIR="-LC:/cppdev/SFML-2.5.1/lib"
 LIBRARIES=-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 INCLUDEDIR="-IC:/cppdev/SFML-2.5.1/include"
 
-dir_guard=mkdir -p $(@D)
+RM=C:/cppdev/msys/bin/rm.exe
+CP=C:/cppdev/msys/bin/cp.exe
+MKDIR=C:/cppdev/msys/bin/mkdir.exe
+
+dir_guard=$(MKDIR) -p $(@D)
 
 SRC_DIR=src/
 DEBUG_OBJ_DIR=Obj_Debug/
@@ -19,8 +23,6 @@ DLLS=\
 "C:/cppdev/SFML-2.5.1/bin/sfml-system-2.dll" \
 "C:/cppdev/SFML-2.5.1/bin/sfml-window-2.dll" \
 "C:/cppdev/SFML-2.5.1/bin/openal32.dll"
-
-RM=C:/cppdev/msys/bin/rm.exe
 
 CPPSOURCES=$(call rwildcard,src/,*.cpp)
 CCSOURCES=$(call rwildcard,src/,*.cc)
@@ -36,8 +38,8 @@ $(DEBUG_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(dir_guard)
 	@echo 'Building executable: $@'
 	$(CC) $(LIBRARYDIR) -o $@ $(OBJECTSOUT) $(LIBRARIES)
-	cp -R res/resource $(DEBUG_OUT_DIR)
-	cp $(DLLS) $(DEBUG_OUT_DIR)
+	$(CP) -R res/resource $(DEBUG_OUT_DIR)
+	$(CP) $(DLLS) $(DEBUG_OUT_DIR)
 
 $(DEBUG_OBJ_DIR)%.o: $(SRC_DIR)%.cc
 	$(dir_guard)
