@@ -4,7 +4,7 @@
 		{
 			"label": "Clean",
 			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak clean",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -14,17 +14,7 @@
 		{
 			"label": "Build",
 			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak all",
-			"group": "build",
-			"presentation": {
-				"reveal": "silent"
-			},
-			"problemMatcher": []
-		},
-		{
-			"label": "Build_Release",
-			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Release.mak all",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak all",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -34,7 +24,7 @@
 		{
 			"label": "Run",
 			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak run",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak run",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -42,9 +32,9 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Build_Run",
+			"label": "Build & Run",
 			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak build_run",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak all run",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -52,9 +42,19 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Clean_Build_Run",
+			"label": "Clean & Build & Run",
 			"type": "shell",
-			"command": "C:\\MinGW\\msys\\1.0\\bin\\make -f Hlidskjalf.mak clean_build_run",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean all run",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "RELEASE",
+			"type": "shell",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinRelease.mak clean all reshack zip",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"

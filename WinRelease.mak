@@ -1,18 +1,27 @@
 rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 
 EXECUTABLE=sfmlsandbox
+FINALEXE=Totally Invading Space
 
 CC=C:/cppdev/mingw-w64-7.3.0/mingw64/bin/g++.exe
-CFLAGS=-O3 -Wall -c -fmessage-length=0 -std=c++17 -Wl,--subsystem,windows
+CFLAGS=-O3 -Wall -c -fmessage-length=0 -std=c++17 -mwindows -Wl,-subsystem,windows
 LIBRARYDIR="-LC:/cppdev/SFML-2.5.1/lib"
 LIBRARIES=-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 INCLUDEDIR="-IC:/cppdev/SFML-2.5.1/include"
 
-dir_guard=mkdir -p $(@D)
-
 SRC_DIR=src/
 RELEASE_OBJ_DIR=Obj_Release/
 RELEASE_OUT_DIR=Release/
+RELEASE_ZIP="TotallyInvadingSpace.zip"
+
+RESHACK=C:/cppdev/ResourceHacker/ResourceHacker.exe
+RESHACKFLAGS=-open $(RELEASE_OUT_DIR)$(EXECUTABLE).exe -save "$(RELEASE_OUT_DIR)$(FINALEXE).exe" -action addskip -res res/resource/player.ico -mask ICONGROUP,MAINICON,
+
+ZIP=powershell Compress-Archive
+ZIPFLAGS=$(RELEASE_OUT_DIR) $(RELEASE_ZIP)
+
+dir_guard=mkdir -p $(@D)
+
 DLLS=\
 "C:/cppdev/SFML-2.5.1/bin/sfml-audio-2.dll" \
 "C:/cppdev/SFML-2.5.1/bin/sfml-graphics-2.dll" \
@@ -32,14 +41,7 @@ TEMP=$(SOURCES:.cpp=.o)
 OBJECTS=$(TEMP:.cc=.o)
 OBJECTSOUT=$(OBJECTS:$(SRC_DIR)%=$(RELEASE_OBJ_DIR)%)
 
-clean_build_run: clean all run
-
-build_run: all run
-
 all: $(RELEASE_OUT_DIR)$(EXECUTABLE)
-
-run:
-	$(RELEASE_OUT_DIR)$(EXECUTABLE).exe
 
 $(RELEASE_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(dir_guard)
@@ -61,3 +63,11 @@ $(RELEASE_OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 clean:
 	rm -rf $(RELEASE_OUT_DIR)
 	rm -rf $(RELEASE_OBJ_DIR)
+	rm -rf $(RELEASE_ZIP)
+
+reshack:
+	$(RESHACK) $(RESHACKFLAGS)
+	rm $(RELEASE_OUT_DIR)$(EXECUTABLE).exe
+
+zip:
+	$(ZIP) $(ZIPFLAGS)

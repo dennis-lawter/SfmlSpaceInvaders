@@ -29,10 +29,6 @@ TEMP=$(SOURCES:.cpp=.o)
 OBJECTS=$(TEMP:.cc=.o)
 OBJECTSOUT=$(OBJECTS:$(SRC_DIR)%=$(DEBUG_OBJ_DIR)%)
 
-clean_build_run: clean all run
-
-build_run: all run
-
 all: $(DEBUG_OUT_DIR)$(EXECUTABLE)
 
 run:
