@@ -9,6 +9,10 @@ LIBRARYDIR="-LC:/cppdev/SFML-2.5.1/lib"
 LIBRARIES=-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 INCLUDEDIR="-IC:/cppdev/SFML-2.5.1/include"
 
+RM=C:/cppdev/msys/bin/rm.exe
+CP=C:/cppdev/msys/bin/cp.exe
+MKDIR=C:/cppdev/msys/bin/mkdir.exe
+
 SRC_DIR=src/
 RELEASE_OBJ_DIR=Obj_Release/
 RELEASE_OUT_DIR=Release/
@@ -20,7 +24,7 @@ RESHACKFLAGS=-open $(RELEASE_OUT_DIR)$(EXECUTABLE).exe -save "$(RELEASE_OUT_DIR)
 ZIP=powershell Compress-Archive
 ZIPFLAGS=$(RELEASE_OUT_DIR) $(RELEASE_ZIP)
 
-dir_guard=mkdir -p $(@D)
+dir_guard=$(MKDIR) -p $(@D)
 
 DLLS=\
 "C:/cppdev/SFML-2.5.1/bin/sfml-audio-2.dll" \
@@ -31,7 +35,6 @@ DLLS=\
 "C:/cppdev/mingw-w64-7.3.0/mingw64/bin/libstdc++-6.dll" \
 "C:/cppdev/mingw-w64-7.3.0/mingw64/bin/libwinpthread-1.dll" \
 "C:/cppdev/mingw-w64-7.3.0/mingw64/bin/libgcc_s_seh-1.dll" 
-
 
 CPPSOURCES=$(call rwildcard,src/,*.cpp)
 CCSOURCES=$(call rwildcard,src/,*.cc)
@@ -45,29 +48,26 @@ all: $(RELEASE_OUT_DIR)$(EXECUTABLE)
 
 $(RELEASE_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(dir_guard)
-	@echo 'Building executable: $@'
 	$(CC) $(LIBRARYDIR) -o $@ $(OBJECTSOUT) $(LIBRARIES)
-	cp -R res/resource $(RELEASE_OUT_DIR)
-	cp $(DLLS) $(RELEASE_OUT_DIR)
+	$(CP) -R res/resource $(RELEASE_OUT_DIR)
+	$(CP) $(DLLS) $(RELEASE_OUT_DIR)
 
 $(RELEASE_OBJ_DIR)%.o: $(SRC_DIR)%.cc
 	$(dir_guard)
-	@echo 'Building file: $@'
 	$(CC) $(LIBRARIES) $(CFLAGS) $(INCLUDEDIR) -c $< -o $(@:src/%=release/%)
 
 $(RELEASE_OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	$(dir_guard)
-	@echo 'Building file: $@'
 	$(CC) $(LIBRARIES) $(CFLAGS) $(INCLUDEDIR) -c $< -o $(@:src/%=release/%)
 
 clean:
-	rm -rf $(RELEASE_OUT_DIR)
-	rm -rf $(RELEASE_OBJ_DIR)
-	rm -rf $(RELEASE_ZIP)
+	$(RM) -rf $(RELEASE_OUT_DIR)
+	$(RM) -rf $(RELEASE_OBJ_DIR)
+	$(RM) -rf $(RELEASE_ZIP)
 
 reshack:
 	$(RESHACK) $(RESHACKFLAGS)
-	rm $(RELEASE_OUT_DIR)$(EXECUTABLE).exe
+	$(RM) $(RELEASE_OUT_DIR)$(EXECUTABLE).exe
 
 zip:
 	$(ZIP) $(ZIPFLAGS)

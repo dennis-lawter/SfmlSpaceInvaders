@@ -36,19 +36,16 @@ all: $(DEBUG_OUT_DIR)$(EXECUTABLE)
 
 $(DEBUG_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(dir_guard)
-	@echo 'Building executable: $@'
 	$(CC) $(LIBRARYDIR) -o $@ $(OBJECTSOUT) $(LIBRARIES)
 	$(CP) -R res/resource $(DEBUG_OUT_DIR)
 	$(CP) $(DLLS) $(DEBUG_OUT_DIR)
 
 $(DEBUG_OBJ_DIR)%.o: $(SRC_DIR)%.cc
 	$(dir_guard)
-	@echo 'Building file: $@'
 	$(CC) $(LIBRARIES) $(CFLAGS) $(INCLUDEDIR) -c $< -o $(@:src/%=debug/%)
 
 $(DEBUG_OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	$(dir_guard)
-	@echo 'Building file: $@'
 	$(CC) $(LIBRARIES) $(CFLAGS) $(INCLUDEDIR) -c $< -o $(@:src/%=debug/%)
 
 clean:
