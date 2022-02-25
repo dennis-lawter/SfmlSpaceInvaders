@@ -20,6 +20,7 @@ DLLS=\
 "C:/cppdev/SFML-2.5.1/bin/sfml-window-2.dll" \
 "C:/cppdev/SFML-2.5.1/bin/openal32.dll"
 
+RM=C:/cppdev/msys/bin/rm.exe
 
 CPPSOURCES=$(call rwildcard,src/,*.cpp)
 CCSOURCES=$(call rwildcard,src/,*.cc)
@@ -49,5 +50,5 @@ $(DEBUG_OBJ_DIR)%.o: $(SRC_DIR)%.cpp
 	$(CC) $(LIBRARIES) $(CFLAGS) $(INCLUDEDIR) -c $< -o $(@:src/%=debug/%)
 
 clean:
-	rm -rf $(DEBUG_OUT_DIR)
-	rm -rf $(DEBUG_OBJ_DIR)
+	$(RM) -rf $(DEBUG_OUT_DIR)
+	$(RM) -rf $(DEBUG_OBJ_DIR)
