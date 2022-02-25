@@ -3,7 +3,7 @@ rwildcard=$(wildcard $1$2) $(foreach d,$(wildcard $1*),$(call rwildcard,$d/,$2))
 EXECUTABLE=sfmlsandbox
 
 CC=C:/cppdev/mingw-w64-7.3.0/mingw64/bin/g++.exe
-CFLAGS=-O0 -Wall -c -fmessage-length=0 -std=c++17 -Wl,--subsystem,windows
+CFLAGS=-O0 -g -Wall -c -fmessage-length=0 -std=c++17 -Wl,--subsystem,windows
 LIBRARYDIR="-LC:/cppdev/SFML-2.5.1/lib"
 LIBRARIES=-lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system
 INCLUDEDIR="-IC:/cppdev/SFML-2.5.1/include"
@@ -30,9 +30,6 @@ OBJECTS=$(TEMP:.cc=.o)
 OBJECTSOUT=$(OBJECTS:$(SRC_DIR)%=$(DEBUG_OBJ_DIR)%)
 
 all: $(DEBUG_OUT_DIR)$(EXECUTABLE)
-
-run:
-	$(DEBUG_OUT_DIR)$(EXECUTABLE).exe
 
 $(DEBUG_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(dir_guard)

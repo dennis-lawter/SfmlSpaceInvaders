@@ -22,29 +22,9 @@
 			"problemMatcher": []
 		},
 		{
-			"label": "Run",
+			"label": "Clean & Build",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak run",
-			"group": "build",
-			"presentation": {
-				"reveal": "silent"
-			},
-			"problemMatcher": []
-		},
-		{
-			"label": "Build & Run",
-			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak all run",
-			"group": "build",
-			"presentation": {
-				"reveal": "silent"
-			},
-			"problemMatcher": []
-		},
-		{
-			"label": "Clean & Build & Run",
-			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean all run",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean all",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
