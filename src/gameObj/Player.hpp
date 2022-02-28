@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "groups/BaddieGroup.hpp"
 #include "groups/BarrierGroup.hpp"
 #include "PlayerBullet.hpp"
@@ -14,11 +15,13 @@ using namespace sf;
 class Player : public GameObject {
 private:
 	void deleteBullet();
+	Sound pewSound;
 public:
 	PlayerBullet* bullet = nullptr;
 	float speed = 0.7;
 	bool playerIsMovingLeft = false;
 	bool playerIsMovingRight = false;
+
 
 	Player();
 

@@ -11,6 +11,7 @@ namespace defines {
 	static const int HEIGHT = 128;
 	static const string IMAGE_FILE_TYPE = ".png";
 	static const string FONT_FILE_TYPE = ".ttf";
+	static const string SOUND_FILE_TYPE = ".wav";
 	static const int LIVES_CAP = 3;
 
 	static const string FONT_FILE_NAME = "PressStart2P";
@@ -37,6 +38,25 @@ namespace defines {
 		"speed_down",
 		"speed_up",
 		"ufo"
+	};
+
+	static const vector<string> SOUND_FILE_NAMES = {
+		"1up",
+		"bad",
+		"baddieadvance",
+		"baddieboom",
+		"baddiepew",
+		"barrierboom",
+		"boss",
+		"defenderboom",
+		"defenderpew",
+		"gameover",
+		"randommusic",
+		"speeddown",
+		"speedup",
+		"ufo",
+		"woah",
+		"wtf"
 	};
 }
 

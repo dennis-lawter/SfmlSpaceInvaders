@@ -24,7 +24,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [x] Black background
   - [x] Several dozen invaders spawn in a grid formation
   - [x] One defender spawns at the center in the bottom of the screen
-  - [ ] Several barriers spawn just above the defender
+  - [x] Several barriers spawn just above the defender
   - [ ] A short "intro" sound plays
   - [ ] After three seconds the game begins and player input is accepted
   - [x] Pressing left/right moves the defender

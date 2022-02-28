@@ -1,7 +1,9 @@
 #include "Player.hpp"
 
 Player::Player()
-	: GameObject(resources::textures["defender"], 60, 120) {}
+	: GameObject(resources::textures["defender"], 60, 120) {
+		pewSound.setBuffer(resources::soundFile["defenderpew"]);
+	}
 
 void Player::deleteBullet() {
 	delete bullet;
@@ -11,6 +13,7 @@ void Player::deleteBullet() {
 void Player::fire() {
 	if (!bullet) {
 		bullet = new PlayerBullet(getX() + 3);
+		pewSound.play();
 	}
 }
 

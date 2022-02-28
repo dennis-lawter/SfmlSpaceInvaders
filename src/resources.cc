@@ -5,6 +5,7 @@ using namespace std;
 namespace resources {
 	string dirRoot = "";
 	map<string, Texture> textures;
+	map<string, SoundBuffer> soundFile;
 	Font font;
 
 	void throwFileError(string fileName) {
@@ -49,9 +50,23 @@ namespace resources {
 		}
 	}
 
+	void loadSounds() {
+		string fullFileName = "";
+		for (string fileName : defines::SOUND_FILE_NAMES) {
+			fullFileName = resources::dirRoot + fileName + defines::SOUND_FILE_TYPE;
+			resources::soundFile.emplace(fileName, SoundBuffer{});
+			if (!resources::soundFile[fileName].loadFromFile(fullFileName)) {
+				throwFileError(fileName);
+			} else {
+				cout << fullFileName << endl;
+			}
+		}
+	}
+
 	void loadResources() {
 		initDirRoot();
 		loadFonts();
 		loadTextures();
+		loadSounds();
 	}
 }
