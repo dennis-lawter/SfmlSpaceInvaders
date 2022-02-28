@@ -57,8 +57,6 @@ namespace resources {
 			resources::soundFile.emplace(fileName, SoundBuffer{});
 			if (!resources::soundFile[fileName].loadFromFile(fullFileName)) {
 				throwFileError(fileName);
-			} else {
-				cout << fullFileName << endl;
 			}
 		}
 	}

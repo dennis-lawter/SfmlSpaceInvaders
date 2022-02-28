@@ -38,16 +38,17 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] When the bullet is fired the "defender fire" sound effect is played
     - [x] If the bullet collides with a barrier, that barrier is destroyed and the bullet is removed from the screen
     - [x] If the bullet collides with an invader, that invader is destroyed and the bullet is removed from the screen
-      - [ ] When an invader is destroyed his texture is replaced with a flasihng explosion for 1 second before being removed from the screen entirely
+      - [x] When an invader is destroyed his texture is replaced with a flasihng explosion for x seconds before being removed from the screen entirely
       - [x] For every invader destroyed the player gains 100 points
       - [x] For every invader destroyed, the remaining invaders move faster
+      - [x] Invader dies in a firey explosion sound effect
     - [x] The invaders alternate moving right then left, each time advancing then switching direction when they reach the edge of the screen
       - [x] Each advancement happens by 10 pixels
       - [x] The advancement only occurs when an invader on screen touches the edge of the screen
-    - [ ] If an invader collides with a barrier the barrier is destroyed
+    - [x] If an invader collides with a barrier the barrier is destroyed
     - [x] Every second one invader in the "front line" is selected at random to fire an invader bullet 
       - [ ] Upon firing play the "invader fire" sound effect
-    - [ ] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
+    - [x] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
     - [x] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
       - [ ] Upon losing a life the defender's texture is swapped for a flashing explosion for three seconds
       - [x] If the player has a remaining life, decrease lives
