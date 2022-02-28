@@ -35,8 +35,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] The indication of the current lives is displayed on screen
     - [x] Pressing space fires a bullet from the center of the defender
     - [x] The defender may not fire a new bullet when one is already on screen
-    - [ ] When the bullet is fired the "defender fire" sound effect is played
-    - [ ] If the bullet collides with a barrier, that barrier is destroyed and the bullet is removed from the screen
+    - [x] When the bullet is fired the "defender fire" sound effect is played
+    - [x] If the bullet collides with a barrier, that barrier is destroyed and the bullet is removed from the screen
     - [x] If the bullet collides with an invader, that invader is destroyed and the bullet is removed from the screen
       - [ ] When an invader is destroyed his texture is replaced with a flasihng explosion for 1 second before being removed from the screen entirely
       - [x] For every invader destroyed the player gains 100 points

@@ -27,6 +27,7 @@ namespace defines {
 		"defender",
 		// "enemy",
 		"explosion",
+		"explosionmono",
 		"ghost",
 		"invader1",
 		"invader2",

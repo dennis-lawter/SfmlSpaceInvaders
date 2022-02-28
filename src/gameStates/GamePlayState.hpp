@@ -5,6 +5,7 @@
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
 #include "../gameObj/Barrier.hpp"
+#include "../gameObj/BaddieBoom.hpp"
 #include "../gameObj/groups/BaddieGroup.hpp"
 #include "../gameObj/groups/BarrierGroup.hpp"
 #include "../Hud.hpp"

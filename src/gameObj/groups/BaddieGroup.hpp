@@ -2,6 +2,7 @@
 #define BADDIEGROUP_HPP_
 #include <SFML/Graphics.hpp>
 #include "../Baddie.hpp"
+#include "../BaddieBoom.hpp"
 #include "../BaddieBullet.hpp"
 using namespace sf;
 using namespace std;
@@ -19,6 +20,7 @@ private:
 	int randomColumn = 0;
 	int shootTimer = 0;
 
+	void deathAnimationUpdate();
 	void moveBaddies();
 	void accelerateBaddies();
 	void baddieShoot();
@@ -28,6 +30,7 @@ private:
 public:
 	Baddie* baddies[COLUMNS][ROWS];
 	vector<BaddieBullet> bulletVector;
+	vector<BaddieBoom> deathList;
 	int currentBaddies = MAX_BADDIES;
 
 	BaddieGroup();
