@@ -19,8 +19,14 @@ private:
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
+	Sound startMusic;
+	void startRound();
+
+	const static int ROUND_START_MAX = 425;
+	int roundStartTimer = 0;
 public:
 	bool didWin = false;
+	bool roundStart = true;
 
 	GamePlayState();
 

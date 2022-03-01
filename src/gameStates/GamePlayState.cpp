@@ -1,6 +1,9 @@
 #include "GamePlayState.hpp"
 
-GamePlayState::GamePlayState() {}
+GamePlayState::GamePlayState() {
+	startMusic.setBuffer(resources::soundFile["randommusic"]);
+	startMusic.play();
+}
 
 void GamePlayState::processInput(Event& event) {
 	switch (event.type) {
@@ -45,10 +48,24 @@ void GamePlayState::processInput(Event& event) {
 
 }
 
+void GamePlayState::startRound() {
+	if (roundStartTimer < ROUND_START_MAX) {
+		roundStartTimer++;
+		return;
+	} else {
+		roundStart = false;
+	}
+	return;
+}
+
 void GamePlayState::update(RenderWindow& window) {
 	// update state components
-	defender.update();
-	killemAll.update();
+	if (!roundStart) {
+		defender.update();
+		killemAll.update();
+	} else {
+		startRound();
+	}
 
 	// do collision tests
 
