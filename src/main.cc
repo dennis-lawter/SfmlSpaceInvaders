@@ -70,6 +70,7 @@ void update() {
 			didWin = temp->didWin;
 			if(didWin) {
 				stateLevel = 0;
+				score::roundNumber++;
 				break;
 			}
 			delete gameState;

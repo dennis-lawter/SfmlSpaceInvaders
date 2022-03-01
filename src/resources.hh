@@ -16,7 +16,7 @@ namespace resources {
 	extern map<string, Texture> textures;
 	extern map<string, SoundBuffer> soundFile;
 	extern Font font;
-
+	
 
 	void loadResources();
 }

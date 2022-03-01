@@ -1,6 +1,7 @@
 #ifndef GAMESTATE_HPP_
 #define GAMESTATE_HPP_
 #include <SFML/Graphics.hpp>
+#include "../resources.hh"
 using namespace sf;
 
 class GameState {

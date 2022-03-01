@@ -8,6 +8,7 @@ namespace score {
 	extern int score;
 	extern vector<int> scoreList;
 	extern int currentLives;
+	extern int roundNumber;
 
 	bool compareScores(int first, int second);
 	void addScore();

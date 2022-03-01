@@ -6,6 +6,9 @@ GamePlayState::GamePlayState() {
 }
 
 void GamePlayState::processInput(Event& event) {
+	if (roundStart) {
+		return;
+	}
 	switch (event.type) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
@@ -50,9 +53,17 @@ void GamePlayState::processInput(Event& event) {
 
 void GamePlayState::startRound() {
 	if (roundStartTimer < ROUND_START_MAX) {
+		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
+			roundTitle.str("");
+			roundTitle << "ROUND   " << score::roundNumber;
+		}
+		else if (roundStartTimer < BLINK_MAX) {
+			roundTitle.str("");
+		}
 		roundStartTimer++;
 		return;
 	} else {
+		roundTitle.str("");
 		roundStart = false;
 	}
 	return;
@@ -99,6 +110,10 @@ void GamePlayState::draw(RenderWindow& window) {
 	defender.draw(window);
 	killemAll.draw(window);
 	saveMe.draw(window);
+	Text drawTitle1 = Text(roundTitle.str(), font, 80);
+	drawTitle1.setScale(.08, .08);
+	drawTitle1.setPosition(30, 50);
+	window.draw(drawTitle1);
 }
 
 GamePlayState::~GamePlayState() {}

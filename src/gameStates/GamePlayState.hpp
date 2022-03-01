@@ -15,6 +15,7 @@ using namespace sf;
 
 class GamePlayState : public GameState {
 private:
+	Font& font = resources::font;
 	Hud hud;
 	Player defender;
 	BaddieGroup killemAll;
@@ -24,9 +25,13 @@ private:
 
 	const static int ROUND_START_MAX = 425;
 	int roundStartTimer = 0;
+	const static int BLINK_MAX = 380;
+	const static int BLINK_SPEED = 20;
 public:
 	bool didWin = false;
 	bool roundStart = true;
+	stringstream roundTitle;
+
 
 	GamePlayState();
 

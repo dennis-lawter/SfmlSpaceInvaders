@@ -2,7 +2,9 @@
 
 namespace score {
 	int currentLives = 2;
-	int score = 0;
+	int score = 0;		
+	int roundNumber = 1;
+
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
 
 	bool compareScores(int first, int second) {

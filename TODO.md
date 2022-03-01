@@ -20,8 +20,9 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [x] Several dozen invaders spawn in a grid formation
   - [x] One defender spawns at the center in the bottom of the screen
   - [x] Several barriers spawn just above the defender
-  - [ ] A short "intro" sound plays
-  - [ ] After three seconds the game begins and player input is accepted
+  - [x] A short "intro" sound plays
+  - [x] After x seconds the game begins and player input is accepted
+  - [x] Round count flashes durring intro
   - [x] Pressing left/right moves the defender
     - [x] The defender cannot move off of the screen
     - [x] The game begins with a player score of 0
@@ -84,8 +85,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [ ] If the player presses escape again, return to the game screen
 - [ ] Game over screen
   - [ ] Black background
-  - [ ] Centered text at the top says "GAME OVER"
-  - [ ] Left aligned text in the middle says "SCORE: " followed by the player's score
+  - [x] Centered text at the top says "GAME OVER"
+  - [x] Left aligned text in the middle says "SCORE: " followed by the player's score
   - [ ] If the player's score is higher than the high score, text below that says "NEW HIGH SCORE!"
   - [ ] If the player's score is equal to or lower than the high score, text below that says "HIGH SCORE: " followed by the high score
   - [ ] Centered text at the bottom says "PRESS ESC"

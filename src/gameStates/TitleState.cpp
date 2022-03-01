@@ -3,6 +3,7 @@
 TitleState::TitleState() {
 	score::score = 0;
 	score::currentLives = 2;
+	score::roundNumber = 1;
 }
 
 void TitleState::processInput(Event& event) {
