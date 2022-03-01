@@ -4,6 +4,22 @@ TitleState::TitleState() {
 	score::score = 0;
 	score::currentLives = 2;
 	score::roundNumber = 1;
+
+	drawTitle1.setString("TOTALLY INVADING");
+	drawTitle1.setFont(resources::font);
+	drawTitle1.setCharacterSize(80);
+	drawTitle1.setScale(.08, .08);
+	drawTitle1.setPosition(10, 25);
+	drawTitle2.setString("SPACE!");
+	drawTitle2.setFont(resources::font);
+	drawTitle2.setCharacterSize(80);
+	drawTitle2.setScale(.08, .08);
+	drawTitle2.setPosition(44, 35);
+	drawToStart.setString("Press Any Key To Start");
+	drawToStart.setFont(resources::font);
+	drawToStart.setCharacterSize(80);
+	drawToStart.setScale(.03, .03);
+	drawToStart.setPosition(35, 100);
 }
 
 void TitleState::processInput(Event& event) {
@@ -25,6 +41,12 @@ void TitleState::update(RenderWindow& window) {
 	} else {
 		isBlink = !isBlink;
 		blinkBuffer = 0;
+
+		if (isBlink) {
+			drawToStart.setString("");
+		} else {
+			drawToStart.setString("Press Any Key To Start");
+		}
 	}
 	if (bufferTick < BUFFERTIMER) {
 		bufferTick++;
@@ -33,24 +55,9 @@ void TitleState::update(RenderWindow& window) {
 
 
 void TitleState::draw(RenderWindow& window) {
-	Text drawTitle1 = Text(gameTitle1, font, 80);
-	drawTitle1.setScale(.08, .08);
-	drawTitle1.setPosition(10, 25);
 	window.draw(drawTitle1);
-	Text drawTitle2 = Text(gameTitle2, font, 80);
-	drawTitle2.setScale(.08, .08);
-	drawTitle2.setPosition(44, 35);
 	window.draw(drawTitle2);
-	Text drawToStart = Text(pressAnyKey, font, 80);
-	drawToStart.setScale(.03, .03);
-	drawToStart.setPosition(35, 100);
 	window.draw(drawToStart);
-
-	if (isBlink) {
-		pressAnyKey = "";
-	} else {
-		pressAnyKey = "Press Any Key To Start";
-	}
 }
 
 

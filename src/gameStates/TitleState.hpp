@@ -11,10 +11,9 @@ using namespace std;
 
 class TitleState : public GameState {
 private:
-	Font& font = resources::font;
-	string gameTitle1 = "TOTALLY INVADING";
-	string gameTitle2 = "SPACE!";
-	string pressAnyKey = "Press Any Key To Start";
+	Text drawTitle1;
+	Text drawTitle2;
+	Text drawToStart;
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
 	bool isBlink = false;
