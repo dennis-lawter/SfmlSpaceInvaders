@@ -9,11 +9,11 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Window launches as soon as possible
 - [ ] Start screen
   - [x] Black background
-  - [ ] Centered text at the top reads "TOTALLY INVADING SPACE"
+  - [x] Centered text at the top reads "TOTALLY INVADING SPACE"
   - [ ] Left-aligned text near the top reads "HIGH SCORE: " followed by the highest score the player has achieved since the game has opened, starting at 0 when the game is first opened
   - [ ] Centered text at the middle says "MOVE: A D ⬅ ➡"
   - [ ] Centered text below that says "FIRE: W ⬆ ➖"
-  - [ ] Centered text at the bottom says "PRESS ANY KEY"
+  - [x] Centered text at the bottom says "PRESS ANY KEY TO START"
   - [x] Pressing any keyboard key advances to the gameplay
 - [ ] Gameplay screen
   - [x] Black background
@@ -57,26 +57,30 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [ ] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
-  - [ ] Upon the start or reset of the game, a timer is made for a random time between 10 and 30 seconds
-    - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right, at random
+  - [ ] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
+    - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
     - [ ] Once the UFO exits the screen the timer is restarted
-    - [ ] The UFO will drop a special effect down and play the "ufo fire" sound once the center of its sprite reaches a pre-determined random X value between 32 and 96
+    - [ ] The UFO will randomly choose an X position between 32 and 96
+    - [ ] Once the UFO sprite's center passes the pre-chosen X position, it will drop a special effect down and play the "ufo fire"
       - [ ] This power up will be semi-transparent and move down the screen at a fixed speed
+      - [ ] The power up will be drawn on top of all other game elements
       - [ ] The power up does not collide with invaders, invader bullets, defender bullets, or barriers
-      - [ ] The power up is destroyed if it goes off the screen
-      - [ ] If the defender collides with it the power up is removed and one effect occurs based on what type of power up it was, and what sprite it had
-        - [ ] 1up sprite: The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
-        - [ ] Speed Up sprite: Until the level or game ends the defender has a 20% faster movement speed than it had previously
-        - [ ] Punch sprite: Until the level or game ends the defender's bullet is not removed from the game when it collides with an invader or barrier
-        - [ ] Missile sprite: Until the level or game ends the defender's bullet has a 20% faster movement speed than it had previously
-        - [ ] Passive sprite: Until the level or game ends the invaders have a 20% slower movement speed than they had previously
-        - [ ] Coin spirte: The player gains 1000 points; however, if this power up is lost without being collected the player loses 1000 points (with a minimum of zero)
-        - [ ] Bomb sprite: The player loses a life exactly as they would if the defender had collided with an invader bullet
-        - [ ] Ghost sprite: For every column in the grid of invaders that has at least one invader if the original "front row" of that column has been destroyed, an invader in that column is resurrected in the position directly in front of the furthest forward invader
-        - [ ] Speed Down sprite: Until the level or game ends the defender has a 20% slower movement speed than it had previously
-        - [ ] Aggression sprite: Until the level or game ends the invaders have a 20% faster movement speed than they had previously
+      - [ ] The power up is removed from the game if it goes off the screen
+      - [ ] If the defender collides with the power up it is removed and one effect occurs based on what type of power up it was, communicated via its sprite
+        - [ ] 1up sprite (boon): The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
+        - [ ] Speed Up sprite (boon): Until the level or game ends the defender has a 20% faster movement speed than it had previously
+        - [ ] Punch sprite (boon): Until the level or game ends the defender's bullet is not removed from the game when it collides with an invader or barrier
+        - [ ] Missile sprite (boon): Until the level or game ends the defender's bullet has a 20% faster movement speed than it had previously
+        - [ ] Passive sprite (boon): Until the level or game ends the invaders have a 20% slower movement speed than they had previously
+        - [ ] Coin spirte (boon): The player gains 1000 points; however, if this power up is lost without being collected the player loses 1000 points (with a minimum of zero)
+        - [ ] Bomb sprite (bane): The player loses a life exactly as they would if the defender had collided with an invader bullet
+        - [ ] Speed Down sprite (bane): Until the level or game ends the defender has a 20% slower movement speed than it had previously
+        - [ ] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
+        - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
+          - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
 - [ ] Pause screen
   - [ ] The gameplay screen is displayed as usual
+  - [ ] A partially transparent black rectangle is overlayed on the screen
   - [ ] Centered text at the top says "PAUSED"
   - [ ] No flashing animations play
   - [ ] The invaders do not move or advance
@@ -107,7 +111,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Clear power up sprites
 - [ ] Power up descriptions on the start screen
 - [ ] Demo on the start screen
-- [ ] Display text on screen when the UFO releases the power up explaining the power up
+- [ ] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
 
 ### Bugs
 - [ ] Defender jittering at edge of screen
@@ -115,3 +119,6 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 
 ### Performance Improvements
 - [ ] Reduce construction of sf::Text objects to be less demanding
+- [ ] Reduce alterations of stringstreams
+- [ ] Center text using the text's width
+- [ ] Perform the round reset immediately rather than upon the next frame
