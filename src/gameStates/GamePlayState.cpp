@@ -56,8 +56,9 @@ void GamePlayState::update(RenderWindow& window) {
 	defender.testBulletCollisions(killemAll, saveMe);
 
 	// defender touches baddie bullet
-	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector)) {
+	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector) && !defender.isInvuln) {
 		hud.currentLives--;
+		defender.isInvuln = true;
 	}
 
 	// barrier touches baddie bullet

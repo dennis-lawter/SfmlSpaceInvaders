@@ -17,6 +17,22 @@ void Player::fire() {
 	}
 }
 
+void Player::invincible() {
+	if (buffer < INVULN_TIMER) {
+		if ((buffer / BLINK_SPEED) % 2) {
+			sprite.setColor(Color::White);
+		}
+		else {
+			sprite.setColor(Color(0xFFFFFF22));
+		}
+		buffer++;
+	}
+	else {
+		isInvuln = false;
+		buffer = 0;
+	}
+}
+
 void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) {
 	if (!bullet) {
 		return;
@@ -57,6 +73,9 @@ void Player::update() {
 		if (getX() < 120) {
 			sprite.move(speed, 0);
 		}
+	}
+	if (isInvuln) {
+		invincible();
 	}
 }
 

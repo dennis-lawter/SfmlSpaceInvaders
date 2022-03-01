@@ -17,15 +17,19 @@ private:
 	void deleteBullet();
 	Sound pewSound;
 public:
+	const static int INVULN_TIMER = 120;
+	const static int BLINK_SPEED = 5;
 	PlayerBullet* bullet = nullptr;
 	float speed = 0.7;
+	int buffer = 0;
 	bool playerIsMovingLeft = false;
 	bool playerIsMovingRight = false;
-
+	bool isInvuln = false;
 
 	Player();
 
 	void fire();
+	void invincible();
 	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers);
 	bool testManyForCollision(vector<GameObject>& objs);
 	void update();

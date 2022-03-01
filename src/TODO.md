@@ -50,12 +50,12 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [ ] Upon firing play the "invader fire" sound effect
     - [x] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
     - [x] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
-      - [ ] Upon losing a life the defender's texture is flashing for x seconds
-      - [ ] Upon losing a life the defender is invulnerable for x seconds
+      - [x] Upon losing a life the defender's texture is flashing for x seconds
+      - [x] Upon losing a life the defender is invulnerable for x seconds
       - [x] If the player has a remaining life, decrease lives
       - [x] If the player has no remaining lives, go to the game over screen
-      - [ ] During invulnerability, player may not be hit by bullets
-      - [ ] During the invulnerability the invaders continue moving, advancing, and firing as normal
+      - [x] During invulnerability, player may not be hit by bullets
+      - [x] During the invulnerability the invaders continue moving, advancing, and firing as normal
     - [x] Detect if any advancing invaders touch the bottom of the screen
       - [x] When they do go directly to the game over screen
     - [ ] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
