@@ -60,27 +60,27 @@ void update() {
 
 	if (gameState->isEnding) {
 		switch (stateLevel) {
-		case 0:
+		case GameState::Title:
 			delete gameState;
 			gameState = new GamePlayState();
-			stateLevel++;
+			stateLevel = GameState::GamePlay;
 			break;
-		case 1:
+		case GameState::GamePlay:
 			temp = (GamePlayState*)gameState;
 			didWin = temp->didWin;
 			if(didWin) {
-				stateLevel = 0;
+				stateLevel = GameState::Title;
 				score::roundNumber++;
 				break;
 			}
 			delete gameState;
 			gameState = new GameOverState(didWin);
-			stateLevel++;
+			stateLevel = GameState::GameOver;
 			break;
-		case 2:
+		case GameState::GameOver:
 			delete gameState;
 			gameState = new TitleState();
-			stateLevel = 0;
+			stateLevel = GameState::Title;
 			break;
 		default:
 			window.close();

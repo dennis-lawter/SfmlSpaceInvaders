@@ -6,6 +6,12 @@ using namespace sf;
 
 class GameState {
 public:
+	enum State{
+		Title,
+		GamePlay,
+		GameOver
+	};
+
 	bool isEnding = false;
 
 	virtual void processInput(Event& event) = 0;
