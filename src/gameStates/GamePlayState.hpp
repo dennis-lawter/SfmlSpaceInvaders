@@ -9,6 +9,7 @@
 #include "../gameObj/groups/BaddieGroup.hpp"
 #include "../gameObj/groups/BarrierGroup.hpp"
 #include "../Hud.hpp"
+#include "../score.hh"
 
 using namespace sf;
 

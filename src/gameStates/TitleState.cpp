@@ -1,6 +1,9 @@
 #include "TitleState.hpp"
 
-TitleState::TitleState() {}
+TitleState::TitleState() {
+	score::score = 0;
+	score::currentLives = 2;
+}
 
 void TitleState::processInput(Event& event) {
 	if (bufferTick == BUFFERTIMER) {

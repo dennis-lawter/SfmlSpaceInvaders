@@ -1,6 +1,7 @@
 #include "score.hh"
 
 namespace score {
+	int currentLives = 2;
 	int score = 0;
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
 

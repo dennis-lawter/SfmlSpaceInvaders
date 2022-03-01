@@ -57,7 +57,7 @@ void GamePlayState::update(RenderWindow& window) {
 
 	// defender touches baddie bullet
 	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector) && !defender.isInvuln) {
-		hud.currentLives--;
+		score::currentLives--;
 		defender.isInvuln = true;
 	}
 
@@ -71,7 +71,7 @@ void GamePlayState::update(RenderWindow& window) {
 		didWin = true;
 		isEnding = true;
 	}
-	if (killemAll.isBaddiesWin() || hud.currentLives < 0) {
+	if (killemAll.isBaddiesWin() || score::currentLives < 0) {
 		didWin = false;
 		isEnding = true;
 	}

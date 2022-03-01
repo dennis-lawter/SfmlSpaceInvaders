@@ -13,7 +13,7 @@ void Hud::draw(RenderWindow& window) {
 	text.setPosition(2, 1);
 	window.draw(text);
 
-	for (int i = 0; i < currentLives; i++) {
+	for (int i = 0; i < score::currentLives; i++) {
 		lives.setPosition(120 - (9 * i), 0);
 		window.draw(lives);
 	}

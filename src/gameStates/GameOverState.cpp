@@ -12,7 +12,6 @@ void GameOverState::processInput(Event& event) {
 		break;
 	case Event::KeyReleased:
 		if (!holdBuffer && bufferTick == BUFFERTIMER) {
-			score::score = 0;
 			isEnding = true;
 		}
 		break;
@@ -33,18 +32,6 @@ void GameOverState::draw(RenderWindow& window) {
 	gameOverText.setScale(.1, .1);
 	gameOverText.setPosition(28, 25);
 	window.draw(gameOverText);
-
-	if (didWin) {
-		Text youWinText = Text(youWin, font, 80);
-		youWinText.setScale(.1, .1);
-		youWinText.setPosition(31, 35);
-		window.draw(youWinText);
-	} else {
-		Text youLoseText = Text(youLose, font, 80);
-		youLoseText.setScale(.1, .1);
-		youLoseText.setPosition(31, 35);
-		window.draw(youLoseText);
-	}
 
 	if (!isBlink) {
 		pressAnyKey = "Press Any Key To Reset";

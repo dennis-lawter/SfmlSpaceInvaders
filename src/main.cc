@@ -68,6 +68,10 @@ void update() {
 		case 1:
 			temp = (GamePlayState*)gameState;
 			didWin = temp->didWin;
+			if(didWin) {
+				stateLevel = 0;
+				break;
+			}
 			delete gameState;
 			gameState = new GameOverState(didWin);
 			stateLevel++;

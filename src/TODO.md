@@ -7,11 +7,6 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Features
 - [x] 128x128 game canvas
 - [x] Window launches as soon as possible
-- [ ] Loading screen
-  - [ ] Black background
-  - [ ] No content
-  - [ ] Once the font file loads, display "LOADING..."
-  - [ ] After all files load go to the start screen
 - [ ] Start screen
   - [x] Black background
   - [ ] Centered text at the top reads "TOTALLY INVADING SPACE"
@@ -58,7 +53,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [x] During the invulnerability the invaders continue moving, advancing, and firing as normal
     - [x] Detect if any advancing invaders touch the bottom of the screen
       - [x] When they do go directly to the game over screen
-    - [ ] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
+    - [x] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [ ] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
   - [ ] Upon the start or reset of the game, a timer is made for a random time between 10 and 30 seconds
