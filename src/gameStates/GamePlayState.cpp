@@ -3,6 +3,7 @@
 GamePlayState::GamePlayState() {
 	startMusic.setBuffer(resources::soundFile["randommusic"]);
 	startMusic.play();
+	score::scoreBonus = 10;
 }
 
 void GamePlayState::processInput(Event& event) {

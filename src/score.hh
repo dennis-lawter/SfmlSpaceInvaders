@@ -11,6 +11,8 @@ namespace score {
 	extern int roundNumber;
 	extern double speedModifier;
 	extern double roundMultiplier;
+	extern int scoreBonus;
+	extern int scoreBonusMultiplier;
 
 	bool compareScores(int first, int second);
 	void addScore();

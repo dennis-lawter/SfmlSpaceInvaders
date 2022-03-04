@@ -5,7 +5,9 @@ namespace score {
 	int score = 0;		
 	int roundNumber = 1;
 	double speedModifier = 0;
-	double roundMultiplier = .005;
+	double roundMultiplier = 0.005;
+	int scoreBonus = 10; // 8 is minimum
+	int scoreBonusMultiplier = 10;
 
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
 

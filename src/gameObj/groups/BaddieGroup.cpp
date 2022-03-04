@@ -50,6 +50,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 void BaddieGroup::moveBaddies() {
 	if (isBaddiesAdvance()) {
 		allMoveRight = !allMoveRight;
+		score::scoreBonus--;
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
