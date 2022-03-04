@@ -8,7 +8,7 @@ class Baddie : public GameObject {
 private:
 	const float ADVANCE_DISTANCE = 12;
 public:
-	float speed = 0.05;
+	float speed = 0.03;
 
 	Baddie(Texture& texture, int x, int y);
 

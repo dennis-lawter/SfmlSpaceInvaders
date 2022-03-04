@@ -4,6 +4,7 @@
 #include "gameStates/GamePlayState.hpp"
 #include "gameStates/TitleState.hpp"
 #include "gameStates/GameOverState.hpp"
+#include "score.hh"
 using namespace sf;
 using namespace std;
 
@@ -71,6 +72,7 @@ void update() {
 			if(didWin) {
 				stateLevel = GameState::Title;
 				score::roundNumber++;
+				score::speedModifier += (score::roundNumber * score::roundMultiplier);
 				break;
 			}
 			delete gameState;

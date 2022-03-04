@@ -4,6 +4,7 @@
 #include "../Baddie.hpp"
 #include "../BaddieBoom.hpp"
 #include "../BaddieBullet.hpp"
+#include "../../score.hh"
 using namespace sf;
 using namespace std;
 
@@ -13,7 +14,7 @@ private:
 	const static int ROWS = 3;
 	const static int COLUMNS = 7;
 	const static int MAX_BADDIES = ROWS * COLUMNS;
-	const float SPEED_MULT = 0.0225; // can't be static, doesn't need to be
+	const float SPEED_MULT = 0.0125; // can't be static, doesn't need to be
 
 	bool allMoveRight = true;
 	int baddiesKilledThisFrame = 0;

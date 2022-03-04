@@ -11,6 +11,7 @@ BaddieGroup::BaddieGroup() {
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
 			baddies[x][y] = new Baddie(*textureArray[y], x * 12, 10 + (y * 12));
+			baddies[x][y]->speed += score::speedModifier;
 		}
 	}
 }

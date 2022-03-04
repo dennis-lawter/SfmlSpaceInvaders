@@ -4,6 +4,7 @@ TitleState::TitleState() {
 	score::score = 0;
 	score::currentLives = 2;
 	score::roundNumber = 1;
+	score::speedModifier = 0;
 
 	drawTitle1.setString("TOTALLY INVADING");
 	drawTitle1.setFont(resources::font);

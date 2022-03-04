@@ -4,6 +4,8 @@ namespace score {
 	int currentLives = 2;
 	int score = 0;		
 	int roundNumber = 1;
+	double speedModifier = 0;
+	double roundMultiplier = .005;
 
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
 
