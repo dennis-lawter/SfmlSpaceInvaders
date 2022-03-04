@@ -30,6 +30,7 @@ private:
 public:
 	bool didWin = false;
 	bool roundStart = true;
+	bool isPause = false;
 	stringstream roundTitle;
 
 

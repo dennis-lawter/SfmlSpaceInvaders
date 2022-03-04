@@ -10,15 +10,18 @@ void GamePlayState::processInput(Event& event) {
 	if (roundStart) {
 		return;
 	}
+	if (isPause && event.key.code != Keyboard::Escape) {
+		return;
+	}
 	switch (event.type) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
-		case Keyboard::Key::A:
-		case Keyboard::Key::Left: //Move Left
+		case Keyboard::A:
+		case Keyboard::Left: //Move Left
 			defender.playerIsMovingLeft = true;
 			break;
-		case Keyboard::Key::D:
-		case Keyboard::Key::Right: //Move Right
+		case Keyboard::D:
+		case Keyboard::Right: //Move Right
 			defender.playerIsMovingRight = true;
 			break;
 		case Keyboard::W: //Player fires
@@ -26,6 +29,8 @@ void GamePlayState::processInput(Event& event) {
 		case Keyboard::Space:
 			defender.fire();
 			break;
+		case Keyboard::Escape:
+			isPause = !isPause;
 		default:
 			break;
 		}
@@ -57,8 +62,7 @@ void GamePlayState::startRound() {
 		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
 			roundTitle.str("");
 			roundTitle << "ROUND   " << score::roundNumber;
-		}
-		else if (roundStartTimer < BLINK_MAX) {
+		} 		else if (roundStartTimer < BLINK_MAX) {
 			roundTitle.str("");
 		}
 		roundStartTimer++;
@@ -72,12 +76,15 @@ void GamePlayState::startRound() {
 
 void GamePlayState::update(RenderWindow& window) {
 	// update state components
-	if (!roundStart) {
+	if (!roundStart && !isPause) {
 		defender.update();
 		killemAll.update();
+	} else if (isPause) {
+
 	} else {
 		startRound();
 	}
+
 
 	// do collision tests
 
