@@ -21,6 +21,8 @@ private:
 	int randomColumn = 0;
 	int shootTimer = 0;
 
+	Sound baddiepew;
+
 	void deathAnimationUpdate();
 	void moveBaddies();
 	void accelerateBaddies();

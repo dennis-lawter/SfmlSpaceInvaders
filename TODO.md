@@ -43,7 +43,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [x] The advancement only occurs when an invader on screen touches the edge of the screen
     - [x] If an invader collides with a barrier the barrier is destroyed
     - [x] Every second one invader in the "front line" is selected at random to fire an invader bullet 
-      - [ ] Upon firing play the "invader fire" sound effect
+      - [x] Upon firing play the "invader fire" sound effect
     - [x] If the invader bullet collides with a barrier, the barrier is destroyed and the invader bullet is removed from the screen
     - [x] If an invader bullet collides with the defender, the player loses a life and the invader bullet is removed from the screen
       - [x] Upon losing a life the defender's texture is flashing for x seconds
@@ -55,7 +55,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] Detect if any advancing invaders touch the bottom of the screen
       - [x] When they do go directly to the game over screen
     - [x] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
-      - [ ] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
+      - [x] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
   - [ ] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
     - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)

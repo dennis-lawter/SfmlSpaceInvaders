@@ -7,6 +7,7 @@ BaddieGroup::BaddieGroup() {
 	textureArray[0] = &resources::textures["invader3"];
 	textureArray[1] = &resources::textures["invader2"];
 	textureArray[2] = &resources::textures["invader1"];
+	baddiepew.setBuffer(resources::soundFile["baddiepew"]);
 
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
@@ -100,6 +101,7 @@ void BaddieGroup::baddieShoot() {
 				float bulletY = baddies[randomColumn][y]->getY() + 8;
 				bulletVector.emplace_back(BaddieBullet(bulletX, bulletY));
 				shootTimer = 0;
+				baddiepew.play();
 				return;
 			}
 		}
@@ -120,7 +122,7 @@ void BaddieGroup::bulletUpdate() {
 void BaddieGroup::deathAnimationUpdate() {
 	for (auto nextToDie = deathList.begin(); nextToDie < deathList.end(); nextToDie++) {
 		nextToDie->update();
-		if (nextToDie->buffer >= nextToDie->ERASE_TIMER){
+		if (nextToDie->buffer >= nextToDie->ERASE_TIMER) {
 			deathList.erase(nextToDie);
 		}
 	}
