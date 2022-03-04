@@ -116,7 +116,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Bugs
 - [ ] Defender jittering at edge of screen
 - [ ] Don't display "press any button" text if it's not possible to press a button yet
-- [ ] If the player holds a button when pausing, they will continue to move in that direction when unpaused, until that direction is pressed again
+
 
 ### Performance Improvements
 - [ ] Reduce construction of sf::Text objects to be less demanding

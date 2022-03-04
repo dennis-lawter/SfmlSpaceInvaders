@@ -31,6 +31,8 @@ void GamePlayState::processInput(Event& event) {
 			break;
 		case Keyboard::Escape:
 			isPause = !isPause;
+			defender.playerIsMovingLeft = false;
+			defender.playerIsMovingRight = false;
 		default:
 			break;
 		}
@@ -62,7 +64,7 @@ void GamePlayState::startRound() {
 		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
 			roundTitle.str("");
 			roundTitle << "ROUND   " << score::roundNumber;
-		} 		else if (roundStartTimer < BLINK_MAX) {
+		} else if (roundStartTimer < BLINK_MAX) {
 			roundTitle.str("");
 		}
 		roundStartTimer++;
