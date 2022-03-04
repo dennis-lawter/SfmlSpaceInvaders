@@ -56,7 +56,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [x] When they do go directly to the game over screen
     - [x] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [x] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
-  - [ ] If the player presses the escape key during any time they could move or shoot, go to the pause screen
+  - [x] If the player presses the escape key during any time they could move or shoot, go to the pause screen
   - [ ] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
     - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
     - [ ] Once the UFO exits the screen the timer is restarted
@@ -116,6 +116,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Bugs
 - [ ] Defender jittering at edge of screen
 - [ ] Don't display "press any button" text if it's not possible to press a button yet
+- [ ] If the player holds a button when pausing, they will continue to move in that direction when unpaused, until that direction is pressed again
 
 ### Performance Improvements
 - [ ] Reduce construction of sf::Text objects to be less demanding
