@@ -4,6 +4,16 @@ GamePlayState::GamePlayState() {
 	startMusic.setBuffer(resources::soundFile["randommusic"]);
 	startMusic.play();
 	score::scoreBonus = 10;
+
+	pauseTint.setFillColor(Color(0x00000000));
+	pauseTint.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
+	pauseTint.setPosition(0, 0);
+
+	pause.setString("");
+	pause.setFont(resources::font);
+	pause.setCharacterSize(80);
+	pause.setScale(.12, .12);
+	pause.setPosition(40, 55);
 }
 
 void GamePlayState::processInput(Event& event) {
@@ -81,8 +91,11 @@ void GamePlayState::update(RenderWindow& window) {
 	if (!roundStart && !isPause) {
 		defender.update();
 		killemAll.update();
+		pauseTint.setFillColor(Color(0x00000000));
+		pause.setString("");
 	} else if (isPause) {
-
+		pauseTint.setFillColor(Color(0x00000088));
+		pause.setString("PAUSE");
 	} else {
 		startRound();
 	}
@@ -120,10 +133,12 @@ void GamePlayState::draw(RenderWindow& window) {
 	defender.draw(window);
 	killemAll.draw(window);
 	saveMe.draw(window);
-	Text drawTitle1 = Text(roundTitle.str(), font, 80);
+	Text drawTitle1 = Text(roundTitle.str(), resources::font, 80);
 	drawTitle1.setScale(.08, .08);
 	drawTitle1.setPosition(30, 50);
 	window.draw(drawTitle1);
+	window.draw(pauseTint);
+	window.draw(pause);
 }
 
 GamePlayState::~GamePlayState() {}

@@ -15,12 +15,13 @@ using namespace sf;
 
 class GamePlayState : public GameState {
 private:
-	Font& font = resources::font;
 	Hud hud;
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
 	Sound startMusic;
+	Text pause;
+	RectangleShape pauseTint;
 	void startRound();
 
 	const static int ROUND_START_MAX = 425;
@@ -32,6 +33,7 @@ public:
 	bool roundStart = true;
 	bool isPause = false;
 	stringstream roundTitle;
+
 
 
 	GamePlayState();

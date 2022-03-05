@@ -79,14 +79,14 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
           - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
 - [ ] Pause screen
-  - [ ] The gameplay screen is displayed as usual
-  - [ ] A partially transparent black rectangle is overlayed on the screen
-  - [ ] Centered text at the top says "PAUSED"
-  - [ ] No flashing animations play
-  - [ ] The invaders do not move or advance
+  - [x] The gameplay screen is displayed as usual
+  - [x] A partially transparent black rectangle is overlayed on the screen
+  - [x] Centered text at the top says "PAUSED"
+  - [x] No flashing animations play
+  - [x] The invaders do not move or advance
   - [ ] No timers (ie "for three seconds") are changed
-  - [ ] If the player presses left, right, or shoot, the defender does not respond
-  - [ ] If the player presses escape again, return to the game screen
+  - [x] If the player presses left, right, or shoot, the defender does not respond
+  - [x] If the player presses escape again, return to the game screen
 - [ ] Game over screen
   - [ ] Black background
   - [x] Centered text at the top says "GAME OVER"
