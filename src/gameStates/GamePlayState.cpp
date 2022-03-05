@@ -94,7 +94,7 @@ void GamePlayState::update(RenderWindow& window) {
 		pauseTint.setFillColor(Color(0x00000000));
 		pause.setString("");
 	} else if (isPause) {
-		pauseTint.setFillColor(Color(0x00000088));
+		pauseTint.setFillColor(Color(0x000000D0));
 		pause.setString("PAUSE");
 	} else {
 		startRound();
