@@ -5,11 +5,11 @@ GamePlayState::GamePlayState() {
 	startMusic.play();
 	score::scoreBonus = 10;
 
-	pauseTint.setFillColor(Color(0x00000000));
+	pauseTint.setFillColor(Color(0x000000D0));
 	pauseTint.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
 	pauseTint.setPosition(0, 0);
-
-	pause.setString("");
+	
+	pause.setString("PAUSE");
 	pause.setFont(resources::font);
 	pause.setCharacterSize(80);
 	pause.setScale(.12, .12);
@@ -87,30 +87,23 @@ void GamePlayState::startRound() {
 }
 
 void GamePlayState::update(RenderWindow& window) {
-	// update state components
-	if (!roundStart && !isPause) {
-		defender.update();
-		killemAll.update();
-		pauseTint.setFillColor(Color(0x00000000));
-		pause.setString("");
-		if (isUfoMoving && ufo) {
-			ufo->update();
-		}
-		if (powerup) {
-			powerup->update();
-			if (powerup->isOffScreen() || didPowerupHit) {
-				delete powerup;
-				powerup = nullptr;
-				didPowerupHit = false;
-			}
-		}
-	} else if (isPause) {
-		pauseTint.setFillColor(Color(0x000000D0));
-		pause.setString("PAUSE");
-	} else {
+	if (isPause) {
+		return;
+	}
+	if (roundStart) {
 		startRound();
+		return;
 	}
 
+	// update state components
+	defender.update();
+	killemAll.update();
+	if (isUfoMoving && ufo) {
+		ufo->update();
+	}
+	if (powerup) {
+		powerup->update();
+	}
 
 	// do collision tests
 
@@ -131,7 +124,15 @@ void GamePlayState::update(RenderWindow& window) {
 	// powerup touches defender 
 	if (powerup && defender.testCollision(*powerup)) {
 		didPowerupHit = true;
+	}
 
+	// powerup off screen
+	if (powerup) {
+		if (powerup->isOffScreen() || didPowerupHit) {
+			delete powerup;
+			powerup = nullptr;
+			didPowerupHit = false;
+		}
 	}
 
 	//start ufo timer when baddies advance
@@ -194,8 +195,10 @@ void GamePlayState::draw(RenderWindow& window) {
 	if (powerup) {
 		powerup->draw(window);
 	}
-	window.draw(pauseTint);
-	window.draw(pause);
+	if (isPause) {
+		window.draw(pauseTint);
+		window.draw(pause);
+	}
 }
 
 GamePlayState::~GamePlayState() {}
