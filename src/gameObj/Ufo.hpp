@@ -7,11 +7,16 @@ private:
 public:
 	float speed = 0.4;
 	bool isMovingLeft;
+	int ufoFireRandom;
+	bool hasFired = false;
+
+	Sound ufoFireSound;
 
 	Ufo();
 
 	void move();
 	bool isOffScreen();
+	void ufoFire();
 	void update();
 };
 

@@ -2,6 +2,7 @@
 
 Ufo::Ufo()
 	: GameObject(resources::textures["ufo"], 0, 8) {
+	ufoFireSound.setBuffer(resources::soundFile["ufoFire"]);
 	if (rand() % 2 == 0) {
 		this->sprite.setPosition(defines::WIDTH, 8);
 		isMovingLeft = true;
@@ -9,6 +10,7 @@ Ufo::Ufo()
 		this->sprite.setPosition(-this->getWidth(), 8);
 		isMovingLeft = false;
 	}
+	ufoFireRandom = rand() % defines::UFO_FIRE_RANGE + defines::UFO_FIRE_START;
 }
 
 void Ufo::move() {
@@ -23,6 +25,20 @@ bool Ufo::isOffScreen() {
 	return (this->getX() < -this->getWidth() - 1 || this->getX() > defines::WIDTH + 1);
 }
 
+void Ufo::ufoFire() {
+	if (hasFired) {
+		return;
+	}
+	if (this->getX() + this->getWidth() / 2 < ufoFireRandom && isMovingLeft) {
+		ufoFireSound.play();
+		hasFired = true;
+	} else if (this->getX() + this->getWidth() / 2 > ufoFireRandom && !isMovingLeft) {
+		ufoFireSound.play();
+		hasFired = true;
+	}
+}
+
 void Ufo::update() {
 	move();
+	ufoFire();
 }

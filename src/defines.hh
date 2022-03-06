@@ -9,6 +9,8 @@ namespace defines {
 	static const string GAME_NAME = "Totally Invading Space";
 	static const int WIDTH = 128;
 	static const int HEIGHT = 128;
+	static const int UFO_FIRE_RANGE = 64;
+	static const int UFO_FIRE_START = 32;
 	static const string IMAGE_FILE_TYPE = ".png";
 	static const string FONT_FILE_TYPE = ".ttf";
 	static const string SOUND_FILE_TYPE = ".wav";
@@ -56,6 +58,7 @@ namespace defines {
 		"speeddown",
 		"speedup",
 		"ufo",
+		"ufoFire",
 		"woah",
 		"wtf"
 	};
