@@ -4,9 +4,9 @@
 
 class Ufo : public GameObject {
 private:
-
 public:
 	float speed = 0.4;
+	bool isMovingLeft;
 
 	Ufo();
 

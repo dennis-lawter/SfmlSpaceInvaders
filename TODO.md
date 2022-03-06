@@ -58,7 +58,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [x] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [x] If the player presses the escape key during any time they could move or shoot, go to the pause screen
   - [x] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
-    - [] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
+    - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
     - [x] Once the UFO exits the screen the timer is restarted
     - [ ] The UFO will randomly choose an X position between 32 and 96
     - [ ] Once the UFO sprite's center passes the pre-chosen X position, it will drop a special effect down and play the "ufo fire"
