@@ -120,6 +120,12 @@ void GamePlayState::update(RenderWindow& window) {
 	// barrier touches baddie
 	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
 
+	// powerup touches defender 
+	if (powerup && defender.testCollision(*powerup)) {
+		didPowerupHit = true;
+		
+	}
+
 	//start ufo timer when baddies advance
 	if (killemAll.baddiesTimesAdvanced > 0) {
 		if (setUfoRandom > ufoBuffer && setUfoTimer) {
@@ -135,6 +141,26 @@ void GamePlayState::update(RenderWindow& window) {
 			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
 		}
 	}
+
+	//ufo fires powerup
+	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
+		powerup = new Powerup("1up", ufo->getX());
+		didUfoFire = true;
+	}
+
+	if (powerup) {
+		powerup->update();
+		if(powerup->isOffScreen() || didPowerupHit) {
+			delete powerup;
+			powerup = nullptr;
+			didPowerupHit = false;
+		}
+	}
+
+	if (!powerup && !ufo) {
+		didUfoFire = false;
+	}
+
 
 	//ufo despawns off screen
 	if (ufo && ufo->isOffScreen()) {
@@ -167,6 +193,9 @@ void GamePlayState::draw(RenderWindow& window) {
 	window.draw(pause);
 	if (ufo) {
 		ufo->draw(window);
+	}
+	if (powerup) {
+		powerup->draw(window);
 	}
 }
 

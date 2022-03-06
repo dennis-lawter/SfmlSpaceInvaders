@@ -9,6 +9,7 @@
 #include "../gameObj/groups/BaddieGroup.hpp"
 #include "../gameObj/groups/BarrierGroup.hpp"
 #include "../gameObj/Ufo.hpp"
+#include "../gameObj/Powerup.hpp"
 #include "../Hud.hpp"
 #include "../score.hh"
 
@@ -24,6 +25,8 @@ private:
 	Text pause;
 	RectangleShape pauseTint;
 	Ufo* ufo = nullptr;
+	Powerup* powerup = nullptr;
+
 	void startRound();
 
 	const static int ROUND_START_MAX = 425;
@@ -40,6 +43,8 @@ public:
 	bool isPause = false;
 	bool setUfoTimer = false;
 	bool isUfoMoving = false;
+	bool didUfoFire = false;
+	bool didPowerupHit = false;
 
 	stringstream roundTitle;
 

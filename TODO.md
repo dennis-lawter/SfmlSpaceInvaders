@@ -62,10 +62,11 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] Once the UFO exits the screen the timer is restarted
     - [x] The UFO will randomly choose an X position between 32 and 96
     - [x] Once the UFO sprite's center passes the pre-chosen X position, it will drop a special effect down and play the "ufo fire"
-      - [ ] This power up will be semi-transparent and move down the screen at a fixed speed
-      - [ ] The power up will be drawn on top of all other game elements
-      - [ ] The power up does not collide with invaders, invader bullets, defender bullets, or barriers
-      - [ ] The power up is removed from the game if it goes off the screen
+      - [x] This power up will move down the screen at a fixed speed
+      - [ ] This power up will be semi-transparent 
+      - [x] The power up will be drawn on top of all other game elements
+      - [x] The power up does not collide with invaders, invader bullets, defender bullets, or barriers
+      - [x] The power up is removed from the game if it goes off the screen
       - [ ] If the defender collides with the power up it is removed and one effect occurs based on what type of power up it was, communicated via its sprite
         - [ ] 1up sprite (boon): The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
         - [ ] Speed Up sprite (boon): Until the level or game ends the defender has a 20% faster movement speed than it had previously

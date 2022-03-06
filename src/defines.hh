@@ -62,6 +62,10 @@ namespace defines {
 		"woah",
 		"wtf"
 	};
+
+	static const vector<string> POWER_UP_LIST = {
+		"1up",
+	};
 }
 
 #endif

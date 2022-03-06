@@ -32,9 +32,11 @@ void Ufo::ufoFire() {
 	if (this->getX() + this->getWidth() / 2 < ufoFireRandom && isMovingLeft) {
 		ufoFireSound.play();
 		hasFired = true;
+		return;
 	} else if (this->getX() + this->getWidth() / 2 > ufoFireRandom && !isMovingLeft) {
 		ufoFireSound.play();
 		hasFired = true;
+		return;
 	}
 }
 
