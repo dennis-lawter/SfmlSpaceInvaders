@@ -96,6 +96,14 @@ void GamePlayState::update(RenderWindow& window) {
 		if (isUfoMoving && ufo) {
 			ufo->update();
 		}
+		if (powerup) {
+			powerup->update();
+			if (powerup->isOffScreen() || didPowerupHit) {
+				delete powerup;
+				powerup = nullptr;
+				didPowerupHit = false;
+			}
+		}
 	} else if (isPause) {
 		pauseTint.setFillColor(Color(0x000000D0));
 		pause.setString("PAUSE");
@@ -123,7 +131,7 @@ void GamePlayState::update(RenderWindow& window) {
 	// powerup touches defender 
 	if (powerup && defender.testCollision(*powerup)) {
 		didPowerupHit = true;
-		
+
 	}
 
 	//start ufo timer when baddies advance
@@ -146,15 +154,6 @@ void GamePlayState::update(RenderWindow& window) {
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		powerup = new Powerup("1up", ufo->getX());
 		didUfoFire = true;
-	}
-
-	if (powerup) {
-		powerup->update();
-		if(powerup->isOffScreen() || didPowerupHit) {
-			delete powerup;
-			powerup = nullptr;
-			didPowerupHit = false;
-		}
 	}
 
 	if (!powerup && !ufo) {
@@ -189,14 +188,14 @@ void GamePlayState::draw(RenderWindow& window) {
 	drawTitle1.setScale(.08, .08);
 	drawTitle1.setPosition(30, 50);
 	window.draw(drawTitle1);
-	window.draw(pauseTint);
-	window.draw(pause);
 	if (ufo) {
 		ufo->draw(window);
 	}
 	if (powerup) {
 		powerup->draw(window);
 	}
+	window.draw(pauseTint);
+	window.draw(pause);
 }
 
 GamePlayState::~GamePlayState() {}
