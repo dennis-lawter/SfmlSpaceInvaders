@@ -27,8 +27,6 @@ private:
 	Ufo* ufo = nullptr;
 	Powerup* powerup = nullptr;
 
-	void startRound();
-
 	const static int ROUND_START_MAX = 425;
 	int roundStartTimer = 0;
 	const static int BLINK_MAX = 380;
@@ -37,6 +35,13 @@ private:
 	const static int UFO_TIMER_MIN = 50;
 	int ufoBuffer = 0;
 	int setUfoRandom = 0;
+
+	void startRound();
+	void updateComponents();
+	void detectCollisions();
+	void removeOffscreenAssets();
+	void calculateUfo();
+	void calculateStateStatus();
 public:
 	bool didWin = false;
 	bool roundStart = true;
@@ -44,7 +49,6 @@ public:
 	bool setUfoTimer = false;
 	bool isUfoMoving = false;
 	bool didUfoFire = false;
-	bool didPowerupHit = false;
 
 	stringstream roundTitle;
 

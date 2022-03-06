@@ -16,6 +16,117 @@ GamePlayState::GamePlayState() {
 	pause.setPosition(40, 55);
 }
 
+void GamePlayState::startRound() {
+	if (roundStartTimer < ROUND_START_MAX) {
+		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
+			roundTitle.str("");
+			roundTitle << "ROUND   " << score::roundNumber;
+		} else if (roundStartTimer < BLINK_MAX) {
+			roundTitle.str("");
+		}
+		roundStartTimer++;
+		return;
+	} else {
+		roundTitle.str("");
+		roundStart = false;
+	}
+	return;
+}
+
+void GamePlayState::updateComponents() {
+	// update state components
+	defender.update();
+	killemAll.update();
+	if (isUfoMoving && ufo) {
+		ufo->update();
+	}
+	if (powerup) {
+		powerup->update();
+	}
+}
+
+void GamePlayState::detectCollisions() {
+	// do collision tests
+
+	// defender's bullet collision tests
+	defender.testBulletCollisions(killemAll, saveMe);
+
+	// defender touches baddie bullet
+	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector) && !defender.isInvuln) {
+		score::currentLives--;
+		defender.isInvuln = true;
+	}
+
+	// barrier touches baddie bullet
+	saveMe.testManyForCollision((vector<GameObject>&)killemAll.bulletVector, true, true);
+	// barrier touches baddie
+	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
+
+	// powerup touches defender 
+	if (powerup && defender.testCollision(*powerup)) {
+		powerup->grantPowerUp();
+		delete powerup;
+			powerup = nullptr;
+	}
+}
+
+void GamePlayState::removeOffscreenAssets() {
+	// powerup off screen
+	if (powerup) {
+		if (powerup->isOffScreen()) {
+			delete powerup;
+			powerup = nullptr;
+		}
+	}
+
+	//ufo despawns off screen
+	if (ufo && ufo->isOffScreen()) {
+		delete ufo;
+		ufo = nullptr;
+		isUfoMoving = false;
+	}
+}
+
+void GamePlayState::calculateUfo() {
+	//start ufo timer when baddies advance
+	if (killemAll.baddiesTimesAdvanced > 0) {
+		if (setUfoRandom > ufoBuffer && setUfoTimer) {
+			ufoBuffer++;
+		} else if (ufoBuffer >= setUfoRandom && setUfoTimer) {
+			ufo = new Ufo();
+			setUfoTimer = false;
+			isUfoMoving = true;
+			setUfoRandom = 0;
+			ufoBuffer = 0;
+		} else if (!setUfoTimer && !isUfoMoving) {
+			setUfoTimer = true;
+			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
+		}
+	}
+
+	//ufo fires powerup
+	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
+		powerup = new Powerup(defines::PowerUp::OneUp, ufo->getX());
+		didUfoFire = true;
+	}
+
+	if (!powerup && !ufo) {
+		didUfoFire = false;
+	}
+}
+
+void GamePlayState::calculateStateStatus() {
+	// test if state has been completed
+	if (killemAll.currentBaddies <= 0) {
+		didWin = true;
+		isEnding = true;
+	}
+	if (killemAll.isBaddiesWin() || score::currentLives < 0) {
+		didWin = false;
+		isEnding = true;
+	}
+}
+
 void GamePlayState::processInput(Event& event) {
 	if (roundStart) {
 		return;
@@ -69,23 +180,6 @@ void GamePlayState::processInput(Event& event) {
 
 }
 
-void GamePlayState::startRound() {
-	if (roundStartTimer < ROUND_START_MAX) {
-		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
-			roundTitle.str("");
-			roundTitle << "ROUND   " << score::roundNumber;
-		} else if (roundStartTimer < BLINK_MAX) {
-			roundTitle.str("");
-		}
-		roundStartTimer++;
-		return;
-	} else {
-		roundTitle.str("");
-		roundStart = false;
-	}
-	return;
-}
-
 void GamePlayState::update(RenderWindow& window) {
 	if (isPause) {
 		return;
@@ -95,90 +189,11 @@ void GamePlayState::update(RenderWindow& window) {
 		return;
 	}
 
-	// update state components
-	defender.update();
-	killemAll.update();
-	if (isUfoMoving && ufo) {
-		ufo->update();
-	}
-	if (powerup) {
-		powerup->update();
-	}
-
-	// do collision tests
-
-	// defender's bullet collision tests
-	defender.testBulletCollisions(killemAll, saveMe);
-
-	// defender touches baddie bullet
-	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector) && !defender.isInvuln) {
-		score::currentLives--;
-		defender.isInvuln = true;
-	}
-
-	// barrier touches baddie bullet
-	saveMe.testManyForCollision((vector<GameObject>&)killemAll.bulletVector, true, true);
-	// barrier touches baddie
-	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
-
-	// powerup touches defender 
-	if (powerup && defender.testCollision(*powerup)) {
-		didPowerupHit = true;
-		powerup->grantPowerUp();
-	}
-
-	// powerup off screen
-	if (powerup) {
-		if (powerup->isOffScreen() || didPowerupHit) {
-			delete powerup;
-			powerup = nullptr;
-			didPowerupHit = false;
-		}
-	}
-
-	//start ufo timer when baddies advance
-	if (killemAll.baddiesTimesAdvanced > 0) {
-		if (setUfoRandom > ufoBuffer && setUfoTimer) {
-			ufoBuffer++;
-		} else if (ufoBuffer >= setUfoRandom && setUfoTimer) {
-			ufo = new Ufo();
-			setUfoTimer = false;
-			isUfoMoving = true;
-			setUfoRandom = 0;
-			ufoBuffer = 0;
-		} else if (!setUfoTimer && !isUfoMoving) {
-			setUfoTimer = true;
-			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
-		}
-	}
-
-	//ufo fires powerup
-	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		powerup = new Powerup(defines::PowerUp::OneUp, ufo->getX());
-		didUfoFire = true;
-	}
-
-	if (!powerup && !ufo) {
-		didUfoFire = false;
-	}
-
-
-	//ufo despawns off screen
-	if (ufo && ufo->isOffScreen()) {
-		delete ufo;
-		ufo = nullptr;
-		isUfoMoving = false;
-	}
-
-	// test if state has been completed
-	if (killemAll.currentBaddies <= 0) {
-		didWin = true;
-		isEnding = true;
-	}
-	if (killemAll.isBaddiesWin() || score::currentLives < 0) {
-		didWin = false;
-		isEnding = true;
-	}
+	updateComponents();
+	detectCollisions();
+	removeOffscreenAssets();
+	calculateUfo();
+	calculateStateStatus();
 }
 
 void GamePlayState::draw(RenderWindow& window) {
