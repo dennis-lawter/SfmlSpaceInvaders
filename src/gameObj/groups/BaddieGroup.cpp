@@ -52,6 +52,7 @@ void BaddieGroup::moveBaddies() {
 	if (isBaddiesAdvance()) {
 		allMoveRight = !allMoveRight;
 		score::scoreBonus--;
+		baddiesTimesAdvanced++;
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {

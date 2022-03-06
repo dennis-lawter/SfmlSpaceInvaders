@@ -25,3 +25,11 @@ float GameObject::getX() {
 float GameObject::getY() {
 	return this->sprite.getPosition().y;
 }
+
+float GameObject::getWidth() {
+	return this->sprite.getLocalBounds().width;
+}
+
+float GameObject::getHeight() {
+	return this->sprite.getLocalBounds().height;
+}

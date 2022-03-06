@@ -57,9 +57,9 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] When there are no invaders remaining on screen the game resets but the player's score and lives are not reset to zero
       - [x] When the game is reset in this way, the player gains points equal to 10 * (128 - y) where y was the number of times the invaders "advanced"
   - [x] If the player presses the escape key during any time they could move or shoot, go to the pause screen
-  - [ ] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
-    - [ ] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
-    - [ ] Once the UFO exits the screen the timer is restarted
+  - [x] Once the invaders advance, set a timer for a random number of frames, between the equivalent of 5 and 30 seconds
+    - [] Once the timer has expired, a UFO will cross the screen from either the left or right (randomly chosen)
+    - [x] Once the UFO exits the screen the timer is restarted
     - [ ] The UFO will randomly choose an X position between 32 and 96
     - [ ] Once the UFO sprite's center passes the pre-chosen X position, it will drop a special effect down and play the "ufo fire"
       - [ ] This power up will be semi-transparent and move down the screen at a fixed speed
@@ -78,23 +78,22 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [ ] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
         - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
           - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
-- [ ] Pause screen
+- [x] Pause screen
   - [x] The gameplay screen is displayed as usual
   - [x] A partially transparent black rectangle is overlayed on the screen
   - [x] Centered text at the top says "PAUSED"
   - [x] No flashing animations play
   - [x] The invaders do not move or advance
-  - [ ] No timers (ie "for three seconds") are changed
+  - [x] No timers (ie "for three seconds") are changed
   - [x] If the player presses left, right, or shoot, the defender does not respond
   - [x] If the player presses escape again, return to the game screen
-- [ ] Game over screen
-  - [ ] Black background
+- [x] Game over screen
+  - [x] Black background
   - [x] Centered text at the top says "GAME OVER"
   - [x] Left aligned text in the middle says "SCORE: " followed by the player's score
-  - [ ] If the player's score is higher than the high score, text below that says "NEW HIGH SCORE!"
-  - [ ] If the player's score is equal to or lower than the high score, text below that says "HIGH SCORE: " followed by the high score
-  - [ ] Centered text at the bottom says "PRESS ESC"
-  - [ ] If the player presses escape, go to the start screen
+  - [x] If the player's score is on the high score list, it will blink
+  - [x] Centered text at the bottom says "PRESS ANY KEY"
+  - [x] If the player presses any key, go to the start screen
 
 ### Quality of Life
 - [ ] Save the high score to a file on the player's device

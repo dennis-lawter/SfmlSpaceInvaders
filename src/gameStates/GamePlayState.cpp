@@ -93,6 +93,9 @@ void GamePlayState::update(RenderWindow& window) {
 		killemAll.update();
 		pauseTint.setFillColor(Color(0x00000000));
 		pause.setString("");
+		if (isUfoMoving && ufo) {
+			ufo->update();
+		}
 	} else if (isPause) {
 		pauseTint.setFillColor(Color(0x000000D0));
 		pause.setString("PAUSE");
@@ -117,6 +120,29 @@ void GamePlayState::update(RenderWindow& window) {
 	// barrier touches baddie
 	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
 
+	//start ufo timer when baddies advance
+	if (killemAll.baddiesTimesAdvanced > 0) {
+		if (setUfoRandom > ufoBuffer && setUfoTimer) {
+			ufoBuffer++;
+		} else if (ufoBuffer >= setUfoRandom && setUfoTimer) {
+			ufo = new Ufo();
+			setUfoTimer = false;
+			isUfoMoving = true;
+			setUfoRandom = 0;
+			ufoBuffer = 0;
+		} else if (!setUfoTimer && !isUfoMoving) {
+			setUfoTimer = true;
+			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
+		}
+	}
+
+	//ufo despawns off screen
+	if (ufo && ufo->isOffScreen()) {
+		delete ufo;
+		ufo = nullptr;
+		isUfoMoving = false;
+	}
+
 	// test if state has been completed
 	if (killemAll.currentBaddies <= 0) {
 		didWin = true;
@@ -139,6 +165,9 @@ void GamePlayState::draw(RenderWindow& window) {
 	window.draw(drawTitle1);
 	window.draw(pauseTint);
 	window.draw(pause);
+	if (ufo) {
+		ufo->draw(window);
+	}
 }
 
 GamePlayState::~GamePlayState() {}

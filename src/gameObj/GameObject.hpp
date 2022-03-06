@@ -22,6 +22,8 @@ public:
 	FloatRect getHitBox();
 	float getX();
 	float getY();
+	float getWidth();
+	float getHeight();
 };
 
 #endif

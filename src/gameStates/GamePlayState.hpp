@@ -8,6 +8,7 @@
 #include "../gameObj/BaddieBoom.hpp"
 #include "../gameObj/groups/BaddieGroup.hpp"
 #include "../gameObj/groups/BarrierGroup.hpp"
+#include "../gameObj/Ufo.hpp"
 #include "../Hud.hpp"
 #include "../score.hh"
 
@@ -22,16 +23,24 @@ private:
 	Sound startMusic;
 	Text pause;
 	RectangleShape pauseTint;
+	Ufo* ufo = nullptr;
 	void startRound();
 
 	const static int ROUND_START_MAX = 425;
 	int roundStartTimer = 0;
 	const static int BLINK_MAX = 380;
 	const static int BLINK_SPEED = 20;
+	const static int UFO_TIMER_MAX = 600;
+	const static int UFO_TIMER_MIN = 50;
+	int ufoBuffer = 0;
+	int setUfoRandom = 0;
 public:
 	bool didWin = false;
 	bool roundStart = true;
 	bool isPause = false;
+	bool setUfoTimer = false;
+	bool isUfoMoving = false;
+
 	stringstream roundTitle;
 
 

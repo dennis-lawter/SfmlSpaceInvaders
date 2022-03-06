@@ -35,6 +35,7 @@ public:
 	vector<BaddieBullet> bulletVector;
 	vector<BaddieBoom> deathList;
 	int currentBaddies = MAX_BADDIES;
+	int baddiesTimesAdvanced = 0;
 
 	BaddieGroup();
 
