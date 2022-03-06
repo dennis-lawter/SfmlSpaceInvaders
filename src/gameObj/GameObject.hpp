@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../resources.hh"
+#include "../score.hh"
 
 using namespace sf;
 

@@ -5,13 +5,16 @@
 class Powerup : public GameObject {
 private:
 	Sound powerupSound;
+	defines::PowerUp powerupSelect;
 
 	float speed = 0.8;
 public:
 
 	Powerup(defines::PowerUp powerupSelect, float ufoPosition);
 
-	
+	void oneUp();
+
+	void grantPowerUp();
 
 	bool isOffScreen();
 	void update();

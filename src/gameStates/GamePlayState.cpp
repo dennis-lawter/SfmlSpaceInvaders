@@ -124,6 +124,7 @@ void GamePlayState::update(RenderWindow& window) {
 	// powerup touches defender 
 	if (powerup && defender.testCollision(*powerup)) {
 		didPowerupHit = true;
+		powerup->grantPowerUp();
 	}
 
 	// powerup off screen
