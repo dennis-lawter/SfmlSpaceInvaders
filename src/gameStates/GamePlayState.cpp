@@ -153,7 +153,7 @@ void GamePlayState::update(RenderWindow& window) {
 
 	//ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		powerup = new Powerup("1up", ufo->getX());
+		powerup = new Powerup(defines::PowerUp::OneUp, ufo->getX());
 		didUfoFire = true;
 	}
 

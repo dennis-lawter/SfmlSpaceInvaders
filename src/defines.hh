@@ -63,9 +63,35 @@ namespace defines {
 		"wtf"
 	};
 
-	static const vector<string> POWER_UP_LIST = {
-		"1up",
+
+	enum PowerUp {
+		OneUp = 0,
+		Aggressive,
+		Bomb,
+		Coin,
+		Ghost,
+		Missile,
+		Passive,
+		Punch,
+		SpeedDown,
+		SpeedUp,
+
+		COUNT
 	};
+
+	static map<PowerUp, string> POWER_UP_LIST = {
+		{OneUp, "1up"},
+		{Aggressive, "aggression"},
+		{Bomb, "bomb"},
+		{Coin, "coin"},
+		{Ghost, "ghost"},
+		{Missile, "missile"},
+		{Passive, "passive"},
+		{Punch, "punch"},
+		{SpeedDown, "speed_down"},
+		{SpeedUp, "speed_up"}
+	};
+
 }
 
 #endif

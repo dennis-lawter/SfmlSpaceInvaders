@@ -9,7 +9,9 @@ private:
 	float speed = 0.8;
 public:
 
-	Powerup(string powerupSelect, float ufoPosition);
+	Powerup(defines::PowerUp powerupSelect, float ufoPosition);
+
+	
 
 	bool isOffScreen();
 	void update();

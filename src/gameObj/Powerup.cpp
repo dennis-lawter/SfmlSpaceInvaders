@@ -1,7 +1,7 @@
 #include "Powerup.hpp"
 
-Powerup::Powerup(string powerupSelect, float ufoPosition)
-	: GameObject(resources::textures[powerupSelect], ufoPosition, 16) {
+Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition)
+	: GameObject(resources::textures[defines::POWER_UP_LIST[powerupSelect]], ufoPosition, 16) {
 		//powerupSound.setBuffer(resources::soundFile[powerupSelect]);
 	}
 
