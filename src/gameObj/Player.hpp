@@ -26,6 +26,8 @@ public:
 	bool playerIsMovingRight = false;
 	bool isInvuln = false;
 	bool isPunch = false;
+	float bulletSpeed = 2.0;
+	float bulletSpeedModifier = 1.0;
 
 	Player();
 

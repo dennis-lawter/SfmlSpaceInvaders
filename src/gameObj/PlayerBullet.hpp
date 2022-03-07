@@ -6,9 +6,10 @@ using namespace sf;
 
 class PlayerBullet : public GameObject {
 public:
-	float speed = 2.0;
 	
-	PlayerBullet(float x);
+	PlayerBullet(float x, float speed);
+
+	float speed;
 
 	bool isOffScreen();
 	void update();

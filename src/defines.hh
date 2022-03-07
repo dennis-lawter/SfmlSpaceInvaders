@@ -15,6 +15,7 @@ namespace defines {
 	static const string FONT_FILE_TYPE = ".ttf";
 	static const string SOUND_FILE_TYPE = ".wav";
 	static const int LIVES_CAP = 3;
+	static const int BULLET_SPEED_MODIFIER_CAP = 3;
 
 	static const string FONT_FILE_NAME = "PressStart2P";
 
@@ -69,7 +70,7 @@ namespace defines {
 		Aggressive,
 		Bomb,
 		Coin,
-		Ghost,
+		// Ghost,
 		Missile,
 		Passive,
 		Punch,

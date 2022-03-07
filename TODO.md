@@ -71,7 +71,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [x] 1up sprite (boon): The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
         - [x] Speed Up sprite (boon): Until the level or game ends the defender has a 20% faster movement speed than it had previously
         - [x] Punch sprite (boon): Until the level or game ends the defender's bullet is not removed from the game when it collides with an invader or barrier
-        - [ ] Missile sprite (boon): Until the level or game ends the defender's bullet has a 20% faster movement speed than it had previously
+        - [x] Missile sprite (boon): Until the level or game ends the defender's bullet has a 20% faster movement speed than it had previously
         - [x] Passive sprite (boon): Until the level or game ends the invaders have a 20% slower movement speed than they had previously
         - [x] Coin spirte (boon): The player gains 1000 points; however, if this power up is lost without being collected the player loses 1000 points (with a minimum of zero)
         - [x] Bomb sprite (bane): The player loses a life exactly as they would if the defender had collided with an invader bullet

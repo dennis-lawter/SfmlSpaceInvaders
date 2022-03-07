@@ -12,7 +12,7 @@ void Player::deleteBullet() {
 
 void Player::fire() {
 	if (!bullet) {
-		bullet = new PlayerBullet(getX() + 3);
+		bullet = new PlayerBullet(getX() + 3, bulletSpeed * bulletSpeedModifier);
 		pewSound.play();
 	}
 }

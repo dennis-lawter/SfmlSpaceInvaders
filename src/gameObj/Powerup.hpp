@@ -28,6 +28,7 @@ public:
 	void bomb();
 	void agressive(Baddie& baddie);
 	void passive(Baddie& baddie);
+	void missile();
 
 	void grantPowerUp();
 

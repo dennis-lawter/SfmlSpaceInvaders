@@ -118,7 +118,7 @@ void GamePlayState::calculateUfo() {
 
 	//ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
+		randomPowerup = defines::PowerUp::Missile; //static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		didUfoFire = true;
 	}
