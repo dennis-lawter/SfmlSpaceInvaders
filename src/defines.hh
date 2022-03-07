@@ -85,7 +85,7 @@ namespace defines {
 		{Aggressive, "aggression"},
 		{Bomb, "bomb"},
 		{Coin, "coin"},
-		{Ghost, "ghost"},
+		// {Ghost, "ghost"},
 		{Missile, "missile"},
 		{Passive, "passive"},
 		{Punch, "punch"},
