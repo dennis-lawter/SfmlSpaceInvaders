@@ -18,7 +18,6 @@ private:
 public:
 
 	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender);
-	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Baddie& baddie);
 
 	void oneUp();
 	void coin();
@@ -28,6 +27,7 @@ public:
 	void punch();
 	void bomb();
 	void agressive(Baddie& baddie);
+	void passive(Baddie& baddie);
 
 	void grantPowerUp();
 

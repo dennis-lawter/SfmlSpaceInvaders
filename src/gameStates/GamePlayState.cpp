@@ -63,11 +63,13 @@ void GamePlayState::detectCollisions() {
 	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
 
 	// powerup touches defender 
-	if (powerup && defender.testCollision(*powerup)) { // add tests to make sure powerup is agressive, passive
+	if (powerup && defender.testCollision(*powerup) && (randomPowerup == defines::PowerUp::Aggressive || randomPowerup == defines::PowerUp::Passive)) { // add tests to make sure powerup is agressive, passive
 		for (int x = 0; x < killemAll.COLUMNS; x++) {
 			for (int y = 0; y < killemAll.ROWS; y++) {
-				if (killemAll.baddies[x][y]) {
+				if (killemAll.baddies[x][y] && randomPowerup == defines::PowerUp::Aggressive) {
 					powerup->agressive(*killemAll.baddies[x][y]);
+				} else if (killemAll.baddies[x][y] && randomPowerup == defines::PowerUp::Passive) {
+					powerup->passive(*killemAll.baddies[x][y]);
 				}
 			}
 		}
@@ -116,12 +118,15 @@ void GamePlayState::calculateUfo() {
 
 	//ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		powerup = new Powerup(defines::PowerUp::Aggressive, ufo->getX(), defender);
+		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
+		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		didUfoFire = true;
 	}
 
+	//ufo & powerup reset
 	if (!powerup && !ufo) {
 		didUfoFire = false;
+		randomPowerup = defines::PowerUp::COUNT;
 	}
 }
 

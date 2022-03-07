@@ -26,7 +26,7 @@ private:
 	RectangleShape pauseTint;
 	Ufo* ufo = nullptr;
 	Powerup* powerup = nullptr;
-	
+
 
 	const static int ROUND_START_MAX = 425;
 	int roundStartTimer = 0;
@@ -36,6 +36,7 @@ private:
 	const static int UFO_TIMER_MIN = 50;
 	int ufoBuffer = 0;
 	int setUfoRandom = 0;
+	defines::PowerUp randomPowerup;
 
 	void startRound();
 	void updateComponents();

@@ -6,11 +6,6 @@ Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defe
 	this->powerupSelect = powerupSelect;	
 	this->defender = &defender;
 }
-Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Baddie& baddie)
-	: GameObject(resources::textures[defines::POWER_UP_LIST[powerupSelect]], ufoPosition, 16) {
-	this->powerupSelect = powerupSelect;
-	this->baddie = &baddie;
-}
 
 void Powerup::oneUp() {
 	if (score::currentLives < defines::LIVES_CAP) {
@@ -47,6 +42,10 @@ void Powerup::bomb() {
 
 void Powerup::agressive(Baddie& baddie) {
 	baddie.speed *= 1.2;
+}
+
+void Powerup::passive(Baddie& baddie) {
+	baddie.speed *= 0.8;
 }
 
 bool Powerup::isOffScreen() {
