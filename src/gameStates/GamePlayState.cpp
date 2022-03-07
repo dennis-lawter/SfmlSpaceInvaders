@@ -106,7 +106,7 @@ void GamePlayState::calculateUfo() {
 
 	//ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		powerup = new Powerup(defines::PowerUp::OneUp, ufo->getX());
+		powerup = new Powerup(defines::PowerUp::SpeedDown, ufo->getX(), defender);
 		didUfoFire = true;
 	}
 

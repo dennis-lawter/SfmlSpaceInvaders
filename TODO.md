@@ -68,14 +68,14 @@ To better learn C++, game development, and SFML the objetive is to create a clon
       - [x] The power up does not collide with invaders, invader bullets, defender bullets, or barriers
       - [x] The power up is removed from the game if it goes off the screen
       - [ ] If the defender collides with the power up it is removed and one effect occurs based on what type of power up it was, communicated via its sprite
-        - [ ] 1up sprite (boon): The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
-        - [ ] Speed Up sprite (boon): Until the level or game ends the defender has a 20% faster movement speed than it had previously
+        - [x] 1up sprite (boon): The player gains an extra life if they have less than 3 lives, otherwise they gain 1,000 points
+        - [x] Speed Up sprite (boon): Until the level or game ends the defender has a 20% faster movement speed than it had previously
         - [ ] Punch sprite (boon): Until the level or game ends the defender's bullet is not removed from the game when it collides with an invader or barrier
         - [ ] Missile sprite (boon): Until the level or game ends the defender's bullet has a 20% faster movement speed than it had previously
         - [ ] Passive sprite (boon): Until the level or game ends the invaders have a 20% slower movement speed than they had previously
-        - [ ] Coin spirte (boon): The player gains 1000 points; however, if this power up is lost without being collected the player loses 1000 points (with a minimum of zero)
+        - [x] Coin spirte (boon): The player gains 1000 points; however, if this power up is lost without being collected the player loses 1000 points (with a minimum of zero)
         - [ ] Bomb sprite (bane): The player loses a life exactly as they would if the defender had collided with an invader bullet
-        - [ ] Speed Down sprite (bane): Until the level or game ends the defender has a 20% slower movement speed than it had previously
+        - [x] Speed Down sprite (bane): Until the level or game ends the defender has a 20% slower movement speed than it had previously
         - [ ] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
         - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
           - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
