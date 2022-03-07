@@ -19,6 +19,7 @@ public:
 	void coinOffScreen();
 	void speedUp();
 	void speedDown();
+	void punch();
 
 	void grantPowerUp();
 

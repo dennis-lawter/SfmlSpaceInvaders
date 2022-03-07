@@ -25,6 +25,7 @@ public:
 	bool playerIsMovingLeft = false;
 	bool playerIsMovingRight = false;
 	bool isInvuln = false;
+	bool isPunch = false;
 
 	Player();
 

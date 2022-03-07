@@ -2,8 +2,8 @@
 
 Player::Player()
 	: GameObject(resources::textures["defender"], 60, 120) {
-		pewSound.setBuffer(resources::soundFile["defenderpew"]);
-	}
+	pewSound.setBuffer(resources::soundFile["defenderpew"]);
+}
 
 void Player::deleteBullet() {
 	delete bullet;
@@ -21,13 +21,11 @@ void Player::invincible() {
 	if (buffer < INVULN_TIMER) {
 		if ((buffer / BLINK_SPEED) % 2) {
 			sprite.setColor(Color::White);
-		}
-		else {
+		} 		else {
 			sprite.setColor(Color(0xFFFFFF22));
 		}
 		buffer++;
-	}
-	else {
+	} 	else {
 		isInvuln = false;
 		buffer = 0;
 	}
@@ -39,10 +37,16 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) 
 	}
 	if (baddies.testOneForCollision(*bullet, true)) {
 		// bullet hits a baddie
-		deleteBullet();
 		score::score += 100;
+		if (isPunch) {
+			return;
+		}
+		deleteBullet();
 	} else if (barriers.testOneForCollision(*bullet, true)) {
 		// bullet hits a barrier
+		if (isPunch) {
+			return;
+		}
 		deleteBullet();
 	} else if (bullet->isOffScreen()) {
 		//deletes bullet when it leaves screen

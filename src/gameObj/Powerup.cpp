@@ -31,6 +31,10 @@ void Powerup::speedDown() {
 	defender->speed *= 0.8;
 }
 
+void Powerup::punch() {
+	defender->isPunch = true;
+}
+
 bool Powerup::isOffScreen() {
 	return (this->getY() > defines::HEIGHT);
 }
@@ -48,6 +52,9 @@ void Powerup::grantPowerUp() {
 		break;
 	case defines::PowerUp::SpeedDown:
 		speedDown();
+		break;
+	case defines::PowerUp::Punch:
+		punch();
 		break;
 	default:
 		break;
