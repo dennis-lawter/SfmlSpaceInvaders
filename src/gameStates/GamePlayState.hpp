@@ -26,6 +26,7 @@ private:
 	RectangleShape pauseTint;
 	Ufo* ufo = nullptr;
 	Powerup* powerup = nullptr;
+	
 
 	const static int ROUND_START_MAX = 425;
 	int roundStartTimer = 0;

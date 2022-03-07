@@ -8,7 +8,7 @@ GamePlayState::GamePlayState() {
 	pauseTint.setFillColor(Color(0x000000D0));
 	pauseTint.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
 	pauseTint.setPosition(0, 0);
-	
+
 	pause.setString("PAUSE");
 	pause.setFont(resources::font);
 	pause.setCharacterSize(80);
@@ -63,10 +63,20 @@ void GamePlayState::detectCollisions() {
 	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
 
 	// powerup touches defender 
-	if (powerup && defender.testCollision(*powerup)) {
+	if (powerup && defender.testCollision(*powerup)) { // add tests to make sure powerup is agressive, passive
+		for (int x = 0; x < killemAll.COLUMNS; x++) {
+			for (int y = 0; y < killemAll.ROWS; y++) {
+				if (killemAll.baddies[x][y]) {
+					powerup->agressive(*killemAll.baddies[x][y]);
+				}
+			}
+		}
+		delete powerup;
+		powerup = nullptr;
+	} else if (powerup && defender.testCollision(*powerup)) {
 		powerup->grantPowerUp();
 		delete powerup;
-			powerup = nullptr;
+		powerup = nullptr;
 	}
 }
 
@@ -106,7 +116,7 @@ void GamePlayState::calculateUfo() {
 
 	//ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		powerup = new Powerup(defines::PowerUp::Bomb, ufo->getX(), defender);
+		powerup = new Powerup(defines::PowerUp::Aggressive, ufo->getX(), defender);
 		didUfoFire = true;
 	}
 

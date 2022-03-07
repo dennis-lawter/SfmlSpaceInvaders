@@ -2,17 +2,23 @@
 #define POWERUP_HPP_
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "Baddie.hpp"
+#include "groups/BaddieGroup.hpp"
+#include "../score.hh"
 
 class Powerup : public GameObject {
 private:
 	Sound powerupSound;
 	defines::PowerUp powerupSelect;
 	Player* defender = nullptr;
+	Baddie* baddie = nullptr;
+
 
 	float speed = 0.8;
 public:
 
 	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender);
+	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Baddie& baddie);
 
 	void oneUp();
 	void coin();
@@ -21,6 +27,7 @@ public:
 	void speedDown();
 	void punch();
 	void bomb();
+	void agressive(Baddie& baddie);
 
 	void grantPowerUp();
 

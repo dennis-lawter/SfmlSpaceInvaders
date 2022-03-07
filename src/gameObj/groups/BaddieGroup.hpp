@@ -11,9 +11,7 @@ using namespace std;
 class BaddieGroup {
 private:
 	const static int SHOOT_DELAY = 60;
-	const static int ROWS = 3;
-	const static int COLUMNS = 7;
-	const static int MAX_BADDIES = ROWS * COLUMNS;
+
 	const float SPEED_MULT = 0.0125; // can't be static, doesn't need to be
 
 	bool allMoveRight = true;
@@ -31,6 +29,9 @@ private:
 
 	void deleteBaddie(int x, int y);
 public:
+	const static int COLUMNS = 7;
+	const static int ROWS = 3;
+	const static int MAX_BADDIES = ROWS * COLUMNS;
 	Baddie* baddies[COLUMNS][ROWS];
 	vector<BaddieBullet> bulletVector;
 	vector<BaddieBoom> deathList;

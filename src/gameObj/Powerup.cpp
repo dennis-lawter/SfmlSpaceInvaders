@@ -3,8 +3,13 @@
 Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender)
 	: GameObject(resources::textures[defines::POWER_UP_LIST[powerupSelect]], ufoPosition, 16) {
 	//powerupSound.setBuffer(resources::soundFile[powerupSelect]);
-	this->powerupSelect = powerupSelect;
+	this->powerupSelect = powerupSelect;	
 	this->defender = &defender;
+}
+Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Baddie& baddie)
+	: GameObject(resources::textures[defines::POWER_UP_LIST[powerupSelect]], ufoPosition, 16) {
+	this->powerupSelect = powerupSelect;
+	this->baddie = &baddie;
 }
 
 void Powerup::oneUp() {
@@ -40,6 +45,10 @@ void Powerup::bomb() {
 	defender->isInvuln = true;
 }
 
+void Powerup::agressive(Baddie& baddie) {
+	baddie.speed *= 1.2;
+}
+
 bool Powerup::isOffScreen() {
 	return (this->getY() > defines::HEIGHT);
 }
@@ -63,6 +72,8 @@ void Powerup::grantPowerUp() {
 		break;
 	case defines::PowerUp::Bomb:
 		bomb();
+		break;
+	case defines::PowerUp::Aggressive:
 		break;
 	default:
 		break;
