@@ -35,6 +35,11 @@ void Powerup::punch() {
 	defender->isPunch = true;
 }
 
+void Powerup::bomb() {
+	score::currentLives--;
+	defender->isInvuln = true;
+}
+
 bool Powerup::isOffScreen() {
 	return (this->getY() > defines::HEIGHT);
 }
@@ -55,6 +60,9 @@ void Powerup::grantPowerUp() {
 		break;
 	case defines::PowerUp::Punch:
 		punch();
+		break;
+	case defines::PowerUp::Bomb:
+		bomb();
 		break;
 	default:
 		break;

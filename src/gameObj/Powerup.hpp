@@ -20,6 +20,7 @@ public:
 	void speedUp();
 	void speedDown();
 	void punch();
+	void bomb();
 
 	void grantPowerUp();
 
