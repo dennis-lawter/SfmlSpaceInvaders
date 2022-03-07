@@ -79,6 +79,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [x] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
         - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
           - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
+        - [ ] Curved bullet (boon): Have bullet move torward the center of the defender
 - [x] Pause screen
   - [x] The gameplay screen is displayed as usual
   - [x] A partially transparent black rectangle is overlayed on the screen
@@ -123,3 +124,13 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Reduce alterations of stringstreams
 - [ ] Center text using the text's width
 - [ ] Perform the round reset immediately rather than upon the next frame
+
+
+### Juice?
+- [ ] Make them cuss every so often
+- [ ] Make blood splatter on the screen
+- [ ] Have them randomly decide to kamikaze 
+- [ ] Have the baddies come in from all different directions durring opening round
+- [ ] Have defender and barriers rise slowly into position
+- [ ] Make baddies jitter
+- [ ] Screen shakes more as baddies move closer

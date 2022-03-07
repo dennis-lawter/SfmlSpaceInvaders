@@ -21,6 +21,9 @@ void Powerup::coin() {
 
 void Powerup::coinOffScreen() {
 	score::score -= 1000;
+	if (score::score < 0) {
+		score::score = 0;
+	}
 }
 
 void Powerup::speedUp() {
