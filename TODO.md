@@ -63,7 +63,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
     - [x] The UFO will randomly choose an X position between 32 and 96
     - [x] Once the UFO sprite's center passes the pre-chosen X position, it will drop a special effect down and play the "ufo fire"
       - [x] This power up will move down the screen at a fixed speed
-      - [ ] This power up will be semi-transparent 
+      - [x] This power up will be semi-transparent 
       - [x] The power up will be drawn on top of all other game elements
       - [x] The power up does not collide with invaders, invader bullets, defender bullets, or barriers
       - [x] The power up is removed from the game if it goes off the screen
