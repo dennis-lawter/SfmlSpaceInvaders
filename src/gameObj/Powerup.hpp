@@ -15,6 +15,7 @@ private:
 
 
 	float speed = 0.8;
+
 public:
 
 	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender);

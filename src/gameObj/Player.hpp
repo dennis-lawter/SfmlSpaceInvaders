@@ -19,6 +19,7 @@ private:
 public:
 	const static int INVULN_TIMER = 120;
 	const static int BLINK_SPEED = 5;
+	const float SHIFT_SPEED = 0.4;
 	PlayerBullet* bullet = nullptr;
 	float speed = 0.7;
 	int buffer = 0;
@@ -26,6 +27,7 @@ public:
 	bool playerIsMovingRight = false;
 	bool isInvuln = false;
 	bool isPunch = false;
+	bool isBulletCurved = false;
 	float bulletSpeed = 2.0;
 	float bulletSpeedModifier = 1.0;
 
@@ -33,6 +35,7 @@ public:
 
 	void fire();
 	void invincible();
+	void curved();
 	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers);
 	bool testManyForCollision(vector<GameObject>& objs);
 	void update();

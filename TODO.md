@@ -79,7 +79,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [x] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
         - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
           - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
-        - [ ] Curved bullet (boon): Have bullet move torward the center of the defender
+        - [x] Curved bullet (boon): Have bullet move torward the center of the defender
 - [x] Pause screen
   - [x] The gameplay screen is displayed as usual
   - [x] A partially transparent black rectangle is overlayed on the screen

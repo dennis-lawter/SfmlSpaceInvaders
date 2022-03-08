@@ -21,14 +21,23 @@ void Player::invincible() {
 	if (buffer < INVULN_TIMER) {
 		if ((buffer / BLINK_SPEED) % 2) {
 			sprite.setColor(Color::White);
-		} 		else {
+		} else {
 			sprite.setColor(Color(0xFFFFFF22));
 		}
 		buffer++;
-	} 	else {
+	} else {
 		isInvuln = false;
 		buffer = 0;
 	}
+}
+
+void Player::curved() {
+	if (bullet->getX() + 0.2 < this->getX() + 3) {
+		bullet->shift = SHIFT_SPEED; //((bullet->getY() - this->getY()) / (bullet->getX() - this->getX())) * (MAX_SHIFT_SPEED - this->getX());
+	} else if (bullet->getX() - 0.2  > this->getX() + 3) {
+		bullet->shift = -SHIFT_SPEED;
+	} else
+		bullet->shift = 0;
 }
 
 void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) {
@@ -66,6 +75,9 @@ bool Player::testManyForCollision(vector<GameObject>& objs) {
 
 void Player::update() {
 	if (bullet) {
+		if (isBulletCurved) {
+			curved();
+		}
 		bullet->update();
 	}
 	if (playerIsMovingLeft) {

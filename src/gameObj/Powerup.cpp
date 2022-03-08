@@ -60,6 +60,7 @@ void Powerup::missile() {
 	defender->bulletSpeedModifier += 0.2;
 }
 
+
 bool Powerup::isOffScreen() {
 	return (this->getY() > defines::HEIGHT);
 }
@@ -86,6 +87,9 @@ void Powerup::grantPowerUp() {
 		break;
 	case defines::PowerUp::Missile:
 		missile();
+		break;
+	case defines::PowerUp::Curved:
+		defender->isBulletCurved = true;
 		break;
 	default:
 		break;

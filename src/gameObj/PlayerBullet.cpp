@@ -10,5 +10,5 @@ bool PlayerBullet::isOffScreen() {
 }
 
 void PlayerBullet::update() {
-    this->sprite.move(0, -speed);
+    this->sprite.move(shift, -speed);
 }
