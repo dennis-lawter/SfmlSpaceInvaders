@@ -16,6 +16,21 @@ private:
 	Text drawToStart;
 	stringstream highScores;
 	Text highScoreText;
+	Text controls;
+	Text boon;
+	Text bane;
+	Sprite oneUp;
+	Sprite coin;
+	Sprite agressive;
+	Sprite bomb;
+	Sprite curved;
+	Sprite missile;
+	Sprite passive;
+	Sprite punch;
+	Sprite speedUp;
+	Sprite speedDown;
+
+
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
 	bool isBlink = false;
