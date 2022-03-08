@@ -14,6 +14,8 @@ private:
 	Text drawTitle1;
 	Text drawTitle2;
 	Text drawToStart;
+	stringstream highScores;
+	Text highScoreText;
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
 	bool isBlink = false;

@@ -33,7 +33,7 @@ void GameOverState::draw(RenderWindow& window) {
 	gameOverText.setPosition(28, 25);
 	window.draw(gameOverText);
 
-	if (!isBlink) {
+	if (!isBlink && bufferTick >= BUFFERTIMER) {
 		pressAnyKey = "Press Any Key To Reset";
 		Text pressReset = Text(pressAnyKey, font, 80);
 		pressReset.setScale(.03, .03);
