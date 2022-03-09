@@ -1,7 +1,7 @@
 #include "Player.hpp"
 
 Player::Player()
-	: GameObject(resources::textures["defender"], 60, 120) {
+	: GameObject(resources::textures["defender"], startingPosition.x, startingPosition.y) {
 	pewSound.setBuffer(resources::soundFile["defenderpew"]);
 }
 
@@ -34,7 +34,7 @@ void Player::invincible() {
 void Player::curved() {
 	if (bullet->getX() + 0.2 < this->getX() + 3) {
 		bullet->shift = SHIFT_SPEED; //((bullet->getY() - this->getY()) / (bullet->getX() - this->getX())) * (MAX_SHIFT_SPEED - this->getX());
-	} else if (bullet->getX() - 0.2  > this->getX() + 3) {
+	} else if (bullet->getX() - 0.2 > this->getX() + 3) {
 		bullet->shift = -SHIFT_SPEED;
 	} else
 		bullet->shift = 0;
@@ -71,6 +71,13 @@ bool Player::testManyForCollision(vector<GameObject>& objs) {
 		}
 	}
 	return false;
+}
+
+void Player::animateIntro(int framesElapsed) {
+	Vector2f start = this->startingPosition;
+	Vector2f destination(60, 120);
+	float percentage = ((float)framesElapsed) / 300;
+	this->setPosition(util::tween(start, destination, percentage));
 }
 
 void Player::update() {

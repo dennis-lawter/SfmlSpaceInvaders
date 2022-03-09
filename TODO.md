@@ -7,15 +7,14 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Features
 - [x] 128x128 game canvas
 - [x] Window launches as soon as possible
-- [ ] Start screen
+- [x] Start screen
   - [x] Black background
   - [x] Centered text at the top reads "TOTALLY INVADING SPACE"
-  - [ ] Left-aligned text near the top reads "HIGH SCORE: " followed by the highest score the player has achieved since the game has opened, starting at 0 when the game is first opened
-  - [ ] Centered text at the middle says "MOVE: A D ⬅ ➡"
-  - [ ] Centered text below that says "FIRE: W ⬆ ➖"
+  - [x] Centered text at the middle says "MOVE: A D ⬅ ➡"
+  - [x] Centered text below that says "FIRE: W ⬆ ➖"
   - [x] Centered text at the bottom says "PRESS ANY KEY TO START"
   - [x] Pressing any keyboard key advances to the gameplay
-- [ ] Gameplay screen
+- [x] Gameplay screen
   - [x] Black background
   - [x] Several dozen invaders spawn in a grid formation
   - [x] One defender spawns at the center in the bottom of the screen

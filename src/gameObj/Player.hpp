@@ -30,6 +30,8 @@ public:
 	bool isBulletCurved = false;
 	float bulletSpeed = 2.0;
 	float bulletSpeedModifier = 1.0;
+	Vector2f startingPosition = {60, 300};
+
 
 	Player();
 
@@ -40,6 +42,7 @@ public:
 	bool testManyForCollision(vector<GameObject>& objs);
 	void update();
 	void draw(RenderWindow& window);
+	void animateIntro(int framesElapsed);
 };
 
 #endif
