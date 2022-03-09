@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "../resources.hh"
 #include "../score.hh"
+#include "../util.hh"
 
 using namespace sf;
 
@@ -25,6 +26,9 @@ public:
 	float getY();
 	float getWidth();
 	float getHeight();
+	
+	Vector2f getPosition();
+	void setPosition(Vector2f pos);
 };
 
 #endif

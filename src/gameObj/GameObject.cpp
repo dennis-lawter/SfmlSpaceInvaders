@@ -33,3 +33,11 @@ float GameObject::getWidth() {
 float GameObject::getHeight() {
 	return this->sprite.getLocalBounds().height;
 }
+
+Vector2f GameObject::getPosition() {
+	return sprite.getPosition();
+}
+
+void GameObject::setPosition(Vector2f pos) {
+	sprite.setPosition(pos);
+}

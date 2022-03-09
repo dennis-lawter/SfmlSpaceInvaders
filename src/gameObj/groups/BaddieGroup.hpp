@@ -26,7 +26,6 @@ private:
 	void accelerateBaddies();
 	void baddieShoot();
 	void bulletUpdate();
-
 	void deleteBaddie(int x, int y);
 public:
 	const static int COLUMNS = 7;
@@ -45,6 +44,8 @@ public:
 
 	bool isBaddiesAdvance();
 	bool isBaddiesWin();
+
+	void animateIntro(float percentage);
 
 	void update();
 	void draw(RenderWindow& window);

@@ -24,7 +24,12 @@ void GamePlayState::startRound() {
 		} else if (roundStartTimer < BLINK_MAX) {
 			roundTitle.str("");
 		}
+		
 		roundStartTimer++;
+
+		float percentage = ((float) roundStartTimer) / BLINK_MAX;
+		killemAll.animateIntro(percentage);
+
 		return;
 	} else {
 		roundTitle.str("");

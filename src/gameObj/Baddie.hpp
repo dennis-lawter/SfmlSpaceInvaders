@@ -9,6 +9,7 @@ private:
 	const float ADVANCE_DISTANCE = 12;
 public:
 	float speed = 0.03;
+	Vector2f startingPosition;
 
 	Baddie(Texture& texture, int x, int y);
 

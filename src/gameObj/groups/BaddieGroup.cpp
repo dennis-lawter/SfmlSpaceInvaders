@@ -11,7 +11,7 @@ BaddieGroup::BaddieGroup() {
 
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
-			baddies[x][y] = new Baddie(*textureArray[y], x * 12, 10 + (y * 12));
+			baddies[x][y] = new Baddie(*textureArray[y], 0, 0);
 			baddies[x][y]->speed += score::speedModifier;
 		}
 	}
@@ -204,6 +204,19 @@ bool BaddieGroup::isBaddiesWin() {
 		}
 	}
 	return false;
+}
+
+void BaddieGroup::animateIntro(float percentage) {
+	for (int y = 0; y < ROWS; y++) {
+		for (int x = 0; x < COLUMNS; x++) {
+			if (!baddies[x][y]) continue;
+			// Vector2f start = baddies[x][y]->getPosition();
+			Vector2f start = baddies[x][y]->startingPosition;
+			Vector2f destination (x * 12, 10 + (y * 12));
+			baddies[x][y]->setPosition(util::tween(start, destination, percentage));
+			
+		}
+	}
 }
 
 void BaddieGroup::update() {
