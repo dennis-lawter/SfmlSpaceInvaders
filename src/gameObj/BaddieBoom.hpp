@@ -1,9 +1,6 @@
 #ifndef BADDIEBOOM_HPP_
 #define BADDIEBOOM_HPP_
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "GameObject.hpp"
-using namespace sf;
 
 class BaddieBoom : public GameObject {
 private: 

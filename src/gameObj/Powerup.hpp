@@ -4,7 +4,6 @@
 #include "Player.hpp"
 #include "Baddie.hpp"
 #include "groups/BaddieGroup.hpp"
-#include "../score.hh"
 
 class Powerup : public GameObject {
 private:

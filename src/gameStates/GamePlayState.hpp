@@ -1,6 +1,5 @@
 #ifndef GAMEPLAYSTATE_HPP_
 #define GAMEPLAYSTATE_HPP_
-#include <SFML/Graphics.hpp>
 #include "GameState.hpp"
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
@@ -12,8 +11,6 @@
 #include "../gameObj/Powerup.hpp"
 #include "../Hud.hpp"
 #include "../score.hh"
-
-using namespace sf;
 
 class GamePlayState : public GameState {
 private:

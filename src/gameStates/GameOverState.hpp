@@ -1,6 +1,5 @@
 #ifndef GAMEOVERSTATE_HPP_
 #define GAMEOVERSTATE_HPP_
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -9,8 +8,6 @@
 #include "../Hud.hpp"
 #include "../score.hh"
 #include "../resources.hh"
-using namespace std;
-using namespace sf;
 
 class GameOverState : public GameState {
 private:

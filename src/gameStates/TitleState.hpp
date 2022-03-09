@@ -1,13 +1,10 @@
 #ifndef TITLESTATE_HPP_
 #define TITLESTATE_HPP_
-#include <SFML/Graphics.hpp>
 #include <iomanip>
 #include <iostream>
 #include "GameState.hpp"
 #include "../resources.hh"
 #include "../score.hh"
-using namespace sf;
-using namespace std;
 
 class TitleState : public GameState {
 private:
