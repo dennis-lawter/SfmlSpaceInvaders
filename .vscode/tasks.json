@@ -32,6 +32,26 @@
 			"problemMatcher": []
 		},
 		{
+			"label": "DOXYGEN Build",
+			"type": "shell",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDoxygen.mak all",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
+			"label": "DOXYGEN Open",
+			"type": "shell",
+			"command": "C:\\cppdev\\msys\\bin\\make -f WinDoxygen.mak open",
+			"group": "build",
+			"presentation": {
+				"reveal": "silent"
+			},
+			"problemMatcher": []
+		},
+		{
 			"label": "RELEASE",
 			"type": "shell",
 			"command": "C:\\cppdev\\msys\\bin\\make -f WinRelease.mak clean all reshack zip",
