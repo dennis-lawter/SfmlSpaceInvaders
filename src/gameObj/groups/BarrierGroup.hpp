@@ -27,6 +27,7 @@ public:
 
 	bool testOneForCollision(GameObject* obj, bool deleteMine);
 	bool testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs, bool deleteMine, bool deleteTheirs);
+	void animateIntro(int framesElapsed);
 
 	void update();
 	void draw(RenderWindow& window);

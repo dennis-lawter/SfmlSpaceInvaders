@@ -29,6 +29,7 @@ void GamePlayState::startRound() {
 
 		killemAll.animateIntro(roundStartTimer);
 		defender.animateIntro(roundStartTimer);
+		saveMe.animateIntro(roundStartTimer);
 
 		return;
 	} else {

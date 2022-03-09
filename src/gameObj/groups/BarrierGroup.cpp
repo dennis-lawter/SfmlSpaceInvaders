@@ -30,6 +30,15 @@ bool BarrierGroup::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& ob
 	return false;
 }
 
+void BarrierGroup::animateIntro(int framesElapsed) {
+	for (auto barrier = barrierVector.begin(); barrier < barrierVector.end(); barrier++) {
+		Vector2f start = barrier->startingPosition;
+		Vector2f destination = barrier->destination;
+		float percentage = ((float)framesElapsed) / 330;
+		barrier->setPosition(util::tween(start, destination, percentage));
+	}
+}
+
 void BarrierGroup::draw(RenderWindow& window) {
 	for (Barrier& barrier : barrierVector) {
 		barrier.draw(window);

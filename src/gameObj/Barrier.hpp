@@ -7,6 +7,7 @@
 class Barrier : public GameObject {
 public:
 	Vector2f startingPosition;
+	Vector2f destination;
 	Barrier(int x, int y);
 };
 
