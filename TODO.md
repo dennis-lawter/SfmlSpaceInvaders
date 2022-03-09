@@ -129,7 +129,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Make them cuss every so often
 - [ ] Make blood splatter on the screen
 - [ ] Have them randomly decide to kamikaze 
-- [ ] Have the baddies come in from all different directions durring opening round
-- [ ] Have defender and barriers rise slowly into position
+- [x] Have the baddies come in from all different directions durring opening round
+- [x] Have defender and barriers rise slowly into position
 - [ ] Make baddies jitter
 - [ ] Screen shakes more as baddies move closer
+- [x] Defender slides towards next challenge

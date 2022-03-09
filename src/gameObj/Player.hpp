@@ -44,6 +44,7 @@ public:
 	void update();
 	void draw(RenderWindow& window);
 	void animateIntro(int framesElapsed);
+	void animateOutro(int framesElapsed);
 };
 
 #endif

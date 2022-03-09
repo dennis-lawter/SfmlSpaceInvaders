@@ -75,9 +75,14 @@ bool Player::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs) {
 
 void Player::animateIntro(int framesElapsed) {
 	Vector2f start = this->startingPosition;
-	Vector2f destination(60, 120);
+	Vector2f destination = {60, 120};
 	float percentage = ((float)framesElapsed) / 220;
 	this->setPosition(util::tween(start, destination, percentage));
+}
+
+void Player::animateOutro(int framesElapsed) {
+	this->sprite.move(0, -speed/20);
+	this->speed++;
 }
 
 void Player::update() {

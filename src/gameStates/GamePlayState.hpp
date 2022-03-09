@@ -34,11 +34,14 @@ private:
 	const static int BLINK_SPEED = 20;
 	const static int UFO_TIMER_MAX = 600;
 	const static int UFO_TIMER_MIN = 50;
+	const static int END_ROUND_TIMER = 100;
 	int ufoBuffer = 0;
 	int setUfoRandom = 0;
+	int endRoundBuffer = 0;
 	defines::PowerUp randomPowerup;
 
 	void startRound();
+	void endRound();
 	void updateComponents();
 	void detectCollisions();
 	void removeOffscreenAssets();

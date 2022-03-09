@@ -24,7 +24,7 @@ void GamePlayState::startRound() {
 		} else if (roundStartTimer < BLINK_MAX) {
 			roundTitle.str("");
 		}
-		
+
 		roundStartTimer++;
 
 		killemAll.animateIntro(roundStartTimer);
@@ -37,6 +37,11 @@ void GamePlayState::startRound() {
 		roundStart = false;
 	}
 	return;
+}
+
+void GamePlayState::endRound() {
+	defender.animateOutro(endRoundBuffer);
+	endRoundBuffer++;
 }
 
 void GamePlayState::updateComponents() {
@@ -140,9 +145,10 @@ void GamePlayState::calculateStateStatus() {
 	// test if state has been completed
 	if (killemAll.currentBaddies <= 0) {
 		didWin = true;
-		isEnding = true;
-	}
-	if (killemAll.isBaddiesWin() || score::currentLives < 0) {
+		if (endRoundBuffer >= END_ROUND_TIMER) {
+			isEnding = true;
+		}
+	} else if (killemAll.isBaddiesWin() || score::currentLives < 0) {
 		didWin = false;
 		isEnding = true;
 	}
@@ -158,6 +164,10 @@ void GamePlayState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
+		// God Button
+		// case Keyboard::BackSlash:
+		// 	killemAll.currentBaddies = 0;
+		// 	break;
 		case Keyboard::A:
 		case Keyboard::Left: //Move Left
 			defender.playerIsMovingLeft = true;
@@ -207,6 +217,11 @@ void GamePlayState::update(RenderWindow& window) {
 	}
 	if (roundStart) {
 		startRound();
+		return;
+	}
+	if (didWin) {
+		endRound();
+		calculateStateStatus();
 		return;
 	}
 
