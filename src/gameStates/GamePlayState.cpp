@@ -27,8 +27,7 @@ void GamePlayState::startRound() {
 		
 		roundStartTimer++;
 
-		float percentage = ((float) roundStartTimer) / BLINK_MAX;
-		killemAll.animateIntro(percentage);
+		killemAll.animateIntro(roundStartTimer);
 
 		return;
 	} else {

@@ -206,13 +206,14 @@ bool BaddieGroup::isBaddiesWin() {
 	return false;
 }
 
-void BaddieGroup::animateIntro(float percentage) {
+void BaddieGroup::animateIntro(int framesElapsed) {
 	for (int y = 0; y < ROWS; y++) {
 		for (int x = 0; x < COLUMNS; x++) {
 			if (!baddies[x][y]) continue;
 			// Vector2f start = baddies[x][y]->getPosition();
 			Vector2f start = baddies[x][y]->startingPosition;
 			Vector2f destination (x * 12, 10 + (y * 12));
+			float percentage = ((float)framesElapsed) / baddies[x][y]->animationFinishTime;
 			baddies[x][y]->setPosition(util::tween(start, destination, percentage));
 			
 		}

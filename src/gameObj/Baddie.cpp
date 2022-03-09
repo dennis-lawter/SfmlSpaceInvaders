@@ -19,6 +19,7 @@ Baddie::Baddie(Texture& texture, int x, int y)
 		break;
 	}
 	this->setPosition(this->startingPosition);
+	animationFinishTime = util::rangedRand(380/2, 380);
 }
 
 void Baddie::moveRight() {

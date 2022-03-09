@@ -8,6 +8,7 @@ class Baddie : public GameObject {
 private:
 	const float ADVANCE_DISTANCE = 12;
 public:
+	int animationFinishTime;
 	float speed = 0.03;
 	Vector2f startingPosition;
 

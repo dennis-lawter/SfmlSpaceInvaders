@@ -45,7 +45,7 @@ public:
 	bool isBaddiesAdvance();
 	bool isBaddiesWin();
 
-	void animateIntro(float percentage);
+	void animateIntro(int framesElapsed);
 
 	void update();
 	void draw(RenderWindow& window);
