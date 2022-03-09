@@ -1,17 +1,10 @@
 #ifndef PLAYER_HPP_
 #define PLAYER_HPP_
-#include <iostream>
-#include <vector>
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
 #include "groups/BaddieGroup.hpp"
 #include "groups/BarrierGroup.hpp"
 #include "PlayerBullet.hpp"
 #include "BaddieBullet.hpp"
 #include "GameObject.hpp"
-#include "../score.hh"
-using namespace std;
-using namespace sf;
 
 class Player : public GameObject {
 private:

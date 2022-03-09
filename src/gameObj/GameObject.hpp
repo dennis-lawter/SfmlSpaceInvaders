@@ -2,6 +2,7 @@
 #define GAMEOBJECT_HPP_
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "../resources.hh"
 #include "../score.hh"
 #include "../util.hh"

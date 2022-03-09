@@ -1,8 +1,6 @@
 #ifndef BADDIE_HPP_
 #define BADDIE_HPP_
-#include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-using namespace sf;
 
 class Baddie : public GameObject {
 private:

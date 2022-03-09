@@ -1,6 +1,4 @@
 #include <cstdlib>
-#include <iostream>
-#include <SFML/Graphics.hpp>
 #include "gameStates/GamePlayState.hpp"
 #include "gameStates/TitleState.hpp"
 #include "gameStates/GameOverState.hpp"

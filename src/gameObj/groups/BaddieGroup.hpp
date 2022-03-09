@@ -1,14 +1,10 @@
 #ifndef BADDIEGROUP_HPP_
 #define BADDIEGROUP_HPP_
-#include <SFML/Graphics.hpp>
 #include "../Baddie.hpp"
 #include "../BaddieBoom.hpp"
 #include "../BaddieBullet.hpp"
 #include "../../score.hh"
 #include "../Barrier.hpp"
-
-using namespace sf;
-using namespace std;
 
 class BaddieGroup {
 private:
