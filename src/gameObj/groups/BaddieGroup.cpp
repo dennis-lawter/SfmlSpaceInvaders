@@ -135,7 +135,7 @@ void BaddieGroup::deleteBaddie(int x, int y) {
 	baddies[x][y] = nullptr;
 }
 
-bool BaddieGroup::testOneForCollision(GameObject& obj, bool deleteMine) {
+bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
 	if (allMoveRight) {
 		/*
 		20 19 18 17 16 15 14
@@ -145,7 +145,7 @@ bool BaddieGroup::testOneForCollision(GameObject& obj, bool deleteMine) {
 		for (int y = ROWS - 1; y >= 0; y--) {
 			for (int x = COLUMNS - 1; x >= 0; x--) {
 				if (baddies[x][y]) {
-					if (baddies[x][y]->testCollision(obj)) {
+					if (baddies[x][y]->testCollision(*obj)) {
 						if (deleteMine) {
 							deleteBaddie(x, y);
 							baddiesKilledThisFrame++;
@@ -164,7 +164,7 @@ bool BaddieGroup::testOneForCollision(GameObject& obj, bool deleteMine) {
 		for (int y = ROWS - 1; y >= 0; y--) {
 			for (int x = 0; x < COLUMNS; x++) {
 				if (baddies[x][y]) {
-					if (baddies[x][y]->testCollision(obj)) {
+					if (baddies[x][y]->testCollision(*obj)) {
 						if (deleteMine) {
 							deleteBaddie(x, y);
 							baddiesKilledThisFrame++;
@@ -178,9 +178,9 @@ bool BaddieGroup::testOneForCollision(GameObject& obj, bool deleteMine) {
 	return false;
 }
 
-bool BaddieGroup::testManyForCollision(vector<GameObject>& objs, bool deleteMine, bool deleteTheirs) {
+bool BaddieGroup::testManyForCollisionWithBarrier(vector<Barrier>& objs, bool deleteMine, bool deleteTheirs) {
 	for (auto obj = objs.begin(); obj < objs.end(); obj++) {
-		if (testOneForCollision(*obj, deleteMine)) {
+		if (testOneForCollision(&(*obj), deleteMine)) {
 			if (deleteTheirs) {
 				objs.erase(obj);
 			}

@@ -44,14 +44,14 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) 
 	if (!bullet) {
 		return;
 	}
-	if (baddies.testOneForCollision(*bullet, true)) {
+	if (baddies.testOneForCollision(bullet, true)) {
 		// bullet hits a baddie
 		score::score += 100;
 		if (isPunch) {
 			return;
 		}
 		deleteBullet();
-	} else if (barriers.testOneForCollision(*bullet, true)) {
+	} else if (barriers.testOneForCollision(bullet, true)) {
 		// bullet hits a barrier
 		if (isPunch) {
 			return;
@@ -63,7 +63,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) 
 	}
 }
 
-bool Player::testManyForCollision(vector<GameObject>& objs) {
+bool Player::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs) {
 	for (auto obj = objs.begin(); obj != objs.end(); obj++) {
 		if (testCollision(*obj)) {
 			objs.erase(obj);

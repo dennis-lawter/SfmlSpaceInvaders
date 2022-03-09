@@ -2,6 +2,7 @@
 #define BARRIERGROUP_HPP_
 #include <SFML/Graphics.hpp>
 #include "../Barrier.hpp"
+#include "../BaddieBullet.hpp"
 
 class BarrierGroup {
 private:
@@ -24,8 +25,8 @@ public:
 
 	BarrierGroup();
 
-	bool testOneForCollision(GameObject& obj, bool deleteMine);
-	bool testManyForCollision(vector<GameObject>& objs, bool deleteMine, bool deleteTheirs);
+	bool testOneForCollision(GameObject* obj, bool deleteMine);
+	bool testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs, bool deleteMine, bool deleteTheirs);
 
 	void update();
 	void draw(RenderWindow& window);

@@ -57,15 +57,15 @@ void GamePlayState::detectCollisions() {
 	defender.testBulletCollisions(killemAll, saveMe);
 
 	// defender touches baddie bullet
-	if (defender.testManyForCollision((vector<GameObject>&)killemAll.bulletVector) && !defender.isInvuln) {
+	if (defender.testManyForCollisionWithBaddieBullet(killemAll.bulletVector) && !defender.isInvuln) {
 		score::currentLives--;
 		defender.isInvuln = true;
 	}
 
 	// barrier touches baddie bullet
-	saveMe.testManyForCollision((vector<GameObject>&)killemAll.bulletVector, true, true);
+	saveMe.testManyForCollisionWithBaddieBullet(killemAll.bulletVector, true, true);
 	// barrier touches baddie
-	killemAll.testManyForCollision((vector<GameObject>&)saveMe.barrierVector, false, true);
+	killemAll.testManyForCollisionWithBarrier(saveMe.barrierVector, false, true);
 
 	// powerup touches defender 
 	if (powerup && defender.testCollision(*powerup) && (randomPowerup == defines::PowerUp::Aggressive || randomPowerup == defines::PowerUp::Passive)) { // add tests to make sure powerup is agressive, passive

@@ -5,6 +5,8 @@
 #include "../BaddieBoom.hpp"
 #include "../BaddieBullet.hpp"
 #include "../../score.hh"
+#include "../Barrier.hpp"
+
 using namespace sf;
 using namespace std;
 
@@ -39,8 +41,8 @@ public:
 
 	BaddieGroup();
 
-	bool testOneForCollision(GameObject& obj, bool deleteMine);
-	bool testManyForCollision(vector<GameObject>& objs, bool deleteMine, bool deleteTheirs);
+	bool testOneForCollision(GameObject* obj, bool deleteMine);
+	bool testManyForCollisionWithBarrier(vector<Barrier>& objs, bool deleteMine, bool deleteTheirs);
 
 	bool isBaddiesAdvance();
 	bool isBaddiesWin();

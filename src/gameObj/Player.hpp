@@ -7,6 +7,7 @@
 #include "groups/BaddieGroup.hpp"
 #include "groups/BarrierGroup.hpp"
 #include "PlayerBullet.hpp"
+#include "BaddieBullet.hpp"
 #include "GameObject.hpp"
 #include "../score.hh"
 using namespace std;
@@ -39,7 +40,7 @@ public:
 	void invincible();
 	void curved();
 	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers);
-	bool testManyForCollision(vector<GameObject>& objs);
+	bool testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs);
 	void update();
 	void draw(RenderWindow& window);
 	void animateIntro(int framesElapsed);
