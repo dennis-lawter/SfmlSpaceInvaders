@@ -146,5 +146,13 @@ void Player::draw(RenderWindow& window) {
 	if (bullet) {
 		bullet->draw(window);
 	}
+	if (isInvuln) {
+		View view = window.getView();
+		Vector2f center = view.getCenter();
+		center.x += util::rangedRandFloat(-0.8f, 0.8f, 100);
+		center.y += util::rangedRandFloat(-0.4f, 0.4f, 100);
+		view.setCenter(center);
+		window.setView(view);
+	}
 	GameObject::draw(window);
 }

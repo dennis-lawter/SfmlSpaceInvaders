@@ -185,10 +185,10 @@ void GamePlayState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
-		// God Button
-		// case Keyboard::BackSlash:
-		// 	defender.isPunch = true;
-		// 	break;
+			// God Button
+			// case Keyboard::BackSlash:
+			// 	defender.isPunch = true;
+			// 	break;
 		case Keyboard::A:
 		case Keyboard::Left: //Move Left
 			defender.playerIsMovingLeft = true;
@@ -254,6 +254,9 @@ void GamePlayState::update(RenderWindow& window) {
 }
 
 void GamePlayState::draw(RenderWindow& window) {
+	View view = window.getView();
+	view.setCenter({ defines::WIDTH / 2.0f, defines::HEIGHT / 2.0f });
+	window.setView(view);
 	hud.draw(window);
 	defender.draw(window);
 	killemAll.draw(window);
