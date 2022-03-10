@@ -52,7 +52,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, 
 		Color blood(0xff0000bb);
 		for (int i = 0; i < 30; i++) {
 			blood.r = util::rangedRand(128, 255);
-			particles.createParticle({
+			particles.createParticleObject({
 				bullet->getPosition(),
 				{
 					util::rangedRandFloat(-0.2f, 0.2f, 100),
@@ -71,7 +71,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, 
 		blood.a = 19;
 		for (int i = 0; i < randomBloodOnScreen; i++) {
 			blood.r = util::rangedRand(128, 255);
-			particles.createParticle({
+			particles.createParticleObject({
 				{bullet->getX() + util::rangedRandFloat(-40.0f, 40.0f, 100) - 5,
 				bullet->getY() + util::rangedRandFloat(-15.0f, 40.0f, 100) - 10},
 				{0.f, util::rangedRandFloat(0.02f, 0.05f, 100)},

@@ -4,9 +4,11 @@
 
 class ParticleGroup {
 private:
-	vector<Particle> particles;
+	vector<ParticleObject> particleObjects;
+	vector<ParticleText> particleTexts;
 public:
-	void createParticle(ParticleAttributeList particle);
+	void createParticleObject(ParticleAttributeList particle);
+	void createParticleText(string text, Vector2f pos, Color color);
 
 	void update();
 	void draw(RenderWindow& window);	

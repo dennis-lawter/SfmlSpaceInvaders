@@ -15,25 +15,8 @@ GamePlayState::GamePlayState() {
 	pause.setScale(.12, .12);
 	pause.setPosition(40, 55);
 
-	// demonstration of a blood splatter
-	// for (int i = 0; i < 15; i++) {
-	// 	Color blood (0xff0000ff);
-	// 	blood.r = util::rangedRand(128, 255);
-	// 	ParticleAttributeList p = {
-	// 		// {64.f, 64.f},
-	// 		{util::rangedRand(-25, 25), util::rangedRand(-25, 25)},
-	// 		// {util::rangedRand(-10, 10)/10.f, util::rangedRand(-10, 10)/10.f},
-	// 		{0.f, 0.f},
-	// 		// {util::rangedRand(-10, 10)/100.f, util::rangedRand(-10, 10)/100.f},
-	// 		{0.f, 0.f},
-	// 		120,
-	// 		blood,
-	// 		Color(0x00000000),
-	// 		12.f,
-	// 		0.f
-	// 	};
-	// 	particles.createParticle(p);
-	// }
+	// Text particle demonstration
+	// particles.createParticleText("test", {64.f, 64.f}, Color::White);
 }
 
 void GamePlayState::startRound() {

@@ -1,23 +1,50 @@
 #include "ParticleGroup.hpp"
 
-void ParticleGroup::createParticle(ParticleAttributeList attributes) {
-	particles.emplace_back(attributes);
+void ParticleGroup::createParticleObject(ParticleAttributeList attributes) {
+	particleObjects.emplace_back(attributes);
+}
+
+void ParticleGroup::createParticleText(string text, Vector2f pos, Color color) {
+	Color finalColor = color;
+	finalColor.a = 0;
+	ParticleAttributeList attributes {
+		pos,
+		{0.f, -.2f},
+		{0.f, .2f/120},
+		120,
+		color,
+		finalColor
+	};
+	particleTexts.emplace_back(attributes, text);
 }
 
 void ParticleGroup::update() {
-	for (auto& particle : particles) {
+	for (auto& particle : particleObjects) {
 		particle.update();
 	}
-	for (auto iter = particles.begin(); iter != particles.end(); iter++) {
+	for (auto& particle : particleTexts) {
+		particle.update();
+	}
+
+	for (auto iter = particleObjects.begin(); iter != particleObjects.end(); iter++) {
 		if (iter->isReadyToDie) {
-			particles.erase(iter--);
+			particleObjects.erase(iter--);
+			continue;
+		}
+	}
+	for (auto iter = particleTexts.begin(); iter != particleTexts.end(); iter++) {
+		if (iter->isReadyToDie) {
+			particleTexts.erase(iter--);
 			continue;
 		}
 	}
 }
 
 void ParticleGroup::draw(RenderWindow& window) {
-	for (auto& particle : particles) {
+	for (auto& particle : particleObjects) {
+		particle.draw(window);
+	}
+	for (auto& particle : particleTexts) {
 		particle.draw(window);
 	}
 }

@@ -1,38 +1,68 @@
 #include "Particle.hpp"
 
 Particle::Particle(ParticleAttributeList attributes)
-	:GameObject(resources::textures["particle"], attributes.position.x, attributes.position.y),
-	ParticleAttributeList(attributes) {
-		sprite.setColor(initialColor);
-		sprite.setScale(initScaleFactor, initScaleFactor);
+	: ParticleAttributeList(attributes) {
 }
 
 void Particle::move() {
 	velocity += acceleration;
 	position += velocity;
-	setPosition(position);
 }
 
-void Particle::updateColor(float p) {
-	if (initialColor == finalColor) return;
+Color Particle::currentColor() {
+	if (initialColor == finalColor) return initialColor;
 
 	Color color;
-	color.r = util::lerp(initialColor.r, finalColor.r, p);
-	color.g = util::lerp(initialColor.g, finalColor.g, p);
-	color.b = util::lerp(initialColor.b, finalColor.b, p);
-	color.a = util::lerp(initialColor.a, finalColor.a, p);
+	color.r = util::lerp(initialColor.r, finalColor.r, agePercentage);
+	color.g = util::lerp(initialColor.g, finalColor.g, agePercentage);
+	color.b = util::lerp(initialColor.b, finalColor.b, agePercentage);
+	color.a = util::lerp(initialColor.a, finalColor.a, agePercentage);
 
-	sprite.setColor(color);
+	return color;
 }
 
 void Particle::update() {
 	if (age >= timeToLive) {
 		isReadyToDie = true;
 	}
-	float agePercentage = ((float)age) / timeToLive;
-
+	agePercentage = ((float)age) / timeToLive;
+	
 	move();
-	updateColor(agePercentage);
-
+	
 	age++;
+}
+
+
+ParticleText::ParticleText(ParticleAttributeList attributes, string text)
+	:Particle(attributes) {
+		this->text.setPosition(attributes.position);
+		this->text.setFillColor(attributes.initialColor);
+		this->text.setFont(resources::font);
+		this->text.setCharacterSize(80);
+		this->text.setScale(.05f, .05f);
+		this->text.setString(text);
+	}
+
+void ParticleText::update() {
+	Particle::update();
+	text.setFillColor(currentColor());
+	text.setPosition(position);
+}
+
+void ParticleText::draw(RenderWindow& window) {
+	window.draw(text);
+}
+
+
+ParticleObject::ParticleObject(ParticleAttributeList attributes)
+	:GameObject(resources::textures["particle"], attributes.position.x, attributes.position.y),
+	Particle(attributes) {
+	sprite.setColor(initialColor);
+	sprite.setScale(initScaleFactor, initScaleFactor);
+}
+
+void ParticleObject::update() {
+	Particle::update();
+	sprite.setColor(currentColor());
+	sprite.setPosition(position);
 }

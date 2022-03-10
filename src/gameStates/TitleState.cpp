@@ -30,12 +30,12 @@ TitleState::TitleState() {
 	highScoreText.setCharacterSize(80);
 	highScoreText.setScale(.05, .05);
 	highScoreText.setPosition(44, 50);
-	controls.setString("Controls\nLeft | A\nRight | D\nUp | W | Space");
+	controls.setString("CONTROLS\n\nLEFT:\nLeft     A\n\nRIGHT:\nRight    D\n\nFIRE:\nUp Space W");
 	controls.setFont(resources::font);
 	controls.setCharacterSize(80);
-	controls.setScale(.03, .04);
+	controls.setScale(.05, .05);
 	controls.setLineSpacing(1.2);
-	controls.setPosition(5, 60);
+	controls.setPosition(2, 43);
 	boon.setString("BOONS");
 	boon.setFont(resources::font);
 	boon.setCharacterSize(80);

@@ -13,15 +13,33 @@ struct ParticleAttributeList {
 	float initRotationFactor = 0.f;
 };
 
-class Particle : public GameObject, public ParticleAttributeList {
-private:
+class Particle : public ParticleAttributeList {
+protected:
 	int age = 0;
+	float agePercentage = 0.f;
 
 	void move();
-	void updateColor(float p);
+	Color currentColor();
 public:
 	bool isReadyToDie = false;
 	Particle(ParticleAttributeList attributes);
+
+	void update();
+};
+
+class ParticleText : public Particle {
+private:
+	Text text;
+public:
+	ParticleText(ParticleAttributeList attributes, string text);
+
+	void update();
+	void draw(RenderWindow& window);
+};
+
+class ParticleObject : public GameObject, public Particle {
+public:
+	ParticleObject(ParticleAttributeList attributes);
 
 	void update();
 };
