@@ -10,7 +10,7 @@ bool BarrierGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
 	for (auto barrier = barrierVector.begin(); barrier < barrierVector.end(); barrier++) {
 		if (barrier->testCollision(*obj)) {
 			if (deleteMine) {
-				barrierVector.erase(barrier);
+				barrierVector.erase(barrier--);
 			}
 			return true;
 		}
@@ -22,7 +22,7 @@ bool BarrierGroup::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& ob
 	for (auto obj = objs.begin(); obj < objs.end(); obj++) {
 		if (testOneForCollision(&(*obj), deleteMine)) {
 			if (deleteTheirs) {
-				objs.erase(obj);
+				objs.erase(obj--);
 			}
 			return true;
 		}

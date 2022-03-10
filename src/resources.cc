@@ -23,9 +23,9 @@ namespace resources {
 		string releaseTest = releaseDirectory + defines::TEXTURE_FILE_NAMES[0] + defines::IMAGE_FILE_TYPE;
 		Texture test;
 		if (test.loadFromFile(releaseTest)) {
-			resources::dirRoot = devDirectory;
-		} else if (test.loadFromFile(devTest)) {
 			resources::dirRoot = releaseDirectory;
+		} else if (test.loadFromFile(devTest)) {
+			resources::dirRoot = devDirectory;
 		} else {
 			throwFileError(defines::TEXTURE_FILE_NAMES[0]);
 		}
