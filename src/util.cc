@@ -20,6 +20,11 @@ namespace util {
 		return rand() % ((max + 1) - min) + min;
 	}
 
+	float rangedRandFloat(float min, float max,int slices) {
+		float random = rangedRand(0, slices);
+		return lerp(min, max, random/slices);
+	}
+
 	Color randomColor() {
 		Color c;
 		c.r = util::rangedRand(0, 255);

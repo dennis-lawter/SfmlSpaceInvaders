@@ -40,13 +40,48 @@ void Player::curved() {
 		bullet->shift = 0;
 }
 
-void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) {
+void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, ParticleGroup& particles) {
 	if (!bullet) {
 		return;
 	}
 	if (baddies.testOneForCollision(bullet, true)) {
 		// bullet hits a baddie
+		int randomBloodOnScreen = util::rangedRand(6, 10);
 		score::score += 100;
+		//blood pop
+		Color blood(0xff0000bb);
+		for (int i = 0; i < 30; i++) {
+			blood.r = util::rangedRand(128, 255);
+			particles.createParticle({
+				bullet->getPosition(),
+				{
+					util::rangedRandFloat(-0.2f, 0.2f, 100),
+					util::rangedRandFloat(-0.2f, 0.2f, 100)
+				},
+				{
+					util::rangedRandFloat(-0.008f, 0.008f, 100),
+					util::rangedRandFloat(0.002f, 0.008f, 100)
+				},
+				60,
+				blood,
+				Color(0xff000000)
+				});
+		};
+		//blood on screen
+		blood.a = 19;
+		for (int i = 0; i < randomBloodOnScreen; i++) {
+			blood.r = util::rangedRand(128, 255);
+			particles.createParticle({
+				{bullet->getX() + util::rangedRandFloat(-40.0f, 40.0f, 100) - 5,
+				bullet->getY() + util::rangedRandFloat(-15.0f, 40.0f, 100) - 10},
+				{0.f, util::rangedRandFloat(0.02f, 0.05f, 100)},
+				{0.f, -0.0005f},
+				120,
+				blood,
+				Color(0xff000000),
+				10.f
+				});
+		}
 		if (isPunch) {
 			return;
 		}

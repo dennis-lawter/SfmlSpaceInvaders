@@ -11,6 +11,7 @@ namespace util {
 	float lerp(float x0, float x1, float p);
 	Vector2f tween(Vector2f start, Vector2f end, float p);
 	int rangedRand(int min, int max);
+	float rangedRandFloat(float min, float max,int slices);
 	Color randomColor();
 }
 

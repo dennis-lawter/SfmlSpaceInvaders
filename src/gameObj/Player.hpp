@@ -2,6 +2,7 @@
 #define PLAYER_HPP_
 #include "groups/BaddieGroup.hpp"
 #include "groups/BarrierGroup.hpp"
+#include "groups/ParticleGroup.hpp"
 #include "PlayerBullet.hpp"
 #include "BaddieBullet.hpp"
 #include "GameObject.hpp"
@@ -32,7 +33,7 @@ public:
 	void fire();
 	void invincible();
 	void curved();
-	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers);
+	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, ParticleGroup& particles);
 	bool testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs);
 	void update();
 	void draw(RenderWindow& window);

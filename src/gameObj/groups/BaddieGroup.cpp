@@ -120,17 +120,7 @@ void BaddieGroup::bulletUpdate() {
 	}
 }
 
-void BaddieGroup::deathAnimationUpdate() {
-	for (auto nextToDie = deathList.begin(); nextToDie < deathList.end(); nextToDie++) {
-		nextToDie->update();
-		if (nextToDie->buffer >= nextToDie->ERASE_TIMER) {
-			deathList.erase(nextToDie--);
-		}
-	}
-}
-
 void BaddieGroup::deleteBaddie(int x, int y) {
-	deathList.emplace_back(baddies[x][y]->getX(), baddies[x][y]->getY());
 	delete baddies[x][y];
 	baddies[x][y] = nullptr;
 }
@@ -225,14 +215,10 @@ void BaddieGroup::update() {
 	accelerateBaddies();
 	baddieShoot();
 	bulletUpdate();
-	deathAnimationUpdate();
 }
 
 
 void BaddieGroup::draw(RenderWindow& window) {
-	for (BaddieBoom& theDead : deathList) {
-		theDead.draw(window);
-	}
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
 			if (baddies[x][y])

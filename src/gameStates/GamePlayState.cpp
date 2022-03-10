@@ -81,7 +81,7 @@ void GamePlayState::detectCollisions() {
 	// do collision tests
 
 	// defender's bullet collision tests
-	defender.testBulletCollisions(killemAll, saveMe);
+	defender.testBulletCollisions(killemAll, saveMe, particles);
 
 	// defender touches baddie bullet
 	if (defender.testManyForCollisionWithBaddieBullet(killemAll.bulletVector) && !defender.isInvuln) {
@@ -187,7 +187,7 @@ void GamePlayState::processInput(Event& event) {
 		switch (event.key.code) {
 		// God Button
 		// case Keyboard::BackSlash:
-		// 	killemAll.currentBaddies = 0;
+		// 	defender.isPunch = true;
 		// 	break;
 		case Keyboard::A:
 		case Keyboard::Left: //Move Left

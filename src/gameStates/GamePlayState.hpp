@@ -7,7 +7,6 @@
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
 #include "../gameObj/Barrier.hpp"
-#include "../gameObj/BaddieBoom.hpp"
 #include "../gameObj/Ufo.hpp"
 #include "../gameObj/Powerup.hpp"
 #include "../Hud.hpp"

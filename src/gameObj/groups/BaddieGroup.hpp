@@ -1,8 +1,8 @@
 #ifndef BADDIEGROUP_HPP_
 #define BADDIEGROUP_HPP_
 #include "../Baddie.hpp"
-#include "../BaddieBoom.hpp"
 #include "../BaddieBullet.hpp"
+#include "../Particle.hpp"
 #include "../../score.hh"
 #include "../Barrier.hpp"
 
@@ -19,7 +19,6 @@ private:
 
 	Sound baddiepew;
 
-	void deathAnimationUpdate();
 	void moveBaddies();
 	void accelerateBaddies();
 	void baddieShoot();
@@ -31,7 +30,6 @@ public:
 	const static int MAX_BADDIES = ROWS * COLUMNS;
 	Baddie* baddies[COLUMNS][ROWS];
 	vector<BaddieBullet> bulletVector;
-	vector<BaddieBoom> deathList;
 	int currentBaddies = MAX_BADDIES;
 	int baddiesTimesAdvanced = 0;
 
