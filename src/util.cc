@@ -19,4 +19,13 @@ namespace util {
 		}
 		return rand() % ((max + 1) - min) + min;
 	}
+
+	Color randomColor() {
+		Color c;
+		c.r = util::rangedRand(0, 255);
+		c.g = util::rangedRand(0, 255);
+		c.b = util::rangedRand(0, 255);
+		c.a = 255;
+		return c;
+	}
 }

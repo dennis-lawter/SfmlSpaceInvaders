@@ -37,6 +37,7 @@ namespace defines {
 		"invader2",
 		"invader3",
 		"missile",
+		"particle",
 		"passive",
 		// "player",
 		"punch",

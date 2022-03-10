@@ -115,7 +115,7 @@ void BaddieGroup::bulletUpdate() {
 	for (auto bullet = bulletVector.begin(); bullet < bulletVector.end(); bullet++) {
 		bullet->update();
 		if (bullet->isOffScreen()) {
-			bulletVector.erase(bullet);
+			bulletVector.erase(bullet--);
 		}
 	}
 }
@@ -124,7 +124,7 @@ void BaddieGroup::deathAnimationUpdate() {
 	for (auto nextToDie = deathList.begin(); nextToDie < deathList.end(); nextToDie++) {
 		nextToDie->update();
 		if (nextToDie->buffer >= nextToDie->ERASE_TIMER) {
-			deathList.erase(nextToDie);
+			deathList.erase(nextToDie--);
 		}
 	}
 }
@@ -182,7 +182,7 @@ bool BaddieGroup::testManyForCollisionWithBarrier(vector<Barrier>& objs, bool de
 	for (auto obj = objs.begin(); obj < objs.end(); obj++) {
 		if (testOneForCollision(&(*obj), deleteMine)) {
 			if (deleteTheirs) {
-				objs.erase(obj);
+				objs.erase(obj--);
 			}
 			return true;
 		}

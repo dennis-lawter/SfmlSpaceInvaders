@@ -66,7 +66,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers) 
 bool Player::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs) {
 	for (auto obj = objs.begin(); obj != objs.end(); obj++) {
 		if (testCollision(*obj)) {
-			objs.erase(obj);
+			objs.erase(obj--);
 			return true;
 		}
 	}

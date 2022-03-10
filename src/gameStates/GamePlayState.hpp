@@ -1,12 +1,13 @@
 #ifndef GAMEPLAYSTATE_HPP_
 #define GAMEPLAYSTATE_HPP_
 #include "GameState.hpp"
+#include "../gameObj/groups/ParticleGroup.hpp"
+#include "../gameObj/groups/BaddieGroup.hpp"
+#include "../gameObj/groups/BarrierGroup.hpp"
 #include "../gameObj/Player.hpp"
 #include "../gameObj/PlayerBullet.hpp"
 #include "../gameObj/Barrier.hpp"
 #include "../gameObj/BaddieBoom.hpp"
-#include "../gameObj/groups/BaddieGroup.hpp"
-#include "../gameObj/groups/BarrierGroup.hpp"
 #include "../gameObj/Ufo.hpp"
 #include "../gameObj/Powerup.hpp"
 #include "../Hud.hpp"
@@ -18,6 +19,7 @@ private:
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
+	ParticleGroup particles;
 	Sound startMusic;
 	Text pause;
 	RectangleShape pauseTint;
