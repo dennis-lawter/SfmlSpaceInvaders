@@ -15,6 +15,8 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveDown();
+
+	void draw(RenderWindow& window);
 };
 
 #endif

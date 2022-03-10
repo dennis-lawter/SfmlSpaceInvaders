@@ -2,6 +2,7 @@
 
 Baddie::Baddie(Texture& texture, int x, int y)
 	: GameObject(texture, x, y) {
+	this->sprite.setOrigin(getWidth() / 2.f, getHeight() / 2.f);
 	int quadrant = util::rangedRand(0, 3);
 	switch (quadrant) {
 	case 0:
@@ -32,4 +33,14 @@ void Baddie::moveLeft() {
 
 void Baddie::moveDown() {
 	this->sprite.move(0, ADVANCE_DISTANCE);
+}
+
+void Baddie::draw(RenderWindow& window) {
+	if (util::rangedRand(0, 20) == 0) {
+		this->sprite.setRotation(util::rangedRandFloat(-10.0, 10.0, 200));
+	} else {
+		this->sprite.setRotation(0.f);
+	}
+	
+	GameObject::draw(window);
 }

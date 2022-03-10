@@ -202,7 +202,7 @@ void BaddieGroup::animateIntro(int framesElapsed) {
 			if (!baddies[x][y]) continue;
 			// Vector2f start = baddies[x][y]->getPosition();
 			Vector2f start = baddies[x][y]->startingPosition;
-			Vector2f destination (x * 12, 10 + (y * 12));
+			Vector2f destination ((x * 12) + 4, 10 + (y * 12) + 4);
 			float percentage = ((float)framesElapsed) / baddies[x][y]->animationFinishTime;
 			baddies[x][y]->setPosition(util::tween(start, destination, percentage));
 			
