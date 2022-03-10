@@ -3,15 +3,7 @@
 
 namespace util {
 	float lerp(float x0, float x1, float p) {
-		// x0 = 5
-		// x1 = 9
-		// p = .75f
-		// 5 + ((9 - 5) * .75)
-		// 5 + (4 * .75)
-		// 5 + 3
-		// 8
-		p = (p > 1) ? 1 : p;
-		p = (p < 0) ? 0 : p;
+		p = clamp(p, 0.f, 1.f);
 		return x0 + ((x1 - x0) * p);
 	}
 

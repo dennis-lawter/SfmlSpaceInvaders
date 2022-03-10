@@ -1,7 +1,7 @@
 #include "Baddie.hpp"
 
 Baddie::Baddie(Texture& texture, int x, int y)
- 	: GameObject(texture, x, y) {
+	: GameObject(texture, x, y) {
 	int quadrant = util::rangedRand(0, 3);
 	switch (quadrant) {
 	case 0:
@@ -19,7 +19,7 @@ Baddie::Baddie(Texture& texture, int x, int y)
 		break;
 	}
 	this->setPosition(this->startingPosition);
-	animationFinishTime = util::rangedRand(380/2, 380);
+	animationFinishTime = util::rangedRand(380 / 2, 380);
 }
 
 void Baddie::moveRight() {

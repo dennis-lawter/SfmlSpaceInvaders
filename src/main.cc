@@ -67,7 +67,7 @@ void update() {
 		case GameState::GamePlay:
 			temp = (GamePlayState*)gameState;
 			didWin = temp->didWin;
-			if(didWin) {
+			if (didWin) {
 				stateLevel = GameState::Title;
 				score::roundNumber++;
 				score::speedModifier += (score::roundNumber * score::roundMultiplier);

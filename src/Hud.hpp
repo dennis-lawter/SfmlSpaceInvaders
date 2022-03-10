@@ -16,7 +16,7 @@ private:
 	stringstream scoreOut;
 public:
 	Sprite lives;
-	
+
 	Hud();
 	void draw(RenderWindow& window);
 	void update();

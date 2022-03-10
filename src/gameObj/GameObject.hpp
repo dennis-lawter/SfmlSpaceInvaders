@@ -14,7 +14,7 @@ protected:
 	Sprite sprite;
 public:
 	float speed;
-	
+
 	GameObject(Texture& texture, float x, float y);
 
 	void update();
@@ -27,7 +27,7 @@ public:
 	float getY();
 	float getWidth();
 	float getHeight();
-	
+
 	Vector2f getPosition();
 	void setPosition(Vector2f pos);
 };

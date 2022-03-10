@@ -2,7 +2,7 @@
 
 PlayerBullet::PlayerBullet(float x, float speed)
 	: GameObject(resources::textures["bullet"], x, 112) {
-		this->speed = speed;
+	this->speed = speed;
 }
 
 bool PlayerBullet::isOffScreen() {
@@ -10,5 +10,5 @@ bool PlayerBullet::isOffScreen() {
 }
 
 void PlayerBullet::update() {
-    this->sprite.move(shift, -speed);
+	this->sprite.move(shift, -speed);
 }

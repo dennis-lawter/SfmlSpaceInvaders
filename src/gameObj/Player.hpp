@@ -24,7 +24,7 @@ public:
 	bool isBulletCurved = false;
 	float bulletSpeed = 2.0;
 	float bulletSpeedModifier = 1.0;
-	Vector2f startingPosition = {60, 300};
+	Vector2f startingPosition = { 60, 300 };
 
 
 	Player();

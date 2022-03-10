@@ -4,7 +4,7 @@
 
 class PlayerBullet : public GameObject {
 public:
-	
+
 	PlayerBullet(float x, float speed);
 
 	float speed;

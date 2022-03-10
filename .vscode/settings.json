@@ -50,6 +50,7 @@
 	"C_Cpp.errorSquiggles": "Enabled",
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
+	"files.insertFinalNewline": true,
 	"editor.wrappingIndent": "indent",
 	"diffEditor.wordWrap": "off"
 }

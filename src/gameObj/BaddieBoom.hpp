@@ -3,7 +3,7 @@
 #include "GameObject.hpp"
 
 class BaddieBoom : public GameObject {
-private: 
+private:
 	Sound baddieDeath;
 public:
 	const static int DEATH_TIMER = 20;

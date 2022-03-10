@@ -7,7 +7,7 @@ using namespace sf;
 
 class GameState {
 public:
-	enum State{
+	enum State {
 		Title,
 		GamePlay,
 		GameOver
