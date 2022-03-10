@@ -22,9 +22,9 @@ namespace resources {
 		string devTest = devDirectory + defines::TEXTURE_FILE_NAMES[0] + defines::IMAGE_FILE_TYPE;
 		string releaseTest = releaseDirectory + defines::TEXTURE_FILE_NAMES[0] + defines::IMAGE_FILE_TYPE;
 		Texture test;
-		if (test.loadFromFile(devTest)) {
+		if (test.loadFromFile(releaseTest)) {
 			resources::dirRoot = devDirectory;
-		} else if (test.loadFromFile(releaseTest)) {
+		} else if (test.loadFromFile(devTest)) {
 			resources::dirRoot = releaseDirectory;
 		} else {
 			throwFileError(defines::TEXTURE_FILE_NAMES[0]);
