@@ -241,6 +241,7 @@ void GamePlayState::update(RenderWindow& window) {
 		return;
 	}
 	if (didWin) {
+		killemAll.shakeSpeed = 0.f;
 		endRound();
 		calculateStateStatus();
 		return;
@@ -257,6 +258,7 @@ void GamePlayState::draw(RenderWindow& window) {
 	View view = window.getView();
 	view.setCenter({ defines::WIDTH / 2.0f, defines::HEIGHT / 2.0f });
 	window.setView(view);
+	killemAll.windowShake(window);
 	hud.draw(window);
 	defender.draw(window);
 	killemAll.draw(window);

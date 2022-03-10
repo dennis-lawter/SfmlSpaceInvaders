@@ -32,6 +32,7 @@ public:
 	vector<BaddieBullet> bulletVector;
 	int currentBaddies = MAX_BADDIES;
 	int baddiesTimesAdvanced = 0;
+	float shakeSpeed = 0.f;
 
 	BaddieGroup();
 
@@ -44,6 +45,7 @@ public:
 	void animateIntro(int framesElapsed);
 
 	void update();
+	void windowShake(RenderWindow& window);
 	void draw(RenderWindow& window);
 
 	~BaddieGroup();

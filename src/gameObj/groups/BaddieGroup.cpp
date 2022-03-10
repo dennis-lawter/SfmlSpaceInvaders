@@ -27,7 +27,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]) {
-					return (baddies[x][y]->getX() >= 120);
+					return (baddies[x][y]->getX() >= 120 + 4);
 				}
 			}
 		}
@@ -40,7 +40,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]) {
-					return (baddies[x][y]->getX() <= 0);
+					return (baddies[x][y]->getX() <= 0 + 4);
 				}
 			}
 		}
@@ -50,6 +50,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 
 void BaddieGroup::moveBaddies() {
 	if (isBaddiesAdvance()) {
+		shakeSpeed += 0.1f;
 		allMoveRight = !allMoveRight;
 		score::scoreBonus--;
 		baddiesTimesAdvanced++;
@@ -202,10 +203,10 @@ void BaddieGroup::animateIntro(int framesElapsed) {
 			if (!baddies[x][y]) continue;
 			// Vector2f start = baddies[x][y]->getPosition();
 			Vector2f start = baddies[x][y]->startingPosition;
-			Vector2f destination ((x * 12) + 4, 10 + (y * 12) + 4);
+			Vector2f destination((x * 12) + 4, 10 + (y * 12) + 4);
 			float percentage = ((float)framesElapsed) / baddies[x][y]->animationFinishTime;
 			baddies[x][y]->setPosition(util::tween(start, destination, percentage));
-			
+
 		}
 	}
 }
@@ -217,6 +218,14 @@ void BaddieGroup::update() {
 	bulletUpdate();
 }
 
+void BaddieGroup::windowShake(RenderWindow& window) {
+	View view = window.getView();
+	Vector2f center = view.getCenter();
+	center.x += util::rangedRandFloat(-shakeSpeed, shakeSpeed, 100);
+	center.y += util::rangedRandFloat(-shakeSpeed, shakeSpeed, 100);
+	view.setCenter(center);
+	window.setView(view);
+}
 
 void BaddieGroup::draw(RenderWindow& window) {
 	for (int x = 0; x < COLUMNS; x++) {

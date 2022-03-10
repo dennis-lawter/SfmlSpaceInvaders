@@ -41,6 +41,6 @@ void Baddie::draw(RenderWindow& window) {
 	} else {
 		this->sprite.setRotation(0.f);
 	}
-	
+
 	GameObject::draw(window);
 }
