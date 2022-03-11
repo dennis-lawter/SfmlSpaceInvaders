@@ -114,8 +114,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
 
 ### Bugs
-- [ ] Defender jittering at edge of screen
-- [ ] Don't display "press any button" text if it's not possible to press a button yet
+- [x] Defender jittering at edge of screen
+- [x] Don't display "press any button" text if it's not possible to press a button yet
 
 
 ### Performance Improvements
@@ -134,3 +134,4 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Make baddies jitter
 - [x] Screen shakes more as baddies move closer
 - [x] Defender slides towards next challenge
+- [ ] Background gradient to follow the player bullet

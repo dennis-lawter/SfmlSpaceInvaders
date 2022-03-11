@@ -127,12 +127,12 @@ void Player::update() {
 		}
 		bullet->update();
 	}
-	if (playerIsMovingLeft) {
+	if (playerIsMovingLeft &&!playerIsMovingRight) {
 		if (getX() > 0) {
 			sprite.move(-speed, 0);
 		}
 	}
-	if (playerIsMovingRight) {
+	if (playerIsMovingRight &&!playerIsMovingLeft) {
 		if (getX() < 120) {
 			sprite.move(speed, 0);
 		}
