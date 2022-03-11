@@ -7,6 +7,7 @@ namespace resources {
 	map<string, Texture> textures;
 	map<string, SoundBuffer> soundFile;
 	Font font;
+	string highScoresFileName;
 
 	void throwFileError(string fileName) {
 		throw runtime_error(
@@ -50,6 +51,10 @@ namespace resources {
 		}
 	}
 
+	void generateHighScoresString() {
+		highScoresFileName = resources::dirRoot + defines::SCORES_FILE_NAME + defines::SCORES_FILE_TYPE;
+	}
+
 	void loadSounds() {
 		string fullFileName = "";
 		for (string fileName : defines::SOUND_FILE_NAMES) {
@@ -64,6 +69,7 @@ namespace resources {
 	void loadResources() {
 		initDirRoot();
 		loadFonts();
+		generateHighScoresString();
 		loadTextures();
 		loadSounds();
 	}

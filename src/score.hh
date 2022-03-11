@@ -2,6 +2,8 @@
 #define SCORE_HH_
 #include <vector>
 #include <algorithm>
+#include <fstream>
+#include "resources.hh"
 using namespace std;
 
 namespace score {
@@ -14,6 +16,8 @@ namespace score {
 	extern int scoreBonus;
 	extern int scoreBonusMultiplier;
 
+	void loadScores();
+	void saveScores();
 	bool compareScores(int first, int second);
 	void addScore();
 	int matchScore();

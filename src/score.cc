@@ -11,14 +11,50 @@ namespace score {
 
 	vector<int> scoreList = { 0,0,0,0,0,0,0,0,0,0 };
 
+
 	bool compareScores(int first, int second) {
 		return first > second;
+	}
+
+	void loadScores() {
+		ifstream loadScore;
+		loadScore.open(resources::highScoresFileName);
+		if (!loadScore.fail()) {
+			scoreList = {};
+			int scorePlace;
+			while (!loadScore.eof()) {
+				loadScore >> scorePlace;
+				scoreList.push_back(scorePlace);
+			}
+		}
+		loadScore.close();
+		while (scoreList.size() > 10) {
+			scoreList.pop_back();
+		}
+		while (scoreList.size() < 10) {
+			scoreList.push_back(0);
+		}
+		sort(scoreList.begin(), scoreList.end(), compareScores);
+	}
+
+	void saveScores() {
+		ofstream saveScore;
+		saveScore.open(resources::highScoresFileName, ofstream::trunc);
+		if (!saveScore.fail()) {
+			for (int x : scoreList) {
+				saveScore << x << endl;
+			}
+		}
+		saveScore.close();
 	}
 
 	void addScore() {
 		scoreList.push_back(score);
 		sort(scoreList.begin(), scoreList.end(), compareScores);
-		scoreList.pop_back();
+		while (scoreList.size() > 10) {
+			scoreList.pop_back();
+		}
+		saveScores();
 	}
 
 	int matchScore() {

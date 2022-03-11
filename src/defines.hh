@@ -14,10 +14,12 @@ namespace defines {
 	static const string IMAGE_FILE_TYPE = ".png";
 	static const string FONT_FILE_TYPE = ".ttf";
 	static const string SOUND_FILE_TYPE = ".wav";
+	static const string SCORES_FILE_TYPE = ".txt";
 	static const int LIVES_CAP = 3;
 	static const int BULLET_SPEED_MODIFIER_CAP = 3;
 
 	static const string FONT_FILE_NAME = "PressStart2P";
+	static const string SCORES_FILE_NAME = "HighScore";
 
 	static const vector<string> TEXTURE_FILE_NAMES = {
 		"1up",

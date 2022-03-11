@@ -6,6 +6,8 @@ TitleState::TitleState() {
 	score::roundNumber = 1;
 	score::speedModifier = 0;
 
+	score::loadScores();
+
 	drawTitle1.setString("TOTALLY INVADING");
 	drawTitle1.setFont(resources::font);
 	drawTitle1.setCharacterSize(80);

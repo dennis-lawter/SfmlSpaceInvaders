@@ -97,8 +97,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
   - [x] If the player presses any key, go to the start screen
 
 ### Quality of Life
-- [ ] Save the high score to a file on the player's device
-- [ ] Load the high score from the file on the player's device upon starting the game
+- [x] Save the high score to a file on the player's device
+- [x] Load the high score from the file on the player's device upon starting the game
 - [ ] Allow the player to enter their initials when they achieve a new high score
 - [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [ ] Animate the defender and invader sprites
@@ -107,9 +107,9 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Title music
 - [ ] Game over music
 - [x] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
-- [ ] More power ups
+- [x] More power ups
 - [ ] Clear power up sprites
-- [ ] Power up descriptions on the start screen
+- [x] Power up descriptions on the start screen
 - [ ] Demo on the start screen
 - [ ] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
 
@@ -127,10 +127,10 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 
 ### Juice?
 - [ ] Make them cuss every so often
-- [ ] Make blood splatter on the screen
+- [x] Make blood splatter on the screen
 - [ ] Have them randomly decide to kamikaze 
 - [x] Have the baddies come in from all different directions durring opening round
 - [x] Have defender and barriers rise slowly into position
-- [ ] Make baddies jitter
-- [ ] Screen shakes more as baddies move closer
+- [x] Make baddies jitter
+- [x] Screen shakes more as baddies move closer
 - [x] Defender slides towards next challenge
