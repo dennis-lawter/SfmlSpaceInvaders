@@ -4,7 +4,7 @@
 		{
 			"label": "DEBUG: Clean",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDebug.mak clean",
 			"group": "build",
 			"presentation": {
 				"reveal": "always"
@@ -14,7 +14,7 @@
 		{
 			"label": "DEBUG: Build",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak all",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDebug.mak all",
 			"group": "build",
 			"presentation": {
 				"reveal": "always"
@@ -24,7 +24,7 @@
 		{
 			"label": "DEBUG: Clean Build",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDebug.mak clean all",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDebug.mak clean all",
 			"group": "build",
 			"presentation": {
 				"reveal": "always"
@@ -34,7 +34,7 @@
 		{
 			"label": "DOCS: Doxygen Build",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDocs.mak doxygen-build",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDocs.mak doxygen-build",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -44,7 +44,7 @@
 		{
 			"label": "DOCS: Doxygen Open",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDocs.mak doxygen-open",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDocs.mak doxygen-open",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
@@ -54,7 +54,7 @@
 		{
 			"label": "DOCS: Count Lines",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinDocs.mak cloc",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinDocs.mak cloc",
 			"group": "build",
 			"presentation": {
 				"reveal": "always"
@@ -64,7 +64,7 @@
 		{
 			"label": "RELEASE: FULL BUILD",
 			"type": "shell",
-			"command": "C:\\cppdev\\msys\\bin\\make -f WinRelease.mak clean all reshack zip",
+			"command": "/c/cppdev/msys/bin/make.exe -f WinRelease.mak clean all reshack zip",
 			"group": "build",
 			"presentation": {
 				"reveal": "silent"
