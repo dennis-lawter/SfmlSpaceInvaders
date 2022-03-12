@@ -5,14 +5,22 @@
 			"name": "Debug",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/Debug/sfmlsandbox.exe",
+			"program": "${workspaceFolder}/Debug/sfmlsandbox",
+			"windows": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "C:/cppdev/mingw-w64-7.3.0/mingw64/bin/gdb.exe",
+				"program": "${workspaceFolder}/Debug/sfmlsandbox.exe",
+			},
+			"linux": {
+				"MIMode": "gdb",
+				"miDebuggerPath": "/usr/bin/gdb",
+				"program": "${workspaceFolder}/Debug/sfmlsandbox",
+			},
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
-			"MIMode": "gdb",
-			"miDebuggerPath": "C:/cppdev/mingw-w64-7.3.0/mingw64/bin/gdb.exe",
 			"setupCommands": [
 				{
 					"description": "Enable pretty-printing for gdb",

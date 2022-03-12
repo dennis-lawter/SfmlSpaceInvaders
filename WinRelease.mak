@@ -13,6 +13,8 @@ RM=C:/cppdev/msys/bin/rm.exe
 CP=C:/cppdev/msys/bin/cp.exe
 MKDIR=C:/cppdev/msys/bin/mkdir.exe
 
+dir_guard=$(MKDIR) -p $(@D)
+
 SRC_DIR=src/
 RELEASE_OBJ_DIR=Obj_Release/
 RELEASE_OUT_DIR=Release/
@@ -23,8 +25,6 @@ RESHACKFLAGS=-open $(RELEASE_OUT_DIR)$(EXECUTABLE).exe -save "$(RELEASE_OUT_DIR)
 
 ZIP=powershell Compress-Archive
 ZIPFLAGS=$(RELEASE_OUT_DIR) $(RELEASE_ZIP)
-
-dir_guard=$(MKDIR) -p $(@D)
 
 DLLS=\
 "C:/cppdev/SFML-2.5.1/bin/sfml-audio-2.dll" \
