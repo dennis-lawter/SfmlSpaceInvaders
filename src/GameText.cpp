@@ -1,15 +1,49 @@
 #include "GameText.hpp"
 
-GameText::GameText(Vector2f position, GameText::Size size = MEDIUM, GameText::Origin origin = TOP_LEFT) {
+GameText::GameText(
+	Vector2f position,
+	GameText::Size size,
+	GameText::HAlign hAlign,
+	GameText::VAlign vAlign) {
 	this->position = position;
 	this->size = size;
-	this->origin = origin;
+	this->hAlign = hAlign;
+	this->vAlign = vAlign;
 	text.setFont(resources::font);
 	text.setCharacterSize(80);
 }
 
+void GameText::setInternalOrigin() {
+	FloatRect textBounds = text.getGlobalBounds();
+	Vector2f origin;
+	switch (hAlign) {
+		case LEFT:
+			origin.x = 0;
+			break;
+		case CENTER:
+			origin.x = textBounds.width/2.f;
+			break;
+		case RIGHT:
+			origin.x = textBounds.width;
+			break;
+	}
+	switch (vAlign) {
+		case TOP:
+			origin.y = 0;
+			break;
+		case MIDDLE:
+			origin.y = textBounds.height/2.f;
+			break;
+		case BOTTOM:
+			origin.y = textBounds.height;
+			break;
+	}
+	text.setOrigin(origin);
+}
+
 void GameText::reRender() {
 	text.setString(characters.str());
+	setInternalOrigin();
 }
 
 void GameText::setText(string s) {
@@ -37,8 +71,13 @@ void GameText::setSize(Size size) {
 	reRender();
 }
 
-void GameText::setOrigin(Origin origin) {
-	this->origin = origin;
+void GameText::setHAlign(HAlign align) {
+	this->hAlign = align;
+	reRender();
+}
+
+void GameText::setVAlign(VAlign align) {
+	this->vAlign = align;
 	reRender();
 }
 
@@ -48,10 +87,6 @@ Vector2f GameText::getPosition() {
 
 GameText::Size GameText::getSize() {
 	return this->size;
-}
-
-GameText::Origin GameText::getOrigin() {
-	return this->origin;
 }
 
 void GameText::draw(RenderWindow& window) {

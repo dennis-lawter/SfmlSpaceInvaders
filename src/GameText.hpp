@@ -10,46 +10,55 @@ using namespace std;
 
 class GameText {
 public:
-	enum Origin {
-		TOP_LEFT,
-		TOP_CENTER,
-		TOP_RIGHT,
-		MIDDLE_LEFT,
-		MIDDLE_CENTER,
-		MIDDLE_RIGHT,
-		BOTTOM_LEFT,
-		BOTTOM_CENTER,
-		BOTTOM_RIGHT
+	enum HAlign {
+		LEFT,
+		CENTER,
+		RIGHT
+	};
+	enum VAlign {
+		TOP,
+		MIDDLE,
+		BOTTOM
 	};
 	enum Size {
 		TITLE,
+		HUGE,
 		LARGE,
 		MEDIUM,
-		SMALL
+		SMALL,
 	};
 private:
+	map<Size, float> scaleFactor = {
+		{TITLE, .12f},
+		{HUGE, .10f},
+		{LARGE, .08f},
+		{MEDIUM, .05f},
+		{SMALL, .03f}
+	};
 	Text text;
 	stringstream characters;
 	
 	Vector2f position;
 	Size size;
-	Origin origin;
+	HAlign hAlign;
+	VAlign vAlign;
 
+	void setInternalOrigin();
 	void reRender();
 public:
-	GameText(Vector2f position, GameText::Size size, GameText::Origin origin);
+	GameText(Vector2f position, Size size, HAlign hAlign, VAlign vAlign);
 
 	void setText(string s);
 	void appendText(string s);
 	void resetText();
 
 	Vector2f getPosition();
-	GameText::Size getSize();
-	GameText::Origin getOrigin();
+	Size getSize();
 
 	void setPosition(Vector2f position);
-	void setSize(GameText::Size size);
-	void setOrigin(GameText::Origin origin);
+	void setSize(Size size);
+	void setHAlign(HAlign align);
+	void setVAlign(VAlign align);
 
 	void draw(RenderWindow& window);
 };
