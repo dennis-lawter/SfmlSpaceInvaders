@@ -126,7 +126,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 
 
 ### Juice?
-- [ ] Make them cuss every so often
+- [x] Cuss to pay respects
 - [x] Make blood splatter on the screen
 - [ ] Have them randomly decide to kamikaze 
 - [x] Have the baddies come in from all different directions durring opening round

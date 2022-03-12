@@ -2,7 +2,9 @@
 
 /* Builds all baddies and assigns texture based off the row its in
 */
-BaddieGroup::BaddieGroup() {
+BaddieGroup::BaddieGroup(ParticleGroup& particleGroup)
+	: particleGroup(particleGroup)
+{
 	Texture* textureArray[ROWS];
 	textureArray[0] = &resources::textures["invader3"];
 	textureArray[1] = &resources::textures["invader2"];
@@ -90,6 +92,23 @@ void BaddieGroup::accelerateBaddies() {
 		}
 		baddiesKilledThisFrame--;
 		currentBaddies--;
+		chooseBaddieCuss();
+	}
+}
+
+void BaddieGroup::chooseBaddieCuss() {
+	int chooseBaddie = util::rangedRand(0, currentBaddies - 1);
+	int selectBuffer = 0;
+	for (int x = 0; x < COLUMNS; x++) {
+		for (int y = 0; y < ROWS; y++) {
+			if (!baddies[x][y]) continue;
+			if (selectBuffer == chooseBaddie) {
+				particleGroup.createParticleText(util::cuss(), baddies[x][y]->getPosition(), Color::Red);
+				return;
+			} else {
+				selectBuffer++;
+			}
+		}
 	}
 }
 

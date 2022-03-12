@@ -14,11 +14,11 @@
 
 class GamePlayState : public GameState {
 private:
+	ParticleGroup particles;
 	Hud hud;
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
-	ParticleGroup particles;
 	Sound startMusic;
 	Text pause;
 	RectangleShape pauseTint;
