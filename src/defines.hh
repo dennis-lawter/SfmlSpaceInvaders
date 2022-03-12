@@ -98,7 +98,6 @@ namespace defines {
 		{SpeedDown, "speed_down"},
 		{SpeedUp, "speed_up"}
 	};
-
 }
 
 #endif

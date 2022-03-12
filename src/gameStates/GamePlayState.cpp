@@ -1,6 +1,8 @@
 #include "GamePlayState.hpp"
 
-GamePlayState::GamePlayState() {
+GamePlayState::GamePlayState()
+	: killemAll(particles)
+{
 	startMusic.setBuffer(resources::soundFile["randommusic"]);
 	startMusic.play();
 	score::scoreBonus = 10;

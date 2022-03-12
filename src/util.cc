@@ -20,17 +20,34 @@ namespace util {
 		return rand() % ((max + 1) - min) + min;
 	}
 
-	float rangedRandFloat(float min, float max,int slices) {
+	float rangedRandFloat(float min, float max, int slices) {
 		float random = rangedRand(0, slices);
-		return lerp(min, max, random/slices);
+		return lerp(min, max, random / slices);
 	}
 
 	Color randomColor() {
 		Color c;
-		c.r = util::rangedRand(0, 255);
-		c.g = util::rangedRand(0, 255);
-		c.b = util::rangedRand(0, 255);
+		c.r = rangedRand(0, 255);
+		c.g = rangedRand(0, 255);
+		c.b = rangedRand(0, 255);
 		c.a = 255;
 		return c;
+	}
+
+	string cuss() {
+		const vector<char> array = { '!', '@', '#', '$', '&' };
+		int wordLength;
+		int wordAmount = rangedRand(1, 3);
+		string badWord;
+		for (int x = 0; x < wordAmount; x++) {
+			wordLength = rangedRand(3, 8);
+			for (int y = 0; y < wordLength; y++) {
+				badWord += array[rangedRand(0, array.size())];
+			}
+			if (x + 1 < wordAmount) {
+				badWord += " ";
+			}
+		}
+		return badWord;
 	}
 }
