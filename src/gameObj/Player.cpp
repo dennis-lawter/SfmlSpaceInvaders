@@ -1,8 +1,9 @@
 #include "Player.hpp"
 
 Player::Player()
-	: GameObject(resources::textures["defender"], startingPosition.x, startingPosition.y) {
+	: GameObject(resources::textures["defender"], 60.f, 300.f) {
 	pewSound.setBuffer(resources::soundFile["defenderpew"]);
+	startingPosition = getPosition();
 }
 
 void Player::deleteBullet() {

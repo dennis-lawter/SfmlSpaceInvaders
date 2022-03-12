@@ -54,5 +54,9 @@
 	"editor.wrappingIndent": "indent",
 	"diffEditor.wordWrap": "off",
 	"terminal.integrated.profiles.windows":{"Git Bash":{"path":"C:\\cppdev\\Git\\bin\\bash.exe"}, },
-	"terminal.integrated.defaultProfile.windows": "Git Bash"
+	"terminal.integrated.defaultProfile.windows": "Git Bash",
+	"search.exclude": {
+		"**/.git": true,
+		"**/doxygen": true
+	}	
 }
