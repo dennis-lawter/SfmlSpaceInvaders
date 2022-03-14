@@ -12,14 +12,21 @@ private:
 
 	const float SPEED_MULT = 0.0125; // can't be static, doesn't need to be
 
+	bool baddieMoveSwap = true;
 	bool allMoveRight = true;
 	int baddiesKilledThisFrame = 0;
 	int randomColumn = 0;
 	int shootTimer = 0;
+	int baddieMoveTimer = 150;
+	int baddieMoveTimerBuffer = 0;
+	float baddiesSpeed = 0;
 
 	Sound baddiepew;
+	Sound baddieMoveOne;
+	Sound baddieMoveTwo;
 	ParticleGroup& particleGroup;
 
+	void moveBaddiesSound();
 	void moveBaddies();
 	void accelerateBaddies();
 	void baddieShoot();

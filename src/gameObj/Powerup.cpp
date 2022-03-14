@@ -2,7 +2,6 @@
 
 Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender)
 	: GameObject(resources::textures[defines::POWER_UP_LIST[powerupSelect]], ufoPosition, 16) {
-	//powerupSound.setBuffer(resources::soundFile[powerupSelect]);
 	sprite.setColor(Color(0xFFFFFFBB));
 	this->powerupSelect = powerupSelect;
 	this->defender = &defender;
