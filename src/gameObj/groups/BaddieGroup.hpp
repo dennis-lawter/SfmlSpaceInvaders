@@ -17,13 +17,15 @@ private:
 	int baddiesKilledThisFrame = 0;
 	int randomColumn = 0;
 	int shootTimer = 0;
-	int baddieMoveTimer = 150;
+	int baddieMoveTimer = 100;
 	int baddieMoveTimerBuffer = 0;
 	float baddiesSpeed = 0;
 
 	Sound baddiepew;
 	Sound baddieMoveOne;
 	Sound baddieMoveTwo;
+	Sound baddieDeath;
+	Sound baddiesAdvanceSound;
 	ParticleGroup& particleGroup;
 
 	void moveBaddiesSound();

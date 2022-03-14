@@ -8,6 +8,9 @@ TitleState::TitleState() {
 
 	score::loadScores();
 
+	titleSound.setBuffer(resources::soundFile["boss"]);
+	titleSound.play();
+
 	drawTitle1.setString("TOTALLY INVADING");
 	drawTitle1.setFont(resources::font);
 	drawTitle1.setCharacterSize(80);
