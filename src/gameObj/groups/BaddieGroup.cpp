@@ -12,6 +12,8 @@ BaddieGroup::BaddieGroup(ParticleGroup& particleGroup)
 	baddiepew.setBuffer(resources::soundFile["baddiepew"]);
 	baddieMoveOne.setBuffer(resources::soundFile["baddiemove1"]);
 	baddieMoveTwo.setBuffer(resources::soundFile["baddiemove2"]);
+	baddieDeath.setBuffer(resources::soundFile["baddieboom"]);
+	baddiesAdvanceSound.setBuffer(resources::soundFile["baddieadvance"]);
 
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
@@ -77,6 +79,7 @@ void BaddieGroup::moveBaddies() {
 		allMoveRight = !allMoveRight;
 		score::scoreBonus--;
 		baddiesTimesAdvanced++;
+		baddiesAdvanceSound.play();
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
@@ -164,6 +167,7 @@ void BaddieGroup::bulletUpdate() {
 void BaddieGroup::deleteBaddie(int x, int y) {
 	delete baddies[x][y];
 	baddies[x][y] = nullptr;
+	baddieDeath.play();
 }
 
 bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {

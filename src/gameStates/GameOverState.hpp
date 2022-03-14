@@ -24,6 +24,7 @@ private:
 	int bufferTick = 0;
 	bool holdBuffer = true;
 	stringstream highScores;
+	Sound gameOverSound;
 public:
 	bool didWin;
 	GameOverState(bool didWin);

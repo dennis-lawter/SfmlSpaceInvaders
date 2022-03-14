@@ -19,6 +19,7 @@ GamePlayState::GamePlayState()
 
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
+	playerDeath.setBuffer(resources::soundFile["defenderboom"]);
 
 	// Text particle demonstration
 	// particles.createParticleText("test", {64.f, 64.f}, Color::White);
@@ -75,6 +76,7 @@ void GamePlayState::detectCollisions() {
 	if (defender.testManyForCollisionWithBaddieBullet(killemAll.bulletVector) && !defender.isInvuln) {
 		score::currentLives--;
 		defender.isInvuln = true;
+		playerDeath.play();
 	}
 
 	// barrier touches baddie bullet

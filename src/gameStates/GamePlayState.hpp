@@ -26,6 +26,7 @@ private:
 	Powerup* powerup = nullptr;
 	Sound powerupSound;
 	Sound powerdownSound;
+	Sound playerDeath;
 
 
 	const static int ROUND_START_MAX = 425;
