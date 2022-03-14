@@ -10,7 +10,7 @@ public:
 	int ufoFireRandom;
 	bool hasFired = false;
 
-	Sound ufoFireSound;
+	Sound ufoSpawnSound;
 
 	Ufo();
 

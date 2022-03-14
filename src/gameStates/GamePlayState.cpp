@@ -17,6 +17,9 @@ GamePlayState::GamePlayState()
 	pause.setScale(.12, .12);
 	pause.setPosition(40, 55);
 
+	powerupSound.setBuffer(resources::soundFile["1up"]);
+	powerdownSound.setBuffer(resources::soundFile["bad"]);
+
 	// Text particle demonstration
 	// particles.createParticleText("test", {64.f, 64.f}, Color::White);
 }
@@ -137,6 +140,25 @@ void GamePlayState::calculateUfo() {
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
+		switch (randomPowerup)
+		{
+		case defines::PowerUp::OneUp:
+		case defines::PowerUp::Coin:
+		case defines::PowerUp::Curved:
+		case defines::PowerUp::Missile:
+		case defines::PowerUp::Punch:
+		case defines::PowerUp::SpeedDown:
+		case defines::PowerUp::SpeedUp:
+			powerupSound.play();
+			break;
+		case defines::PowerUp::Aggressive:
+		case defines::PowerUp::Bomb:
+		case defines::PowerUp::Passive:
+			powerdownSound.play();
+			break;
+		default:
+			break;
+		}
 		didUfoFire = true;
 	}
 

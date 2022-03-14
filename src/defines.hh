@@ -53,6 +53,8 @@ namespace defines {
 		"bad",
 		"baddieadvance",
 		"baddieboom",
+		"baddiemove1",
+		"baddiemove2",
 		"baddiepew",
 		"barrierboom",
 		"boss",
