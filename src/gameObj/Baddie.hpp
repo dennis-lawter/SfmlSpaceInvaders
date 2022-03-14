@@ -5,6 +5,9 @@
 class Baddie : public GameObject {
 private:
 	const float ADVANCE_DISTANCE = 12;
+	int animationTimer = 30;
+	int animationBuffer = 0;
+	bool animationSwap = true;
 public:
 	int animationFinishTime;
 	float speed = 0.03;

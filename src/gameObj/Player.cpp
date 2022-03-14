@@ -4,6 +4,7 @@ Player::Player()
 	: GameObject(resources::textures["defender"], 60.f, 300.f) {
 	pewSound.setBuffer(resources::soundFile["defenderpew"]);
 	startingPosition = getPosition();
+	this->sprite.setTextureRect(IntRect(0, 0, 8, 8));
 }
 
 void Player::deleteBullet() {
@@ -128,12 +129,12 @@ void Player::update() {
 		}
 		bullet->update();
 	}
-	if (playerIsMovingLeft &&!playerIsMovingRight) {
+	if (playerIsMovingLeft && !playerIsMovingRight) {
 		if (getX() > 0) {
 			sprite.move(-speed, 0);
 		}
 	}
-	if (playerIsMovingRight &&!playerIsMovingLeft) {
+	if (playerIsMovingRight && !playerIsMovingLeft) {
 		if (getX() < 120) {
 			sprite.move(speed, 0);
 		}
@@ -155,5 +156,15 @@ void Player::draw(RenderWindow& window) {
 		view.setCenter(center);
 		window.setView(view);
 	}
+	if (animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(8, 0, 8, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	} else if (!animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(0, 0, 8, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	}
+	animationBuffer++;
 	GameObject::draw(window);
 }
