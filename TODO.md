@@ -103,7 +103,6 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [x] Animate the defender and invader sprites
 - [ ] Show the amount of score gained on screen near the location where the score gaining event occurred
-- [ ] Background music
 - [x] Title music
 - [x] Game over music
 - [x] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
@@ -112,26 +111,26 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Power up descriptions on the start screen
 - [ ] Demo on the start screen
 - [x] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
+- [ ] Controller support
+- [ ] Analog movement
 
 ### Bugs
 - [x] Defender jittering at edge of screen
 - [x] Don't display "press any button" text if it's not possible to press a button yet
 
-
 ### Performance Improvements
-- [ ] Reduce construction of sf::Text objects to be less demanding
-- [ ] Reduce alterations of stringstreams
-- [ ] Center text using the text's width
+- [ ] Convert all sf::Text to GameText objects
 - [ ] Perform the round reset immediately rather than upon the next frame
-
 
 ### Juice?
 - [x] Cuss to pay respects
 - [x] Make blood splatter on the screen
-- [ ] Have them randomly decide to kamikaze 
+- [ ] Have them randomly decide to kamikaze
 - [x] Have the baddies come in from all different directions durring opening round
 - [x] Have defender and barriers rise slowly into position
 - [x] Make baddies jitter
 - [x] Screen shakes more as baddies move closer
 - [x] Defender slides towards next challenge
 - [ ] Background gradient to follow the player bullet
+- [ ] Defender explodes when their final life is lost
+- [ ] Invaders animate their victory in some way
