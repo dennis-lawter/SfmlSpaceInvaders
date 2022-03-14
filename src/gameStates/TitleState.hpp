@@ -8,7 +8,8 @@
 
 class TitleState : public GameState {
 private:
-	Text drawTitle1;
+	// Text drawTitle1;
+	GameText drawTitle1;
 	Text drawTitle2;
 	Text drawToStart;
 	stringstream highScores;

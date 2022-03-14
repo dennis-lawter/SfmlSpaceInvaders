@@ -1,84 +1,135 @@
 #include "GameText.hpp"
 
-GameText::GameText(
-	Vector2f position,
-	GameText::Size size,
-	GameText::HAlign hAlign,
-	GameText::VAlign vAlign) {
-	this->position = position;
-	this->size = size;
-	this->hAlign = hAlign;
-	this->vAlign = vAlign;
-	text.setFont(resources::font);
-	text.setCharacterSize(80);
+GameText::GameText() {
+	this->position = { 0.f, 0.f };
+	this->size = GameText::MEDIUM;
+	this->hAlign = GameText::LEFT;
+	this->vAlign = GameText::TOP;
+	this->stringStream.str("");
+	// text.setFont(resources::font);
+	// text.setCharacterSize(80);
+}
+
+void GameText::setTexts() {
+	string temp;
+
+	texts.clear();
+	while (std::getline(stringStream, temp, '\n')) {
+		texts.emplace_back(temp, resources::font, 80U);
+	}
 }
 
 void GameText::setInternalOrigin() {
-	FloatRect textBounds = text.getGlobalBounds();
+	widestLine = 0.f;
+	totalHeight = 0.f;
+	for (Text& text : texts) {
+		FloatRect textBounds = text.getLocalBounds();
+		float fullWidth = textBounds.left + textBounds.width;
+		if (fullWidth > widestLine) {
+			widestLine = fullWidth;
+		}
+		totalHeight += textBounds.top + textBounds.height;
+	}
 	Vector2f origin;
 	switch (hAlign) {
-		case LEFT:
-			origin.x = 0;
-			break;
-		case CENTER:
-			origin.x = textBounds.width/2.f;
-			break;
-		case RIGHT:
-			origin.x = textBounds.width;
-			break;
+	case LEFT:
+		origin.x = 0;
+		break;
+	case CENTER:
+		origin.x = widestLine / 2.f;
+		break;
+	case RIGHT:
+		origin.x = widestLine;
+		break;
 	}
 	switch (vAlign) {
-		case TOP:
-			origin.y = 0;
-			break;
-		case MIDDLE:
-			origin.y = textBounds.height/2.f;
-			break;
-		case BOTTOM:
-			origin.y = textBounds.height;
-			break;
+	case TOP:
+		origin.y = 0;
+		break;
+	case MIDDLE:
+		origin.y = totalHeight / 2.f;
+		break;
+	case BOTTOM:
+		origin.y = totalHeight;
+		break;
 	}
-	text.setOrigin(origin);
+	for (Text& text : texts) {
+		text.setOrigin(origin);
+	}
+}
+
+void GameText::setInternalScale() {
+	float scale = scaleFactor[size];
+	for (Text& text : texts) {
+		text.setScale(scale, scale);
+	}
+}
+
+void GameText::setLinePositions() {
+	float heightOffset = 0.f;
+	float scale = scaleFactor[size];
+	Vector2f tempPosition = this->position;
+	for (Text& text : texts) {
+		FloatRect localBounds = text.getLocalBounds();
+		switch(hAlign){
+		case LEFT:
+			tempPosition.x = this->position.x;
+			break;
+		case CENTER:
+			tempPosition.x = this->position.x - scale*(localBounds.width-widestLine)/2.f;
+			break;
+		case RIGHT:
+			tempPosition.x = this->position.x - scale*(localBounds.width-widestLine);
+			break;
+		}
+		tempPosition.y += heightOffset;
+		text.setPosition(tempPosition);
+		heightOffset = scale * (localBounds.top + localBounds.height) * 9.f/8.f;
+	}
 }
 
 void GameText::reRender() {
-	text.setString(characters.str());
+	setTexts();
 	setInternalOrigin();
+	setInternalScale();
+	setLinePositions();
+
+	this->dirty = false;
 }
 
 void GameText::setText(string s) {
-	this->characters.str(s);
-	reRender();
+	this->stringStream.str(s);
+	this->dirty = true;
 }
 
 void GameText::appendText(string s) {
-	this->characters << s;
-	reRender();
+	this->stringStream << s;
+	this->dirty = true;
 }
 
 void GameText::resetText() {
-	this->characters.str("");
-	reRender();
+	this->stringStream.str("");
+	this->dirty = true;
 }
 
 void GameText::setPosition(Vector2f position) {
 	this->position = position;
-	reRender();
+	this->dirty = true;
 }
 
 void GameText::setSize(Size size) {
 	this->size = size;
-	reRender();
+	this->dirty = true;
 }
 
 void GameText::setHAlign(HAlign align) {
 	this->hAlign = align;
-	reRender();
+	this->dirty = true;
 }
 
 void GameText::setVAlign(VAlign align) {
 	this->vAlign = align;
-	reRender();
+	this->dirty = true;
 }
 
 Vector2f GameText::getPosition() {
@@ -90,5 +141,10 @@ GameText::Size GameText::getSize() {
 }
 
 void GameText::draw(RenderWindow& window) {
-	window.draw(text);
+	if (this->dirty) {
+		this->reRender();
+	}
+	for (Text& text : texts) {
+		window.draw(text);
+	}
 }

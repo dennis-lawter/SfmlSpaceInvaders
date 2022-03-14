@@ -45,7 +45,11 @@
 		"chrono": "cpp",
 		"ratio": "cpp",
 		"set": "cpp",
-		"iomanip": "cpp"
+		"iomanip": "cpp",
+		"bit": "cpp",
+		"functional": "cpp",
+		"numeric": "cpp",
+		"random": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "Enabled",
 	"editor.detectIndentation": false,

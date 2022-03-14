@@ -35,18 +35,26 @@ private:
 		{MEDIUM, .05f},
 		{SMALL, .03f}
 	};
-	Text text;
-	stringstream characters;
+	vector<Text> texts;
+	vector<string> stringLines;
+	stringstream stringStream;
 	
 	Vector2f position;
 	Size size;
 	HAlign hAlign;
 	VAlign vAlign;
+	bool dirty = false;
 
+	float widestLine = 0.f;
+	float totalHeight = 0.f;
+
+	void setTexts();
 	void setInternalOrigin();
+	void setInternalScale();
+	void setLinePositions();
 	void reRender();
 public:
-	GameText(Vector2f position, Size size, HAlign hAlign, VAlign vAlign);
+	GameText();
 
 	void setText(string s);
 	void appendText(string s);
