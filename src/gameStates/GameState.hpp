@@ -1,6 +1,7 @@
 #ifndef GAMESTATE_HPP_
 #define GAMESTATE_HPP_
 #include <SFML/Graphics.hpp>
+#include "../GameText.hpp"
 #include "../resources.hh"
 #include "../score.hh"
 using namespace sf;

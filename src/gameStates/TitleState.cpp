@@ -10,13 +10,12 @@ TitleState::TitleState() {
 
 	titleSound.setBuffer(resources::soundFile["boss"]);
 	titleSound.play();
-
-	drawTitle1.setString("TOTALLY INVADING");
-	drawTitle1.setFont(resources::font);
-	drawTitle1.setCharacterSize(80);
-	drawTitle1.setScale(.08, .08);
-	drawTitle1.setPosition(10, 25);
-	drawTitle2.setString("SPACE!");
+	
+	drawTitle1.setHAlign(GameText::CENTER);
+	drawTitle1.setPosition({defines::WIDTH/2.f, 5.f});
+	drawTitle1.setSize(GameText::TITLE);
+	drawTitle1.setText("TOTALLY\nINVADING\nSPACE!");
+	drawTitle2.setString("");
 	drawTitle2.setFont(resources::font);
 	drawTitle2.setCharacterSize(80);
 	drawTitle2.setScale(.08, .08);
@@ -108,7 +107,7 @@ void TitleState::update(RenderWindow& window) {
 
 
 void TitleState::draw(RenderWindow& window) {
-	window.draw(drawTitle1);
+	drawTitle1.draw(window);
 	window.draw(drawTitle2);
 	window.draw(drawToStart);
 	window.draw(highScoreText);

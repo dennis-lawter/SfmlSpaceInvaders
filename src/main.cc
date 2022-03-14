@@ -19,7 +19,7 @@ int init() {
 	*/
 	try {
 		resources::loadResources();
-	} catch (runtime_error e) {
+	} catch (const runtime_error& e) {
 		return EXIT_FAILURE;
 	}
 
