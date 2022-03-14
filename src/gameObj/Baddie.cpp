@@ -2,7 +2,8 @@
 
 Baddie::Baddie(Texture& texture, int x, int y)
 	: GameObject(texture, x, y) {
-	this->sprite.setOrigin(getWidth() / 2.f, getHeight() / 2.f);
+	this->sprite.setOrigin(4.f, 4.f);
+	this->sprite.setTextureRect(IntRect(0, 0, 8, 8));
 	int quadrant = util::rangedRand(0, 3);
 	switch (quadrant) {
 	case 0:
@@ -41,6 +42,15 @@ void Baddie::draw(RenderWindow& window) {
 	} else {
 		this->sprite.setRotation(0.f);
 	}
-
+	if (animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(8, 0, 8, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	} else if (!animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(0, 0, 8, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	}
+	animationBuffer += util::rangedRand(1,2);
 	GameObject::draw(window);
 }

@@ -11,6 +11,9 @@ class Player : public GameObject {
 private:
 	void deleteBullet();
 	Sound pewSound;
+	bool animationSwap = true;
+	int animationBuffer = 0;
+	int animationTimer = 40;
 public:
 	const static int INVULN_TIMER = 120;
 	const static int BLINK_SPEED = 5;

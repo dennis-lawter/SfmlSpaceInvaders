@@ -4,6 +4,7 @@ Ufo::Ufo()
 	: GameObject(resources::textures["ufo"], 0, 8) {
 	ufoSpawnSound.setBuffer(resources::soundFile["ufoFire"]);
 	ufoSpawnSound.play();
+	this->sprite.setTextureRect(IntRect(0, 0, 16, 8));
 	if (rand() % 2 == 0) {
 		this->sprite.setPosition(defines::WIDTH, 8);
 		isMovingLeft = true;
@@ -42,4 +43,14 @@ void Ufo::ufoFire() {
 void Ufo::update() {
 	move();
 	ufoFire();
+	if (animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(16, 0, 16, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	} else if (!animationSwap && animationBuffer > animationTimer) {
+		this->sprite.setTextureRect(IntRect(0, 0, 16, 8));
+		animationSwap = !animationSwap;
+		animationBuffer = 0;
+	}
+	animationBuffer += util::rangedRand(1, 2);
 }
