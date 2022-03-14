@@ -3,6 +3,8 @@
 GameOverState::GameOverState(bool didWin) {
 	this->didWin = didWin;
 	score::addScore();
+	gameOverSound.setBuffer(resources::soundFile["gameover"]);
+	gameOverSound.play();
 }
 
 void GameOverState::processInput(Event& event) {

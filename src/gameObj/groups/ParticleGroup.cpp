@@ -9,9 +9,9 @@ void ParticleGroup::createParticleText(string text, Vector2f pos, Color color) {
 	finalColor.a = 0;
 	ParticleAttributeList attributes {
 		pos,
-		{0.f, -.2f},
-		{0.f, .2f/120},
-		120,
+		{0.f, -.1f},
+		{0.f, -.1f/120},
+		60,
 		color,
 		finalColor
 	};

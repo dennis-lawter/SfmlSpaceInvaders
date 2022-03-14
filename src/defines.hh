@@ -53,6 +53,8 @@ namespace defines {
 		"bad",
 		"baddieadvance",
 		"baddieboom",
+		"baddiemove1",
+		"baddiemove2",
 		"baddiepew",
 		"barrierboom",
 		"boss",
@@ -98,7 +100,6 @@ namespace defines {
 		{SpeedDown, "speed_down"},
 		{SpeedUp, "speed_up"}
 	};
-
 }
 
 #endif

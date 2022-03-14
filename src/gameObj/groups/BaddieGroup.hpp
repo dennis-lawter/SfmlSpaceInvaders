@@ -2,9 +2,9 @@
 #define BADDIEGROUP_HPP_
 #include "../Baddie.hpp"
 #include "../BaddieBullet.hpp"
-#include "../Particle.hpp"
 #include "../../score.hh"
 #include "../Barrier.hpp"
+#include "ParticleGroup.hpp"
 
 class BaddieGroup {
 private:
@@ -12,13 +12,23 @@ private:
 
 	const float SPEED_MULT = 0.0125; // can't be static, doesn't need to be
 
+	bool baddieMoveSwap = true;
 	bool allMoveRight = true;
 	int baddiesKilledThisFrame = 0;
 	int randomColumn = 0;
 	int shootTimer = 0;
+	int baddieMoveTimer = 100;
+	int baddieMoveTimerBuffer = 0;
+	float baddiesSpeed = 0;
 
 	Sound baddiepew;
+	Sound baddieMoveOne;
+	Sound baddieMoveTwo;
+	Sound baddieDeath;
+	Sound baddiesAdvanceSound;
+	ParticleGroup& particleGroup;
 
+	void moveBaddiesSound();
 	void moveBaddies();
 	void accelerateBaddies();
 	void baddieShoot();
@@ -34,14 +44,14 @@ public:
 	int baddiesTimesAdvanced = 0;
 	float shakeSpeed = 0.f;
 
-	BaddieGroup();
+	BaddieGroup(ParticleGroup& particleGroup);
 
 	bool testOneForCollision(GameObject* obj, bool deleteMine);
 	bool testManyForCollisionWithBarrier(vector<Barrier>& objs, bool deleteMine, bool deleteTheirs);
 
 	bool isBaddiesAdvance();
 	bool isBaddiesWin();
-
+	void chooseBaddieCuss();
 	void animateIntro(int framesElapsed);
 
 	void update();

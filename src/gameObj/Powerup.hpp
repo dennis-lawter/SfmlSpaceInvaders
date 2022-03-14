@@ -7,7 +7,7 @@
 
 class Powerup : public GameObject {
 private:
-	Sound powerupSound;
+
 	defines::PowerUp powerupSelect;
 	Player* defender = nullptr;
 	Baddie* baddie = nullptr;

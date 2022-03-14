@@ -14,16 +14,19 @@
 
 class GamePlayState : public GameState {
 private:
+	ParticleGroup particles;
 	Hud hud;
 	Player defender;
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
-	ParticleGroup particles;
 	Sound startMusic;
 	Text pause;
 	RectangleShape pauseTint;
 	Ufo* ufo = nullptr;
 	Powerup* powerup = nullptr;
+	Sound powerupSound;
+	Sound powerdownSound;
+	Sound playerDeath;
 
 
 	const static int ROUND_START_MAX = 425;

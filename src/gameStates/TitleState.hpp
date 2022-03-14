@@ -27,6 +27,7 @@ private:
 	Sprite punch;
 	Sprite speedUp;
 	Sprite speedDown;
+	Sound titleSound;
 
 
 	const int BLINKTIMER = 40;

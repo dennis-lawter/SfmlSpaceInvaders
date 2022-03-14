@@ -104,14 +104,14 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Animate the defender and invader sprites
 - [ ] Show the amount of score gained on screen near the location where the score gaining event occurred
 - [ ] Background music
-- [ ] Title music
-- [ ] Game over music
+- [x] Title music
+- [x] Game over music
 - [x] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
 - [x] More power ups
-- [ ] Clear power up sprites
+- [x] Clear power up sprites
 - [x] Power up descriptions on the start screen
 - [ ] Demo on the start screen
-- [ ] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
+- [x] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
 
 ### Bugs
 - [x] Defender jittering at edge of screen
@@ -126,7 +126,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 
 
 ### Juice?
-- [ ] Make them cuss every so often
+- [x] Cuss to pay respects
 - [x] Make blood splatter on the screen
 - [ ] Have them randomly decide to kamikaze 
 - [x] Have the baddies come in from all different directions durring opening round

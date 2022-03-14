@@ -2,12 +2,18 @@
 
 /* Builds all baddies and assigns texture based off the row its in
 */
-BaddieGroup::BaddieGroup() {
+BaddieGroup::BaddieGroup(ParticleGroup& particleGroup)
+	: particleGroup(particleGroup)
+{
 	Texture* textureArray[ROWS];
 	textureArray[0] = &resources::textures["invader3"];
 	textureArray[1] = &resources::textures["invader2"];
 	textureArray[2] = &resources::textures["invader1"];
 	baddiepew.setBuffer(resources::soundFile["baddiepew"]);
+	baddieMoveOne.setBuffer(resources::soundFile["baddiemove1"]);
+	baddieMoveTwo.setBuffer(resources::soundFile["baddiemove2"]);
+	baddieDeath.setBuffer(resources::soundFile["baddieboom"]);
+	baddiesAdvanceSound.setBuffer(resources::soundFile["baddieadvance"]);
 
 	for (int x = 0; x < COLUMNS; x++) {
 		for (int y = 0; y < ROWS; y++) {
@@ -27,6 +33,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]) {
+					baddiesSpeed = baddies[x][y]->speed;
 					return (baddies[x][y]->getX() >= 120 + 4);
 				}
 			}
@@ -40,6 +47,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
 				if (baddies[x][y]) {
+					baddiesSpeed = baddies[x][y]->speed;
 					return (baddies[x][y]->getX() <= 0 + 4);
 				}
 			}
@@ -48,12 +56,30 @@ bool BaddieGroup::isBaddiesAdvance() {
 	return false;
 }
 
+void BaddieGroup::moveBaddiesSound() {
+	// could use a multiplier on BaddieMoveTimer that would allow the timer to speed up as they move faster
+	// the baddie speed is up to date and kept in baddiesSpeed
+	if (baddieMoveSwap && baddieMoveTimerBuffer >= baddieMoveTimer) {
+		baddieMoveOne.play();
+		baddieMoveTimerBuffer = 0;
+		baddieMoveSwap = false;
+		return;
+	} else if (!baddieMoveSwap && baddieMoveTimerBuffer >= baddieMoveTimer) {
+		baddieMoveTwo.play();
+		baddieMoveTimerBuffer = 0;
+		baddieMoveSwap = true;
+		return;
+	}
+	baddieMoveTimerBuffer++;
+}
+
 void BaddieGroup::moveBaddies() {
 	if (isBaddiesAdvance()) {
 		shakeSpeed += 0.1f;
 		allMoveRight = !allMoveRight;
 		score::scoreBonus--;
 		baddiesTimesAdvanced++;
+		baddiesAdvanceSound.play();
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
@@ -90,6 +116,23 @@ void BaddieGroup::accelerateBaddies() {
 		}
 		baddiesKilledThisFrame--;
 		currentBaddies--;
+		chooseBaddieCuss();
+	}
+}
+
+void BaddieGroup::chooseBaddieCuss() {
+	int chooseBaddie = util::rangedRand(0, currentBaddies - 1);
+	int selectBuffer = 0;
+	for (int x = 0; x < COLUMNS; x++) {
+		for (int y = 0; y < ROWS; y++) {
+			if (!baddies[x][y]) continue;
+			if (selectBuffer == chooseBaddie) {
+				particleGroup.createParticleText(util::cuss(), baddies[x][y]->getPosition(), Color::Red);
+				return;
+			} else {
+				selectBuffer++;
+			}
+		}
 	}
 }
 
@@ -124,6 +167,7 @@ void BaddieGroup::bulletUpdate() {
 void BaddieGroup::deleteBaddie(int x, int y) {
 	delete baddies[x][y];
 	baddies[x][y] = nullptr;
+	baddieDeath.play();
 }
 
 bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
@@ -212,6 +256,7 @@ void BaddieGroup::animateIntro(int framesElapsed) {
 }
 
 void BaddieGroup::update() {
+	moveBaddiesSound();
 	moveBaddies();
 	accelerateBaddies();
 	baddieShoot();
