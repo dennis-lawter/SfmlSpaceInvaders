@@ -245,6 +245,7 @@ void GamePlayState::update(RenderWindow& window) {
 	if (isPause) {
 		return;
 	}
+	hud.update();
 	if (roundStart) {
 		startRound();
 		return;

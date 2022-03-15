@@ -6,17 +6,19 @@ GameText::GameText() {
 	this->hAlign = GameText::LEFT;
 	this->vAlign = GameText::TOP;
 	this->stringStream.str("");
-	// text.setFont(resources::font);
-	// text.setCharacterSize(80);
 }
 
 void GameText::setTexts() {
 	string temp;
+	string keepValue = stringStream.str();
+	stringStream << "\n";
 
 	texts.clear();
 	while (std::getline(stringStream, temp, '\n')) {
 		texts.emplace_back(temp, resources::font, 80U);
 	}
+	stringStream.str("");
+	stringStream << keepValue;
 }
 
 void GameText::setInternalOrigin() {
@@ -33,7 +35,7 @@ void GameText::setInternalOrigin() {
 	Vector2f origin;
 	switch (hAlign) {
 	case LEFT:
-		origin.x = 0;
+		origin.x = 0.f;
 		break;
 	case CENTER:
 		origin.x = widestLine / 2.f;
@@ -44,7 +46,7 @@ void GameText::setInternalOrigin() {
 	}
 	switch (vAlign) {
 	case TOP:
-		origin.y = 0;
+		origin.y = 0.f;
 		break;
 	case MIDDLE:
 		origin.y = totalHeight / 2.f;
@@ -98,7 +100,8 @@ void GameText::reRender() {
 }
 
 void GameText::setText(string s) {
-	this->stringStream.str(s);
+	this->stringStream.clear();
+	this->stringStream << s;
 	this->dirty = true;
 }
 
@@ -144,6 +147,7 @@ void GameText::draw(RenderWindow& window) {
 	if (this->dirty) {
 		this->reRender();
 	}
+	if (texts.size() <= 0) return;
 	for (Text& text : texts) {
 		window.draw(text);
 	}
