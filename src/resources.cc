@@ -17,15 +17,23 @@ namespace resources {
 		);
 	}
 
+	bool fileExists(const std::string& name) {
+		if (FILE *file = fopen(name.c_str(), "r")) {
+			fclose(file);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	void initDirRoot() {
 		string devDirectory = "res/resource/";
 		string releaseDirectory = "resource/";
 		string devTest = devDirectory + defines::TEXTURE_FILE_NAMES[0] + defines::IMAGE_FILE_TYPE;
 		string releaseTest = releaseDirectory + defines::TEXTURE_FILE_NAMES[0] + defines::IMAGE_FILE_TYPE;
-		Texture test;
-		if (test.loadFromFile(releaseTest)) {
+		if (fileExists(releaseTest)) {
 			resources::dirRoot = releaseDirectory;
-		} else if (test.loadFromFile(devTest)) {
+		} else if (fileExists(devTest)) {
 			resources::dirRoot = devDirectory;
 		} else {
 			throwFileError(defines::TEXTURE_FILE_NAMES[0]);
