@@ -25,7 +25,6 @@ void Hud::updateScore() {
 	scoreOut.str("");
 	scoreOut << setfill('0') << setw(8) << lastCheckedScore;
 	string scoreOutString = scoreOut.str();
-	cout << "scorestr: " << scoreOutString << endl;
 	text.setText(scoreOutString);
 }
 
