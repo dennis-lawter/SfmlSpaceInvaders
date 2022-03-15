@@ -10,7 +10,9 @@ private:
 	bool animationSwap = true;
 public:
 	int animationFinishTime;
+	int animationPlayerDead;
 	float speed = 0.03;
+	Vector2f destination;
 	Vector2f startingPosition;
 
 	Baddie(Texture& texture, int x, int y);

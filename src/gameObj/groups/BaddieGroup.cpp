@@ -255,6 +255,26 @@ void BaddieGroup::animateIntro(int framesElapsed) {
 	}
 }
 
+void BaddieGroup::playerDeathAnimation(int framesElapsed) {
+	for (int y = 0; y < ROWS; y++) {
+		for (int x = 0; x < COLUMNS; x++) {
+			if (!baddies[x][y]) continue;
+			if (framesElapsed == 0) {
+				baddies[x][y]->startingPosition = baddies[x][y]->getPosition();
+				// baddies[x][y]->destination.x = ((baddies[x][y]->destination.x * 2.f) - (defines::WIDTH / 4.f));
+				baddies[x][y]->destination.y = 132.f;
+				baddies[x][y]->destination.x = util::rangedRand(-defines::WIDTH / 4, defines::WIDTH * 5 / 4);
+			}
+			float percentage = ((float)framesElapsed) / baddies[x][y]->animationPlayerDead;
+			baddies[x][y]->setPosition(util::tween(baddies[x][y]->startingPosition, baddies[x][y]->destination, percentage));
+		}
+	}
+}
+
+void BaddieGroup::baddiesWinAnimation() {
+
+}
+
 void BaddieGroup::update() {
 	moveBaddiesSound();
 	moveBaddies();

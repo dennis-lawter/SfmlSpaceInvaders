@@ -52,6 +52,7 @@ void GamePlayState::endRound() {
 
 void GamePlayState::loseGame() {
 	defender.defenderExplode();
+	killemAll.playerDeathAnimation(endRoundBuffer);
 	endRoundBuffer++;
 }
 
