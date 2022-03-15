@@ -50,6 +50,11 @@ void GamePlayState::endRound() {
 	endRoundBuffer++;
 }
 
+void GamePlayState::loseGame() {
+	defender.defenderExplode();
+	endRoundBuffer++;
+}
+
 void GamePlayState::updateComponents() {
 	// update state components
 	defender.update();
@@ -169,13 +174,16 @@ void GamePlayState::calculateUfo() {
 
 void GamePlayState::calculateStateStatus() {
 	// test if state has been completed
-	if (killemAll.currentBaddies <= 0 && !didWin) {
+	if (!didWin && killemAll.currentBaddies <= 0) {
 		didWin = true;
+		didLose = false;
 		score::score += (score::scoreBonus * score::scoreBonusMultiplier);
 	} else if (didWin && endRoundBuffer >= END_ROUND_TIMER) {
 		isEnding = true;
-	} else if (killemAll.isBaddiesWin() || score::currentLives < 0) {
+	} else if (!didLose && (killemAll.isBaddiesWin() || score::currentLives < 0)) {
 		didWin = false;
+		didLose = true;
+	} else if (didLose && endRoundBuffer >= END_ROUND_TIMER) {
 		isEnding = true;
 	}
 }
@@ -250,6 +258,10 @@ void GamePlayState::update(RenderWindow& window) {
 	if (didWin) {
 		killemAll.shakeSpeed = 0.f;
 		endRound();
+		calculateStateStatus();
+		return;
+	} else if (didLose) {
+		loseGame();
 		calculateStateStatus();
 		return;
 	}

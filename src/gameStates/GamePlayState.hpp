@@ -35,7 +35,7 @@ private:
 	const static int BLINK_SPEED = 20;
 	const static int UFO_TIMER_MAX = 600;
 	const static int UFO_TIMER_MIN = 50;
-	const static int END_ROUND_TIMER = 100;
+	const static int END_ROUND_TIMER = 120;
 	int ufoBuffer = 0;
 	int setUfoRandom = 0;
 	int endRoundBuffer = 0;
@@ -48,8 +48,10 @@ private:
 	void removeOffscreenAssets();
 	void calculateUfo();
 	void calculateStateStatus();
+	void loseGame();
 public:
 	bool didWin = false;
+	bool didLose = false;
 	bool roundStart = true;
 	bool isPause = false;
 	bool setUfoTimer = false;
