@@ -20,9 +20,6 @@ GamePlayState::GamePlayState()
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
 	playerDeath.setBuffer(resources::soundFile["defenderboom"]);
-
-	// Text particle demonstration
-	// particles.createParticleText("test", {64.f, 64.f}, Color::White);
 }
 
 void GamePlayState::startRound() {
@@ -182,7 +179,6 @@ void GamePlayState::calculateStateStatus() {
 		didWin = false;
 		isEnding = true;
 	}
-
 }
 
 void GamePlayState::processInput(Event& event) {
