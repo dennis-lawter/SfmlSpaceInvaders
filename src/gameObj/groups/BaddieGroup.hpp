@@ -34,6 +34,7 @@ private:
 	void baddieShoot();
 	void bulletUpdate();
 	void deleteBaddie(int x, int y);
+	void baddiesWinAnimation();
 public:
 	const static int COLUMNS = 7;
 	const static int ROWS = 3;
@@ -53,6 +54,7 @@ public:
 	bool isBaddiesWin();
 	void chooseBaddieCuss();
 	void animateIntro(int framesElapsed);
+	void playerDeathAnimation(int framesElapsed);
 
 	void update();
 	void windowShake(RenderWindow& window);

@@ -33,6 +33,23 @@ void Player::invincible() {
 	}
 }
 
+void Player::defenderExplode() {
+	agePercentage = ((float)age) / timeToLive;
+
+	age++;
+
+	initialColor = this->sprite.getColor();
+	if (initialColor == finalColor) return;
+
+	Color color;
+	color.r = util::lerp(initialColor.r, finalColor.r, agePercentage);
+	color.g = util::lerp(initialColor.g, finalColor.g, agePercentage);
+	color.b = util::lerp(initialColor.b, finalColor.b, agePercentage);
+	color.a = util::lerp(initialColor.a, finalColor.a, agePercentage);
+
+	this->sprite.setColor(color);
+}
+
 void Player::curved() {
 	if (bullet->getX() + 0.2 < this->getX() + 3) {
 		bullet->shift = SHIFT_SPEED; //((bullet->getY() - this->getY()) / (bullet->getX() - this->getX())) * (MAX_SHIFT_SPEED - this->getX());
