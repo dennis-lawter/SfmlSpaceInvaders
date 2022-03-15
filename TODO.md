@@ -117,6 +117,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Bugs
 - [x] Defender jittering at edge of screen
 - [x] Don't display "press any button" text if it's not possible to press a button yet
+- [ ] Can fire as the round ends
 
 ### Performance Improvements
 - [ ] Convert all sf::Text to GameText objects

@@ -54,7 +54,6 @@ void GamePlayState::updateComponents() {
 	// update state components
 	defender.update();
 	killemAll.update();
-	particles.update();
 	if (isUfoMoving && ufo) {
 		ufo->update();
 	}
@@ -247,6 +246,7 @@ void GamePlayState::update(RenderWindow& window) {
 		startRound();
 		return;
 	}
+	particles.update();
 	if (didWin) {
 		killemAll.shakeSpeed = 0.f;
 		endRound();
