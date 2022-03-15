@@ -11,11 +11,23 @@ GamePlayState::GamePlayState()
 	pauseTint.setSize(Vector2f(defines::WIDTH, defines::HEIGHT));
 	pauseTint.setPosition(0, 0);
 
-	pause.setString("PAUSE");
-	pause.setFont(resources::font);
-	pause.setCharacterSize(80);
-	pause.setScale(.12, .12);
-	pause.setPosition(40, 55);
+	pause.setText("PAUSE");
+	pause.setHAlign(GameText::CENTER);
+	pause.setVAlign(GameText::MIDDLE);
+	pause.setSize(GameText::TITLE);
+	pause.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
+
+	stringstream roundTitleStringStream;
+	roundTitleStringStream
+		<< "ROUND "
+		<< setfill(' ')
+		<< setw(4)
+		<< score::roundNumber;
+	roundTitle.setText(roundTitleStringStream.str());
+	roundTitle.setHAlign(GameText::CENTER);
+	roundTitle.setVAlign(GameText::MIDDLE);
+	roundTitle.setSize(GameText::LARGE);
+	roundTitle.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
 
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
@@ -24,13 +36,6 @@ GamePlayState::GamePlayState()
 
 void GamePlayState::startRound() {
 	if (roundStartTimer < ROUND_START_MAX) {
-		if (roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
-			roundTitle.str("");
-			roundTitle << "ROUND   " << score::roundNumber;
-		} else if (roundStartTimer < BLINK_MAX) {
-			roundTitle.str("");
-		}
-
 		roundStartTimer++;
 
 		killemAll.animateIntro(roundStartTimer);
@@ -39,10 +44,8 @@ void GamePlayState::startRound() {
 
 		return;
 	} else {
-		roundTitle.str("");
 		roundStart = false;
 	}
-	return;
 }
 
 void GamePlayState::endRound() {
@@ -279,24 +282,25 @@ void GamePlayState::draw(RenderWindow& window) {
 	view.setCenter({ defines::WIDTH / 2.0f, defines::HEIGHT / 2.0f });
 	window.setView(view);
 	killemAll.windowShake(window);
+
 	hud.draw(window);
 	defender.draw(window);
 	killemAll.draw(window);
 	saveMe.draw(window);
 	particles.draw(window);
-	Text drawTitle1 = Text(roundTitle.str(), resources::font, 80);
-	drawTitle1.setScale(.08, .08);
-	drawTitle1.setPosition(30, 50);
-	window.draw(drawTitle1);
+
 	if (ufo) {
 		ufo->draw(window);
 	}
 	if (powerup) {
 		powerup->draw(window);
 	}
+	if (roundStart && roundStartTimer < BLINK_MAX && (roundStartTimer / BLINK_SPEED) % 2 == 0) {
+		roundTitle.draw(window);
+	}
 	if (isPause) {
 		window.draw(pauseTint);
-		window.draw(pause);
+		pause.draw(window);
 	}
 }
 

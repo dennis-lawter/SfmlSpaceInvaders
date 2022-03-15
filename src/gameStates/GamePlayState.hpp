@@ -20,26 +20,27 @@ private:
 	BaddieGroup killemAll;
 	BarrierGroup saveMe;
 	Sound startMusic;
-	Text pause;
-	RectangleShape pauseTint;
 	Ufo* ufo = nullptr;
 	Powerup* powerup = nullptr;
 	Sound powerupSound;
 	Sound powerdownSound;
 	Sound playerDeath;
 
-
 	const static int ROUND_START_MAX = 425;
-	int roundStartTimer = 0;
 	const static int BLINK_MAX = 380;
 	const static int BLINK_SPEED = 20;
 	const static int UFO_TIMER_MAX = 600;
 	const static int UFO_TIMER_MIN = 50;
 	const static int END_ROUND_TIMER = 120;
+	int roundStartTimer = 0;
 	int ufoBuffer = 0;
 	int setUfoRandom = 0;
 	int endRoundBuffer = 0;
 	defines::PowerUp randomPowerup;
+
+	GameText pause;
+	GameText roundTitle;
+	RectangleShape pauseTint;
 
 	void startRound();
 	void endRound();
@@ -57,10 +58,6 @@ public:
 	bool setUfoTimer = false;
 	bool isUfoMoving = false;
 	bool didUfoFire = false;
-
-	stringstream roundTitle;
-
-
 
 	GamePlayState();
 
