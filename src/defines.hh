@@ -7,6 +7,7 @@ using namespace std;
 
 namespace defines {
 	static const string GAME_NAME = "Totally Invading Space";
+	static const string GAME_TITLE_SCREEN = "TOTALLY\nINVADING\nSPACE";
 	static const int WIDTH = 128;
 	static const int HEIGHT = 128;
 	static const int UFO_FIRE_RANGE = 64;

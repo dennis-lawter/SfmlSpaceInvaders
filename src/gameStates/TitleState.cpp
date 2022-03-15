@@ -10,68 +10,67 @@ TitleState::TitleState() {
 
 	titleSound.setBuffer(resources::soundFile["boss"]);
 	titleSound.play();
-	
-	drawTitle1.setHAlign(GameText::CENTER);
-	drawTitle1.setPosition({defines::WIDTH/2.f, 5.f});
-	drawTitle1.setSize(GameText::TITLE);
-	drawTitle1.setText("TOTALLY\nINVADING\nSPACE!");
-	drawTitle2.setString("");
-	drawTitle2.setFont(resources::font);
-	drawTitle2.setCharacterSize(80);
-	drawTitle2.setScale(.08, .08);
-	drawTitle2.setPosition(44, 35);
-	drawToStart.setString("");
-	drawToStart.setFont(resources::font);
-	drawToStart.setCharacterSize(80);
-	drawToStart.setScale(.03, .03);
-	drawToStart.setPosition(35, 100);
+
+	float center = defines::WIDTH / 2.f;
+	float rightCenter = 0.75f * defines::WIDTH;
+
 	highScores.str("");
 	for (size_t score = 0; score < score::scoreList.size(); score++) {
 		highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
 	}
-	highScoreText.setString(highScores.str());
-	highScoreText.setFont(resources::font);
-	highScoreText.setCharacterSize(80);
-	highScoreText.setScale(.05, .05);
-	highScoreText.setPosition(44, 50);
-	controls.setString("CONTROLS\n\nLEFT:\nLeft     A\n\nRIGHT:\nRight    D\n\nFIRE:\nUp Space W");
-	controls.setFont(resources::font);
-	controls.setCharacterSize(80);
-	controls.setScale(.05, .05);
-	controls.setLineSpacing(1.2);
-	controls.setPosition(2, 43);
-	boon.setString("BOONS");
-	boon.setFont(resources::font);
-	boon.setCharacterSize(80);
-	boon.setScale(.05, .05);
-	boon.setLineSpacing(1.2);
-	boon.setPosition(90, 43);
-	bane.setString("BANES");
-	bane.setFont(resources::font);
-	bane.setCharacterSize(80);
-	bane.setScale(.05, .05);
-	bane.setLineSpacing(1.2);
-	bane.setPosition(90, 78);
+	
+	drawTitle1.setPosition({center, 5.f});
+	drawTitle1.setHAlign(GameText::CENTER);
+	drawTitle1.setSize(GameText::TITLE);
+	drawTitle1.setText(defines::GAME_TITLE_SCREEN);
+
+	pressStart.setPosition({center, 100.f});
+	pressStart.setHAlign(GameText::CENTER);
+	pressStart.setSize(GameText::MEDIUM);
+	pressStart.setText("PRESS ANY KEY TO START");
+
+	highScoreText.setText(highScores.str());
+	highScoreText.setHAlign(GameText::CENTER);
+	highScoreText.setPosition({center, 50.f});
+	
+	controls.setText("");
+	controls.appendText("CONTROLS  \n \n");
+	controls.appendText("LEFT:\n");
+	controls.appendText("Left     A\n \n");
+	controls.appendText("RIGHT:\n");
+	controls.appendText("Right    D\n \n");
+	controls.appendText("FIRE:\n");
+	controls.appendText("Up Space W");
+	controls.setPosition({2.f, 43.f});
+
+	boon.setText("COLLECT");
+	boon.setHAlign(GameText::CENTER);
+	boon.setPosition({rightCenter+5.f, 43.f});
+
+	bane.setText("AVOID");
+	bane.setHAlign(GameText::CENTER);
+	bane.setPosition({rightCenter+5.f, 78.f});
+	
 	oneUp.setTexture(resources::textures["1up"]);
-	oneUp.setPosition(85, 50);
+	oneUp.setPosition(2.f+85.f, 50.f);
 	agressive.setTexture(resources::textures["aggression"]);
-	agressive.setPosition(85, 85);
+	agressive.setPosition(2.f+85.f, 85.f);
 	bomb.setTexture(resources::textures["bomb"]);
-	bomb.setPosition(97, 85);
+	bomb.setPosition(2.f+97.f, 85.f);
 	coin.setTexture(resources::textures["coin"]);
-	coin.setPosition(97, 50);
+	coin.setPosition(2.f+97.f, 50.f);
 	curved.setTexture(resources::textures["curved"]);
-	curved.setPosition(109, 50);
+	curved.setPosition(2.f+109.f, 50.f);
 	missile.setTexture(resources::textures["missile"]);
-	missile.setPosition(80, 60);
+	missile.setPosition(2.f+80.f, 60.f);
 	passive.setTexture(resources::textures["passive"]);
-	passive.setPosition(92, 60);
+	passive.setPosition(2.f+92.f, 60.f);
 	punch.setTexture(resources::textures["punch"]);
-	punch.setPosition(104, 60);
+	punch.setPosition(2.f+104.f, 60.f);
 	speedDown.setTexture(resources::textures["speed_down"]);
-	speedDown.setPosition(109, 85);
+	speedDown.setPosition(2.f+109.f, 85.f);
 	speedUp.setTexture(resources::textures["speed_up"]);
-	speedUp.setPosition(116, 60);
+	speedUp.setPosition(2.f+116.f, 60.f);
 }
 
 void TitleState::processInput(Event& event) {
@@ -93,12 +92,6 @@ void TitleState::update(RenderWindow& window) {
 	} else if (bufferTick >= BUFFERTIMER) {
 		isBlink = !isBlink;
 		blinkBuffer = 0;
-
-		if (isBlink) {
-			drawToStart.setString("Press Any Key To Start");
-		} else {
-			drawToStart.setString("");
-		}
 	}
 	if (bufferTick < BUFFERTIMER) {
 		bufferTick++;
@@ -108,12 +101,14 @@ void TitleState::update(RenderWindow& window) {
 
 void TitleState::draw(RenderWindow& window) {
 	drawTitle1.draw(window);
-	window.draw(drawTitle2);
-	window.draw(drawToStart);
-	window.draw(highScoreText);
-	window.draw(controls);
-	window.draw(boon);
-	window.draw(bane);
+	if (isBlink) {
+		pressStart.draw(window);
+	}
+	highScoreText.draw(window);
+	controls.draw(window);
+	boon.draw(window);
+	bane.draw(window);
+	
 	window.draw(oneUp);
 	window.draw(coin);
 	window.draw(curved);
