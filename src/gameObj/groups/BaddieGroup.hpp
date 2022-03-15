@@ -9,8 +9,7 @@
 class BaddieGroup {
 private:
 	const static int SHOOT_DELAY = 60;
-
-	const float SPEED_MULT = 0.0125; // can't be static, doesn't need to be
+	const float SPEED_MULT = 0.0125;
 
 	bool baddieMoveSwap = true;
 	bool allMoveRight = true;

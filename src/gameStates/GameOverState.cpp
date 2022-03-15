@@ -5,6 +5,17 @@ GameOverState::GameOverState(bool didWin) {
 	score::addScore();
 	gameOverSound.setBuffer(resources::soundFile["gameover"]);
 	gameOverSound.play();
+
+	highScoreText = score::getScoreTextBlock();
+
+	gameOverText.setHAlign(GameText::CENTER);
+	gameOverText.setSize(GameText::TITLE);
+	gameOverText.setPosition({defines::WIDTH/2.f, 20.f});
+	gameOverText.setText(gameOver);
+
+	pressAnyKeyText.setHAlign(GameText::CENTER);
+	pressAnyKeyText.setPosition({defines::WIDTH/2.f, 100.f});
+	pressAnyKeyText.setText(pressAnyKey);
 }
 
 void GameOverState::processInput(Event& event) {
@@ -25,36 +36,11 @@ void GameOverState::processInput(Event& event) {
 void GameOverState::draw(RenderWindow& window) {
 	hud.draw(window);
 
-	Text highScoreText(highScores.str(), font, 80);
-	highScoreText.setScale(.05, .05);
-	highScoreText.setPosition(44, 50);
-	window.draw(highScoreText);
+	highScoreText.draw(window);
+	gameOverText.draw(window);
 
-	Text gameOverText(gameOver, font, 80);
-	gameOverText.setScale(.1, .1);
-	gameOverText.setPosition(28, 25);
-	window.draw(gameOverText);
-
-	if (!isBlink && bufferTick >= BUFFERTIMER) {
-		pressAnyKey = "Press Any Key To Reset";
-		Text pressReset = Text(pressAnyKey, font, 80);
-		pressReset.setScale(.03, .03);
-		pressReset.setPosition(36, 95);
-		window.draw(pressReset);
-	}
-
-	int matchScore = score::matchScore();
-	highScores.str("");
-	for (size_t score = 0; score < score::scoreList.size(); score++) {
-		if (matchScore == (int)score) {
-			if (isBlink) {
-				highScores << "" << endl;
-			} else {
-				highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
-			}
-		} else {
-			highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
-		}
+	if (isTextHidden && bufferTick >= BUFFERTIMER) {
+		pressAnyKeyText.draw(window);
 	}
 }
 
@@ -62,7 +48,9 @@ void GameOverState::update(RenderWindow& window) {
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
 	} else {
-		isBlink = !isBlink;
+		isTextHidden = !isTextHidden;
+		string scoreString = score::getScoreTextString(isTextHidden);
+		highScoreText.setText(scoreString);
 		blinkBuffer = 0;
 	}
 	if (bufferTick < BUFFERTIMER) {

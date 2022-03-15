@@ -8,7 +8,6 @@
 
 class TitleState : public GameState {
 private:
-	stringstream highScores;
 	GameText drawTitle1;
 	GameText pressStart;
 	GameText highScoreText;
@@ -27,7 +26,6 @@ private:
 	Sprite speedUp;
 	Sprite speedDown;
 	Sound titleSound;
-
 
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;

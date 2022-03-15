@@ -52,11 +52,12 @@ void Player::defenderExplode() {
 
 void Player::curved() {
 	if (bullet->getX() + 0.2 < this->getX() + 3) {
-		bullet->shift = SHIFT_SPEED; //((bullet->getY() - this->getY()) / (bullet->getX() - this->getX())) * (MAX_SHIFT_SPEED - this->getX());
+		bullet->shift = SHIFT_SPEED;
 	} else if (bullet->getX() - 0.2 > this->getX() + 3) {
 		bullet->shift = -SHIFT_SPEED;
-	} else
+	} else {
 		bullet->shift = 0;
+	}
 }
 
 void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, ParticleGroup& particles) {
@@ -67,7 +68,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, 
 		// bullet hits a baddie
 		int randomBloodOnScreen = util::rangedRand(6, 10);
 		score::score += 100;
-		//blood pop
+		// blood pop
 		Color blood(0xff0000bb);
 		for (int i = 0; i < 30; i++) {
 			blood.r = util::rangedRand(128, 255);
@@ -86,7 +87,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, 
 				Color(0xff000000)
 				});
 		};
-		//blood on screen
+		// blood on screen
 		blood.a = 19;
 		for (int i = 0; i < randomBloodOnScreen; i++) {
 			blood.r = util::rangedRand(128, 255);
@@ -112,7 +113,7 @@ void Player::testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, 
 		}
 		deleteBullet();
 	} else if (bullet->isOffScreen()) {
-		//deletes bullet when it leaves screen
+		// deletes bullet when it leaves screen
 		deleteBullet();
 	}
 }

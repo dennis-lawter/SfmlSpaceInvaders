@@ -90,7 +90,9 @@ void GamePlayState::detectCollisions() {
 	killemAll.testManyForCollisionWithBarrier(saveMe.barrierVector, false, true);
 
 	// powerup touches defender 
-	if (powerup && defender.testCollision(*powerup) && (randomPowerup == defines::PowerUp::Aggressive || randomPowerup == defines::PowerUp::Passive)) { // add tests to make sure powerup is agressive, passive
+
+	// tests if the powerup is agressive or passive
+	if (powerup && defender.testCollision(*powerup) && (randomPowerup == defines::PowerUp::Aggressive || randomPowerup == defines::PowerUp::Passive)) {
 		for (int x = 0; x < killemAll.COLUMNS; x++) {
 			for (int y = 0; y < killemAll.ROWS; y++) {
 				if (killemAll.baddies[x][y] && randomPowerup == defines::PowerUp::Aggressive) {
@@ -118,7 +120,7 @@ void GamePlayState::removeOffscreenAssets() {
 		}
 	}
 
-	//ufo despawns off screen
+	// ufo despawns off screen
 	if (ufo && ufo->isOffScreen()) {
 		delete ufo;
 		ufo = nullptr;
@@ -127,7 +129,7 @@ void GamePlayState::removeOffscreenAssets() {
 }
 
 void GamePlayState::calculateUfo() {
-	//start ufo timer when baddies advance
+	// start ufo timer when baddies advance
 	if (killemAll.baddiesTimesAdvanced > 0) {
 		if (setUfoRandom > ufoBuffer && setUfoTimer) {
 			ufoBuffer++;
@@ -143,7 +145,7 @@ void GamePlayState::calculateUfo() {
 		}
 	}
 
-	//ufo fires powerup
+	// ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
@@ -169,7 +171,7 @@ void GamePlayState::calculateUfo() {
 		didUfoFire = true;
 	}
 
-	//ufo & powerup reset
+	// ufo & powerup reset
 	if (!powerup && !ufo) {
 		didUfoFire = false;
 		randomPowerup = defines::PowerUp::COUNT;
@@ -207,14 +209,14 @@ void GamePlayState::processInput(Event& event) {
 			// 	defender.isPunch = true;
 			// 	break;
 		case Keyboard::A:
-		case Keyboard::Left: //Move Left
+		case Keyboard::Left:
 			defender.playerIsMovingLeft = true;
 			break;
 		case Keyboard::D:
-		case Keyboard::Right: //Move Right
+		case Keyboard::Right:
 			defender.playerIsMovingRight = true;
 			break;
-		case Keyboard::W: //Player fires
+		case Keyboard::W:
 		case Keyboard::Up:
 		case Keyboard::Space:
 			defender.fire();
@@ -228,8 +230,6 @@ void GamePlayState::processInput(Event& event) {
 		}
 		break;
 
-		/* This case allows for smooth player movement left and right
-		*/
 	case Event::KeyReleased:
 		switch (event.key.code) {
 		case Keyboard::Key::A:

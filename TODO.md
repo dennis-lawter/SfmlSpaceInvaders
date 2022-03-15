@@ -120,7 +120,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Can fire as the round ends
 
 ### Performance Improvements
-- [ ] Convert all sf::Text to GameText objects
+- [x] Convert all sf::Text to GameText objects
 - [ ] Perform the round reset immediately rather than upon the next frame
 
 ### Juice?

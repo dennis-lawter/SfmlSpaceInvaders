@@ -3,6 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include "GameText.hpp"
 #include "resources.hh"
 using namespace std;
 
@@ -21,6 +22,9 @@ namespace score {
 	bool compareScores(int first, int second);
 	void addScore();
 	int matchScore();
+
+	string getScoreTextString(bool currentScoreVisible = true);
+	GameText getScoreTextBlock(bool currentScoreVisible = true);
 }
 
 #endif

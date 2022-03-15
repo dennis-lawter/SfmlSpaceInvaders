@@ -28,13 +28,7 @@ public:
 		SMALL,
 	};
 private:
-	map<Size, float> scaleFactor = {
-		{TITLE, .12f},
-		{HUGE, .10f},
-		{LARGE, .08f},
-		{MEDIUM, .05f},
-		{SMALL, .03f}
-	};
+	static const int FIXED_LINE_HEIGHT = 9;
 	vector<Text> texts;
 	vector<string> stringLines;
 	stringstream stringStream;

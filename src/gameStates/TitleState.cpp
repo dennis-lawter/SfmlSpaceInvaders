@@ -14,11 +14,8 @@ TitleState::TitleState() {
 	float center = defines::WIDTH / 2.f;
 	float rightCenter = 0.75f * defines::WIDTH;
 
-	highScores.str("");
-	for (size_t score = 0; score < score::scoreList.size(); score++) {
-		highScores << setfill('0') << setw(8) << score::scoreList[score] << endl;
-	}
-	
+	highScoreText = score::getScoreTextBlock();
+
 	drawTitle1.setPosition({center, 5.f});
 	drawTitle1.setHAlign(GameText::CENTER);
 	drawTitle1.setSize(GameText::TITLE);
@@ -29,10 +26,6 @@ TitleState::TitleState() {
 	pressStart.setSize(GameText::MEDIUM);
 	pressStart.setText("PRESS ANY KEY TO START");
 
-	highScoreText.setText(highScores.str());
-	highScoreText.setHAlign(GameText::CENTER);
-	highScoreText.setPosition({center, 50.f});
-	
 	controls.setText("");
 	controls.appendText("CONTROLS  \n \n");
 	controls.appendText("LEFT:\n");
@@ -108,7 +101,7 @@ void TitleState::draw(RenderWindow& window) {
 	controls.draw(window);
 	boon.draw(window);
 	bane.draw(window);
-	
+
 	window.draw(oneUp);
 	window.draw(coin);
 	window.draw(curved);

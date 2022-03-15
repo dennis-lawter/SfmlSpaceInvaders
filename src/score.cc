@@ -68,4 +68,30 @@ namespace score {
 		}
 		return -1;
 	}
+
+	string getScoreTextString(bool currentScoreVisible) {
+		stringstream highScores;
+		int i = 0;
+		int matchScoreResult = matchScore();
+		for (int score : scoreList) {
+			if (!currentScoreVisible && i == matchScoreResult) {
+				highScores << "        \n";
+			} else {
+				highScores << setfill('0') << setw(8) << score << "\n";
+			}
+			i++;
+		}
+		return highScores.str();
+	}
+
+	GameText getScoreTextBlock(bool currentScoreVisible) {
+		GameText highScoreText;
+
+		highScoreText.setText(getScoreTextString(currentScoreVisible));
+		highScoreText.setHAlign(GameText::CENTER);
+		highScoreText.setVAlign(GameText::MIDDLE);
+		highScoreText.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
+
+		return highScoreText;
+	}
 }

@@ -1,5 +1,13 @@
 #include "GameText.hpp"
 
+map<GameText::Size, float> scaleFactor = {
+	{GameText::TITLE, .12f},
+	{GameText::HUGE, .10f},
+	{GameText::LARGE, .08f},
+	{GameText::MEDIUM, .05f},
+	{GameText::SMALL, .03f}
+};
+
 GameText::GameText() {
 	this->position = { 0.f, 0.f };
 	this->size = GameText::MEDIUM;
@@ -30,7 +38,11 @@ void GameText::setInternalOrigin() {
 		if (fullWidth > widestLine) {
 			widestLine = fullWidth;
 		}
-		totalHeight += textBounds.top + textBounds.height;
+		if (textBounds.top > 0.f) {
+			totalHeight += 80.f;
+		} else if (textBounds.height > 0.f) {
+			totalHeight += 80.f;
+		}
 	}
 	Vector2f origin;
 	switch (hAlign) {
@@ -86,7 +98,7 @@ void GameText::setLinePositions() {
 		}
 		tempPosition.y += heightOffset;
 		text.setPosition(tempPosition);
-		heightOffset = scale * (localBounds.top + localBounds.height) * 9.f/8.f;
+		heightOffset = scale * 80.f;
 	}
 }
 

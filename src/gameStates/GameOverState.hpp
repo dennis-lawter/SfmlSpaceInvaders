@@ -12,19 +12,21 @@
 class GameOverState : public GameState {
 private:
 	Hud hud;
-	Font& font = resources::font;
-	string gameOver = "GAME OVER";
-	string pressAnyKey = "Press Any Key To Reset";
-	string youWin = "YOU WIN";
-	string youLose = "YOU LOSE";
+	Sound gameOverSound;
+	
+	const string gameOver = "GAME OVER";
+	const string pressAnyKey = "PRESS ANY KEY TO RESET";
+
+	GameText highScoreText;
+	GameText gameOverText;
+	GameText pressAnyKeyText;
+
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
-	bool isBlink = false;
+	bool isTextHidden = true;
 	const int BUFFERTIMER = 90;
 	int bufferTick = 0;
 	bool holdBuffer = true;
-	stringstream highScores;
-	Sound gameOverSound;
 public:
 	bool didWin;
 	GameOverState(bool didWin);
