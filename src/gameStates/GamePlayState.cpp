@@ -173,15 +173,16 @@ void GamePlayState::calculateUfo() {
 
 void GamePlayState::calculateStateStatus() {
 	// test if state has been completed
-	if (killemAll.currentBaddies <= 0) {
+	if (killemAll.currentBaddies <= 0 && !didWin) {
 		didWin = true;
-		if (endRoundBuffer >= END_ROUND_TIMER) {
-			isEnding = true;
-		}
+		score::score += (score::scoreBonus * score::scoreBonusMultiplier);
+	} else if (didWin && endRoundBuffer >= END_ROUND_TIMER) {
+		isEnding = true;
 	} else if (killemAll.isBaddiesWin() || score::currentLives < 0) {
 		didWin = false;
 		isEnding = true;
 	}
+
 }
 
 void GamePlayState::processInput(Event& event) {
