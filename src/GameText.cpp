@@ -15,7 +15,6 @@ void GameText::setTexts() {
 
 	texts.clear();
 	while (std::getline(stringStream, temp, '\n')) {
-		cout << "CREATING: " << temp << endl;
 		texts.emplace_back(temp, resources::font, 80U);
 	}
 	stringStream.str("");
