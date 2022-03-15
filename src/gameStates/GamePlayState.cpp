@@ -20,9 +20,6 @@ GamePlayState::GamePlayState()
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
 	playerDeath.setBuffer(resources::soundFile["defenderboom"]);
-
-	// Text particle demonstration
-	// particles.createParticleText("test", {64.f, 64.f}, Color::White);
 }
 
 void GamePlayState::startRound() {
@@ -173,11 +170,11 @@ void GamePlayState::calculateUfo() {
 
 void GamePlayState::calculateStateStatus() {
 	// test if state has been completed
-	if (killemAll.currentBaddies <= 0) {
+	if (killemAll.currentBaddies <= 0 && !didWin) {
 		didWin = true;
-		if (endRoundBuffer >= END_ROUND_TIMER) {
-			isEnding = true;
-		}
+		score::score += (score::scoreBonus * score::scoreBonusMultiplier);
+	} else if (didWin && endRoundBuffer >= END_ROUND_TIMER) {
+		isEnding = true;
 	} else if (killemAll.isBaddiesWin() || score::currentLives < 0) {
 		didWin = false;
 		isEnding = true;

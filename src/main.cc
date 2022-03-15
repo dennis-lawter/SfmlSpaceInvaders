@@ -71,7 +71,6 @@ void update() {
 				stateLevel = GameState::Title;
 				score::roundNumber++;
 				score::speedModifier += (score::roundNumber * score::roundMultiplier);
-				score::score += (score::scoreBonus * score::scoreBonusMultiplier);
 				break;
 			}
 			delete gameState;
