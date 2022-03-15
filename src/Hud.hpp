@@ -8,15 +8,19 @@
 #include "score.hh"
 using namespace sf;
 using namespace std;
+#include "GameText.hpp"
 
 
 class Hud {
 private:
 	Font& font = resources::font;
 	stringstream scoreOut;
-public:
+	int lastCheckedScore;
 	Sprite lives;
+	GameText text;
 
+	void updateScore();
+public:
 	Hud();
 	void draw(RenderWindow& window);
 	void update();
