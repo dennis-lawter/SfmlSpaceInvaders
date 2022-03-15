@@ -35,12 +35,15 @@ void Particle::update() {
 
 ParticleText::ParticleText(ParticleAttributeList attributes, string text)
 	:Particle(attributes) {
-		this->text.setPosition(attributes.position);
 		this->text.setFillColor(attributes.initialColor);
 		this->text.setFont(resources::font);
 		this->text.setCharacterSize(80);
 		this->text.setScale(.05f, .05f);
 		this->text.setString(text);
+
+		FloatRect textBounds = this->text.getLocalBounds();
+		this->text.setPosition(this->position);
+		this->text.setOrigin(textBounds.width/2.f, 0.f);
 	}
 
 void ParticleText::update() {
