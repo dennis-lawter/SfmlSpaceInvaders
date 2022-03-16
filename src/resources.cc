@@ -67,7 +67,7 @@ namespace resources {
 		string fullFileName = "";
 		for (string fileName : defines::SOUND_FILE_NAMES) {
 			fullFileName = resources::dirRoot + fileName + defines::SOUND_FILE_TYPE;
-			resources::soundFile.emplace(fileName, SoundBuffer{});
+			resources::soundFile.insert({fileName, SoundBuffer()});
 			if (!resources::soundFile[fileName].loadFromFile(fullFileName)) {
 				throwFileError(fileName);
 			}
