@@ -71,10 +71,13 @@ void update() {
 				stateLevel = GameState::Title;
 				score::roundNumber++;
 				score::speedModifier += (score::roundNumber * score::roundMultiplier);
+				delete gameState;
+				gameState = new GamePlayState();
+				stateLevel = GameState::GamePlay;
 				break;
 			}
 			delete gameState;
-			gameState = new GameOverState(didWin);
+			gameState = new GameOverState();
 			stateLevel = GameState::GameOver;
 			break;
 		case GameState::GameOver:
@@ -90,7 +93,8 @@ void update() {
 }
 
 void draw() {
-	window.clear(Color(0x000022ff)); //The background of the game when in fullscreen
+	// The background of the game when in a larger window
+	window.clear(Color(0x000022ff));
 	window.draw(background);
 	gameState->draw(window);
 	window.display();

@@ -1,7 +1,6 @@
 #include "GameOverState.hpp"
 
-GameOverState::GameOverState(bool didWin) {
-	this->didWin = didWin;
+GameOverState::GameOverState() {
 	score::addScore();
 	gameOverSound.setBuffer(resources::soundFile["gameover"]);
 	gameOverSound.play();

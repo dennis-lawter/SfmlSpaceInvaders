@@ -28,8 +28,7 @@ private:
 	int bufferTick = 0;
 	bool holdBuffer = true;
 public:
-	bool didWin;
-	GameOverState(bool didWin);
+	GameOverState();
 
 	void processInput(Event& event);
 	void update(RenderWindow& window);
