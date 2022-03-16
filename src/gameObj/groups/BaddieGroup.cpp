@@ -138,7 +138,7 @@ void BaddieGroup::chooseBaddieCuss() {
 
 void BaddieGroup::baddieShoot() {
 	if (shootTimer > SHOOT_DELAY) {
-		randomColumn = rand() % COLUMNS + 0;
+		randomColumn = util::rangedRand(0, COLUMNS-1);
 		// Bottom-up
 		for (int y = ROWS - 1; y >= 0; y--) {
 			if (baddies[randomColumn][y]) {

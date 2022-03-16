@@ -10,7 +10,7 @@ namespace defines {
 	static const string GAME_TITLE_SCREEN = "TOTALLY\nINVADING\nSPACE";
 	static const int WIDTH = 128;
 	static const int HEIGHT = 128;
-	static const int UFO_FIRE_RANGE = 64;
+	static const int UFO_FIRE_END = defines::WIDTH - 32;
 	static const int UFO_FIRE_START = 32;
 	static const string IMAGE_FILE_TYPE = ".png";
 	static const string FONT_FILE_TYPE = ".ttf";

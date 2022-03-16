@@ -145,13 +145,14 @@ void GamePlayState::calculateUfo() {
 			ufoBuffer = 0;
 		} else if (!setUfoTimer && !isUfoMoving) {
 			setUfoTimer = true;
-			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
+			setUfoRandom = util::rangedRand(UFO_TIMER_MIN, UFO_TIMER_MAX);
 		}
 	}
 
 	// ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
+		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
+		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
 		{
