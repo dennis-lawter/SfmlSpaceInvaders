@@ -29,8 +29,14 @@ void Hud::updateScore() {
 }
 
 void Hud::update() {
-	if (score::score > this->lastCheckedScore) {
-		lastCheckedScore+=4;
+	if (score::score < lastCheckedScore) {
+		lastCheckedScore -= 4;
+		if (lastCheckedScore < score::score) {
+			lastCheckedScore = score::score;
+		}
+		updateScore();
+	} else if (score::score > lastCheckedScore) {
+		lastCheckedScore += 4;
 		if (lastCheckedScore > score::score) {
 			lastCheckedScore = score::score;
 		}

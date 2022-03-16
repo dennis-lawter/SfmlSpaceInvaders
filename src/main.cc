@@ -2,6 +2,7 @@
 #include "gameStates/GamePlayState.hpp"
 #include "gameStates/TitleState.hpp"
 #include "gameStates/GameOverState.hpp"
+#include "gameStates/AttractState.hpp"
 #include "score.hh"
 using namespace sf;
 using namespace std;
@@ -52,21 +53,36 @@ void windowInit() {
 }
 
 void update() {
-	GamePlayState* temp;
+	GamePlayState* asGamePlayState;
+	TitleState* asTitleState;
 	bool didWin;
 
 	gameState->update(window);
 
 	if (gameState->isEnding) {
 		switch (stateLevel) {
-		case GameState::Title:
+		case GameState::Attract:
 			delete gameState;
-			gameState = new GamePlayState();
-			stateLevel = GameState::GamePlay;
+			gameState = new TitleState();
+			asTitleState = (TitleState*)gameState;
+			asTitleState->bufferTick = asTitleState->BUFFERTIMER;
+			stateLevel = GameState::Title;
+			break;
+		case GameState::Title:
+			asTitleState = (TitleState*)gameState;
+			if (asTitleState->idle) {
+				delete gameState;
+				gameState = new AttractState();
+				stateLevel = GameState::Attract;
+			} else {
+				delete gameState;
+				gameState = new GamePlayState();
+				stateLevel = GameState::GamePlay;
+			}
 			break;
 		case GameState::GamePlay:
-			temp = (GamePlayState*)gameState;
-			didWin = temp->didWin;
+			asGamePlayState = (GamePlayState*)gameState;
+			didWin = asGamePlayState->didWin;
 			if (didWin) {
 				stateLevel = GameState::Title;
 				score::roundNumber++;

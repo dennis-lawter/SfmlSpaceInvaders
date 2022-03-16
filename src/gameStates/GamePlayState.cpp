@@ -3,6 +3,10 @@
 GamePlayState::GamePlayState()
 	: killemAll(particles)
 {
+	// util::setSeed(0U);
+	// this->roundStartTimer = ROUND_START_MAX-1;
+	// GamePlayState::startRound();
+
 	startMusic.setBuffer(resources::soundFile["randommusic"]);
 	startMusic.play();
 	score::scoreBonus = 10;
@@ -219,6 +223,8 @@ void GamePlayState::processInput(Event& event) {
 		case Keyboard::W:
 		case Keyboard::Up:
 		case Keyboard::Space:
+			// UNCOMMENT TO RECORD DEMO
+			// demo << "W";
 			defender.fire();
 			break;
 		case Keyboard::Escape:
@@ -250,6 +256,14 @@ void GamePlayState::processInput(Event& event) {
 }
 
 void GamePlayState::update(RenderWindow& window) {
+	// UNCOMMENT TO RECORD DEMO
+	// if (defender.playerIsMovingLeft && !defender.playerIsMovingRight) {
+	// 	demo << "A";
+	// } else if (defender.playerIsMovingRight && !defender.playerIsMovingLeft) {
+	// 	demo << "D";
+	// } else {
+	// 	demo << " ";
+	// }
 	if (isPause) {
 		return;
 	}
@@ -304,4 +318,11 @@ void GamePlayState::draw(RenderWindow& window) {
 	}
 }
 
-GamePlayState::~GamePlayState() {}
+GamePlayState::~GamePlayState() {
+	// UNCOMMENT TO RECORD DEMO
+	// ofstream demoFile ("demo.txt");
+	// if (!demoFile.fail()) {
+	// 	demoFile << demo.rdbuf();
+	// 	demoFile.close();
+	// }
+}

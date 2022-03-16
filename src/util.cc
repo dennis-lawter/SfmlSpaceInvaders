@@ -1,5 +1,6 @@
 #include "util.hh"
 #include <iostream>
+#include <ctime>
 
 namespace util {
 	float lerp(float x0, float x1, float p) {
@@ -11,6 +12,14 @@ namespace util {
 		float x = lerp(start.x, end.x, p);
 		float y = lerp(start.y, end.y, p);
 		return Vector2f(x, y);
+	}
+
+	void setRandomSeed() {
+		srand (time(NULL));
+	}
+
+	void setSeed(unsigned int seed) {
+		srand(seed);
 	}
 
 	int rangedRand(int min, int max) {

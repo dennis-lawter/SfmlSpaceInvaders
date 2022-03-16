@@ -6,8 +6,6 @@
 #include "GameState.hpp"
 #include "GamePlayState.hpp"
 #include "../Hud.hpp"
-#include "../score.hh"
-#include "../resources.hh"
 
 class GameOverState : public GameState {
 private:

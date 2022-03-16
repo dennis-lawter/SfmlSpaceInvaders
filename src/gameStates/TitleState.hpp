@@ -3,8 +3,6 @@
 #include <iomanip>
 #include <iostream>
 #include "GameState.hpp"
-#include "../resources.hh"
-#include "../score.hh"
 
 class TitleState : public GameState {
 private:
@@ -30,9 +28,14 @@ private:
 	const int BLINKTIMER = 40;
 	int blinkBuffer = 0;
 	bool isBlink = false;
+
+	const int ATTRACT_MODE_TIMEOUT = 600;
+	int attractModeTimer = 0;
+public:
+	bool idle = true;
 	const int BUFFERTIMER = 90;
 	int bufferTick = 0;
-public:
+
 	TitleState();
 
 	void processInput(Event& event);
