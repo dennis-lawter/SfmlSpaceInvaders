@@ -102,7 +102,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Allow the player to enter their initials when they achieve a new high score
 - [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [x] Animate the defender and invader sprites
-- [ ] Show the amount of score gained on screen near the location where the score gaining event occurred
+- [x] Show the amount of score gained on screen near the location where the score gaining event occurred
 - [x] Title music
 - [x] Game over music
 - [x] The window launches at a reasonable size, comfortably fitting most displays, at a 1:1 aspect ratio with a resolution of a multiple of 128
@@ -117,7 +117,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Bugs
 - [x] Defender jittering at edge of screen
 - [x] Don't display "press any button" text if it's not possible to press a button yet
-- [ ] Can fire as the round ends
+- [x] Can fire as the round ends
 - [x] Error log: "AL lib: (EE) alc_cleanup: 1 device not closed"
 
 ### Performance Improvements

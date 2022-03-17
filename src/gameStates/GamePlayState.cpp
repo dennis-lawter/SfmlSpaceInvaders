@@ -230,7 +230,9 @@ void GamePlayState::processInput(Event& event) {
 		case Keyboard::Space:
 			// UNCOMMENT TO RECORD DEMO
 			// demo << "W";
-			defender.fire();
+			if (!didWin && !didLose) {
+				defender.fire();
+			}
 			break;
 		case Keyboard::Escape:
 			isPause = !isPause;
