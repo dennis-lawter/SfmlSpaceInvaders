@@ -109,7 +109,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] More power ups
 - [x] Clear power up sprites
 - [x] Power up descriptions on the start screen
-- [ ] Demo on the start screen
+- [x] Demo on the start screen
 - [x] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
 - [ ] Controller support
 - [ ] Analog movement
@@ -136,3 +136,4 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Background gradient to follow the player bullet
 - [ ] Defender explodes when their final life is lost
 - [ ] Invaders animate their victory in some way
+- [ ] The bomb should be more threatening, either it grows or splits into several bombs

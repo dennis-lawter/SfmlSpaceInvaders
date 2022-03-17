@@ -138,12 +138,12 @@ void BaddieGroup::chooseBaddieCuss() {
 
 void BaddieGroup::baddieShoot() {
 	if (shootTimer > SHOOT_DELAY) {
-		randomColumn = rand() % COLUMNS + 0;
+		randomColumn = util::rangedRand(0, COLUMNS-1);
 		// Bottom-up
 		for (int y = ROWS - 1; y >= 0; y--) {
 			if (baddies[randomColumn][y]) {
-				float bulletX = baddies[randomColumn][y]->getX() + 3;
-				float bulletY = baddies[randomColumn][y]->getY() + 8;
+				float bulletX = baddies[randomColumn][y]->getX() + -1.f;
+				float bulletY = baddies[randomColumn][y]->getY() + 4.f;
 				bulletVector.emplace_back(BaddieBullet(bulletX, bulletY));
 				shootTimer = 0;
 				baddiepew.play();

@@ -3,6 +3,10 @@
 GamePlayState::GamePlayState()
 	: killemAll(particles)
 {
+	// util::setSeed(0U);
+	// this->roundStartTimer = ROUND_START_MAX-1;
+	// GamePlayState::startRound();
+
 	startMusic.setBuffer(resources::soundFile["randommusic"]);
 	startMusic.play();
 	score::scoreBonus = 10;
@@ -141,13 +145,14 @@ void GamePlayState::calculateUfo() {
 			ufoBuffer = 0;
 		} else if (!setUfoTimer && !isUfoMoving) {
 			setUfoTimer = true;
-			setUfoRandom = rand() % (UFO_TIMER_MAX - UFO_TIMER_MIN) + UFO_TIMER_MIN;
+			setUfoRandom = util::rangedRand(UFO_TIMER_MIN, UFO_TIMER_MAX);
 		}
 	}
 
 	// ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
-		randomPowerup = static_cast<defines::PowerUp>(rand() % defines::PowerUp::COUNT);
+		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
+		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
 		{
@@ -219,6 +224,8 @@ void GamePlayState::processInput(Event& event) {
 		case Keyboard::W:
 		case Keyboard::Up:
 		case Keyboard::Space:
+			// UNCOMMENT TO RECORD DEMO
+			// demo << "W";
 			defender.fire();
 			break;
 		case Keyboard::Escape:
@@ -250,6 +257,14 @@ void GamePlayState::processInput(Event& event) {
 }
 
 void GamePlayState::update(RenderWindow& window) {
+	// UNCOMMENT TO RECORD DEMO
+	// if (defender.playerIsMovingLeft && !defender.playerIsMovingRight) {
+	// 	demo << "A";
+	// } else if (defender.playerIsMovingRight && !defender.playerIsMovingLeft) {
+	// 	demo << "D";
+	// } else {
+	// 	demo << " ";
+	// }
 	if (isPause) {
 		return;
 	}
@@ -304,4 +319,11 @@ void GamePlayState::draw(RenderWindow& window) {
 	}
 }
 
-GamePlayState::~GamePlayState() {}
+GamePlayState::~GamePlayState() {
+	// UNCOMMENT TO RECORD DEMO
+	// ofstream demoFile ("demo.txt");
+	// if (!demoFile.fail()) {
+	// 	demoFile << demo.rdbuf();
+	// 	demoFile.close();
+	// }
+}

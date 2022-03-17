@@ -5,14 +5,14 @@ Ufo::Ufo()
 	ufoSpawnSound.setBuffer(resources::soundFile["ufoFire"]);
 	ufoSpawnSound.play();
 	this->sprite.setTextureRect(IntRect(0, 0, 16, 8));
-	if (rand() % 2 == 0) {
+	if (util::rangedRand(0, 1) % 2 == 0) {
 		this->sprite.setPosition(defines::WIDTH, 8);
 		isMovingLeft = true;
 	} else {
 		this->sprite.setPosition(-this->getWidth(), 8);
 		isMovingLeft = false;
 	}
-	ufoFireRandom = rand() % defines::UFO_FIRE_RANGE + defines::UFO_FIRE_START;
+	ufoFireRandom = util::rangedRand(defines::UFO_FIRE_START, defines::UFO_FIRE_END);
 }
 
 void Ufo::move() {

@@ -4,6 +4,7 @@
 #include "../GameText.hpp"
 #include "../resources.hh"
 #include "../score.hh"
+#include "../util.hh"
 using namespace sf;
 
 class GameState {
@@ -11,7 +12,8 @@ public:
 	enum State {
 		Title,
 		GamePlay,
-		GameOver
+		GameOver,
+		Attract
 	};
 
 	bool isEnding = false;

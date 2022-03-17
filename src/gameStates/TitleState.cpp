@@ -1,6 +1,7 @@
 #include "TitleState.hpp"
 
 TitleState::TitleState() {
+	util::setRandomSeed();
 	score::score = 0;
 	score::currentLives = 2;
 	score::roundNumber = 1;
@@ -67,10 +68,11 @@ TitleState::TitleState() {
 }
 
 void TitleState::processInput(Event& event) {
-	if (bufferTick == BUFFERTIMER) {
+	if (bufferTick >= BUFFERTIMER) {
 		switch (event.type) {
 		case Event::KeyReleased:
 			isEnding = true;
+			idle = false;
 			break;
 		default:
 			break;
@@ -88,6 +90,12 @@ void TitleState::update(RenderWindow& window) {
 	}
 	if (bufferTick < BUFFERTIMER) {
 		bufferTick++;
+	}
+	if (attractModeTimer < ATTRACT_MODE_TIMEOUT) {
+		attractModeTimer++;
+	} else if (isEnding != true) {
+		isEnding = true;
+		idle = true;
 	}
 }
 

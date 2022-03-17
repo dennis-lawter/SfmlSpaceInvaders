@@ -10,10 +10,9 @@
 #include "../gameObj/Ufo.hpp"
 #include "../gameObj/Powerup.hpp"
 #include "../Hud.hpp"
-#include "../score.hh"
 
 class GamePlayState : public GameState {
-private:
+protected:
 	ParticleGroup particles;
 	Hud hud;
 	Player defender;
@@ -25,6 +24,9 @@ private:
 	Sound powerupSound;
 	Sound powerdownSound;
 	Sound playerDeath;
+
+	// UNCOMMENT TO RECORD DEMO
+	// stringstream demo;
 
 	const static int ROUND_START_MAX = 425;
 	const static int BLINK_MAX = 380;
