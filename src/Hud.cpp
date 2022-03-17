@@ -43,3 +43,19 @@ void Hud::update() {
 		updateScore();
 	}
 }
+
+void Hud::indicateGlobalScoreChange(ParticleGroup& particleGroup, int scoreChange) {
+	string indication = "";
+	Color color;
+	if (scoreChange > 0) {
+		indication = "+";
+		color = Color::Cyan;
+	} else if (scoreChange < 0) {
+		indication = "";
+		color = Color::Red;
+	} else {
+		return;
+	}
+	indication += to_string(scoreChange);
+	particleGroup.createParticleText(indication, {75.f, 8.f}, color);
+}

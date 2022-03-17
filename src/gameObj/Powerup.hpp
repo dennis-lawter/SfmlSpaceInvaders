@@ -4,6 +4,7 @@
 #include "Player.hpp"
 #include "Baddie.hpp"
 #include "groups/BaddieGroup.hpp"
+#include "groups/ParticleGroup.hpp"
 
 class Powerup : public GameObject {
 private:
@@ -21,7 +22,7 @@ public:
 
 	void oneUp();
 	void coin();
-	void coinOffScreen();
+	void coinOffScreen(ParticleGroup& particleGroup);
 	void speedUp();
 	void speedDown();
 	void punch();
@@ -30,10 +31,10 @@ public:
 	void passive(Baddie& baddie);
 	void missile();
 
-	void grantPowerUp();
+	void grantPowerUp(ParticleGroup& particleGroup);
 
 	bool isOffScreen();
-	void update();
+	void update(ParticleGroup& particleGroup);
 };
 
 #endif

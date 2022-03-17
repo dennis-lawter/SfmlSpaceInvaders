@@ -71,7 +71,7 @@ void GamePlayState::updateComponents() {
 		ufo->update();
 	}
 	if (powerup) {
-		powerup->update();
+		powerup->update(particles);
 	}
 }
 
@@ -109,7 +109,7 @@ void GamePlayState::detectCollisions() {
 		delete powerup;
 		powerup = nullptr;
 	} else if (powerup && defender.testCollision(*powerup)) {
-		powerup->grantPowerUp();
+		powerup->grantPowerUp(particles);
 		delete powerup;
 		powerup = nullptr;
 	}
@@ -152,6 +152,8 @@ void GamePlayState::calculateUfo() {
 	// ufo fires powerup
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
+		// UNCOMMENT TO FORCE POWERUP
+		randomPowerUpInt = defines::PowerUp::Coin;
 		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
@@ -188,7 +190,9 @@ void GamePlayState::calculateStateStatus() {
 	if (!didWin && killemAll.currentBaddies <= 0) {
 		didWin = true;
 		didLose = false;
-		score::score += (score::scoreBonus * score::scoreBonusMultiplier);
+		int bonus = score::scoreBonus * score::scoreBonusMultiplier;
+		score::score += bonus;
+		hud.indicateGlobalScoreChange(particles, bonus);
 	} else if (didWin && endRoundBuffer >= END_ROUND_TIMER) {
 		isEnding = true;
 	} else if (!didLose && (killemAll.isBaddiesWin() || score::currentLives < 0)) {

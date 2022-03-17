@@ -9,6 +9,7 @@
 using namespace sf;
 using namespace std;
 #include "GameText.hpp"
+#include "gameObj/groups/ParticleGroup.hpp"
 
 
 class Hud {
@@ -24,6 +25,7 @@ public:
 	Hud();
 	void draw(RenderWindow& window);
 	void update();
+	void indicateGlobalScoreChange(ParticleGroup& particleGroup, int increase);
 };
 
 #endif

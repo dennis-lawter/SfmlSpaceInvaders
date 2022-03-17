@@ -182,6 +182,7 @@ bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
 				if (baddies[x][y]) {
 					if (baddies[x][y]->testCollision(*obj)) {
 						if (deleteMine) {
+							particleGroup.createParticleText("+100", baddies[x][y]->getPosition(), Color::Cyan);
 							deleteBaddie(x, y);
 							baddiesKilledThisFrame++;
 						}
@@ -201,6 +202,7 @@ bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
 				if (baddies[x][y]) {
 					if (baddies[x][y]->testCollision(*obj)) {
 						if (deleteMine) {
+							particleGroup.createParticleText("+100", baddies[x][y]->getPosition(), Color::Cyan);
 							deleteBaddie(x, y);
 							baddiesKilledThisFrame++;
 						}

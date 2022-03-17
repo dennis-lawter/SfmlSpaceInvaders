@@ -19,11 +19,19 @@ void Powerup::coin() {
 	score::score += 1000;
 }
 
-void Powerup::coinOffScreen() {
-	score::score -= 1000;
-	if (score::score < 0) {
-		score::score = 0;
+void Powerup::coinOffScreen(ParticleGroup& particleGroup) {
+	if (score::score == 0) return;
+	int scoreChange = -1000;
+
+	if (score::score < 1000) {
+		scoreChange = -score::score;
 	}
+
+	score::score += scoreChange;
+	
+	Vector2f position = getPosition();
+	position.y -= 8.f;
+	particleGroup.createParticleText(to_string(scoreChange), position, Color::Red);
 }
 
 void Powerup::speedUp() {
@@ -65,13 +73,14 @@ bool Powerup::isOffScreen() {
 	return (this->getY() > defines::HEIGHT);
 }
 
-void Powerup::grantPowerUp() {
+void Powerup::grantPowerUp(ParticleGroup& particleGroup) {
 	switch (powerupSelect) {
 	case defines::PowerUp::OneUp:
 		oneUp();
 		break;
 	case defines::PowerUp::Coin:
 		coin();
+		particleGroup.createParticleText("+1000", getPosition(), Color::Cyan);
 		break;
 	case defines::PowerUp::SpeedUp:
 		speedUp();
@@ -96,9 +105,9 @@ void Powerup::grantPowerUp() {
 	}
 }
 
-void Powerup::update() {
+void Powerup::update(ParticleGroup& particleGroup) {
 	this->sprite.move(0, speed);
 	if (powerupSelect == defines::Coin && isOffScreen()) {
-		coinOffScreen();
+		coinOffScreen(particleGroup);
 	}
 }
