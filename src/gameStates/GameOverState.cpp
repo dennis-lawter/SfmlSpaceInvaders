@@ -19,10 +19,12 @@ GameOverState::GameOverState() {
 
 void GameOverState::processInput(Event& event) {
 	switch (event.type) {
+	case Event::JoystickButtonPressed:
 	case Event::KeyPressed:
 		holdBuffer = false;
 		break;
 	case Event::KeyReleased:
+	case Event::JoystickButtonReleased:
 		if (!holdBuffer && bufferTick == BUFFERTIMER) {
 			isEnding = true;
 		}

@@ -111,8 +111,8 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Power up descriptions on the start screen
 - [x] Demo on the start screen
 - [x] Communicate if the power up is a boon or a bane, possibly with sound effects, or a "friendly" and "enemy" ufo variant
-- [ ] Controller support
-- [ ] Analog movement
+- [x] Controller support
+- [x] Analog movement
 
 ### Bugs
 - [x] Defender jittering at edge of screen
@@ -134,6 +134,6 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Screen shakes more as baddies move closer
 - [x] Defender slides towards next challenge
 - [ ] Background gradient to follow the player bullet
-- [ ] Defender explodes when their final life is lost
+- [x] Defender explodes when their final life is lost
 - [ ] Invaders animate their victory in some way
 - [ ] The bomb should be more threatening, either it grows or splits into several bombs

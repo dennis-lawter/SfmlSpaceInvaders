@@ -71,6 +71,7 @@ void TitleState::processInput(Event& event) {
 	if (bufferTick >= BUFFERTIMER) {
 		switch (event.type) {
 		case Event::KeyReleased:
+		case Event::JoystickButtonReleased:
 			isEnding = true;
 			idle = false;
 			break;

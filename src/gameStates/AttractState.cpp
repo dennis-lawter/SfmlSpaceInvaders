@@ -14,6 +14,7 @@ AttractState::AttractState() {
 void AttractState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::KeyReleased:
+	case Event::JoystickButtonReleased:
 		isEnding = true;
 		break;
 	default:

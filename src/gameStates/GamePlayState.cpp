@@ -153,7 +153,7 @@ void GamePlayState::calculateUfo() {
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
 		// UNCOMMENT TO FORCE POWERUP
-		randomPowerUpInt = defines::PowerUp::Coin;
+		// randomPowerUpInt = defines::PowerUp::Coin;
 		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
@@ -207,10 +207,59 @@ void GamePlayState::processInput(Event& event) {
 	if (roundStart) {
 		return;
 	}
-	if (isPause && event.key.code != Keyboard::Escape) {
-		return;
+	if (isPause) {
+		if (
+			event.key.code != Keyboard::Escape &&
+			!Joystick::isConnected(0) &&
+			!event.type != Event::JoystickButtonPressed &&
+			(
+				event.joystickButton.button < 4 ||
+				event.joystickButton.button > 11
+			)
+		) {
+			return;
+		}
 	}
+
 	switch (event.type) {
+	case Event::JoystickButtonPressed:
+		switch(event.joystickButton.button) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			if (!didWin && !didLose) {
+				defender.fire();
+			}
+			break;
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+			isPause = !isPause;
+			defender.playerIsMovingLeft = false;
+			defender.playerIsMovingRight = false;
+			break;
+		default:
+			break;
+		}
+		break;
+	case Event::JoystickMoved:
+		if (Joystick::isConnected(0)) {
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -15) {
+				defender.playerIsMovingLeft = true;
+				defender.playerIsMovingRight = false;
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
+				defender.playerIsMovingRight = true;
+				defender.playerIsMovingLeft = false;
+			} else {
+				defender.playerIsMovingLeft = false;
+				defender.playerIsMovingRight = false;
+			}
+		}
+		break;
 	case Event::KeyPressed:
 		switch (event.key.code) {
 			// God Button
