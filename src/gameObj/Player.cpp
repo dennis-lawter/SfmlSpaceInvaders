@@ -1,7 +1,8 @@
 #include "Player.hpp"
 
-Player::Player()
-	: GameObject(resources::textures["defender"], 60.f, 300.f) {
+Player::Player(ParticleGroup& particleGroup)
+	: GameObject(resources::textures["defender"], 60.f, 300.f),
+	particleGroup(particleGroup) {
 	pewSound.setBuffer(resources::soundFile["defenderpew"]);
 	startingPosition = getPosition();
 	this->sprite.setTextureRect(IntRect(0, 0, 8, 8));
@@ -146,6 +147,26 @@ void Player::update() {
 			curved();
 		}
 		bullet->update();
+		Vector2f bulletPosition = bullet->getPosition();
+		bulletPosition.x -= 60*2;
+		Color color (0x0000ff00);
+		int alpha = 0;
+		for(int x = -60; x < 61; x++) {
+			alpha = (260-(x*x/4));
+			alpha = alpha>255 ? 0 : alpha;
+			alpha = alpha<0 ? 0 : alpha;
+			alpha /= 2;
+			color.a = alpha;
+			particleGroup.createParticleObject({
+				bulletPosition,
+				{x < 0 ? -1.f : 1.f, 0.f},
+				{x < 0 ? .3f : -.3f, 0.f},
+				6,
+				color,
+				Color::Transparent
+			});
+			bulletPosition.x += 2;
+		}
 	}
 	if (playerIsMovingLeft && !playerIsMovingRight) {
 		if (getX() > 0) {

@@ -1,8 +1,8 @@
 #include "GamePlayState.hpp"
 
 GamePlayState::GamePlayState()
-	: killemAll(particles)
-{
+	: killemAll(particles),
+	defender(particles) {
 	// util::setSeed(0U);
 	// this->roundStartTimer = ROUND_START_MAX-1;
 	// GamePlayState::startRound();

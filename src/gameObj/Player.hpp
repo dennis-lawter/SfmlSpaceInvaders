@@ -9,16 +9,19 @@
 
 class Player : public GameObject {
 private:
-	void deleteBullet();
+	ParticleGroup& particleGroup;
 	Sound pewSound;
+	Color finalColor = Color(0xFFFFFF00);
+	Color initialColor;
+	
 	bool animationSwap = true;
 	int animationBuffer = 0;
 	int animationTimer = 40;
-	Color initialColor;
-	Color finalColor = Color(0xFFFFFF00);
 	int age = 0;
 	int timeToLive = 200;
 	float agePercentage = 0;
+
+	void deleteBullet();
 public:
 	const static int INVULN_TIMER = 120;
 	const static int BLINK_SPEED = 5;
@@ -35,8 +38,7 @@ public:
 	float bulletSpeedModifier = 1.0;
 	Vector2f startingPosition;
 
-
-	Player();
+	Player(ParticleGroup& particleGroup);
 
 	void defenderExplode();
 	void fire();
