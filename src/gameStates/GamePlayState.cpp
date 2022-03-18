@@ -1,8 +1,8 @@
 #include "GamePlayState.hpp"
 
 GamePlayState::GamePlayState()
-	: killemAll(particles),
-	defender(particles) {
+	: defender(particles),
+	killemAll(particles) {
 	// util::setSeed(0U);
 	// this->roundStartTimer = ROUND_START_MAX-1;
 	// GamePlayState::startRound();
@@ -153,7 +153,7 @@ void GamePlayState::calculateUfo() {
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
 		// UNCOMMENT TO FORCE POWERUP
-		// randomPowerUpInt = defines::PowerUp::Coin;
+		randomPowerUpInt = defines::PowerUp::Bomb;
 		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
@@ -210,8 +210,7 @@ void GamePlayState::processInput(Event& event) {
 	if (isPause) {
 		if (
 			event.key.code != Keyboard::Escape &&
-			!Joystick::isConnected(0) &&
-			!event.type != Event::JoystickButtonPressed &&
+			event.type == Event::JoystickButtonPressed &&
 			(
 				event.joystickButton.button < 4 ||
 				event.joystickButton.button > 11

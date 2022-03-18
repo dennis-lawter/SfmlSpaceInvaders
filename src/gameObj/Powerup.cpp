@@ -5,6 +5,7 @@ Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defe
 	sprite.setColor(Color(0xFFFFFFBB));
 	this->powerupSelect = powerupSelect;
 	this->defender = &defender;
+	this->sprite.setOrigin(4, 4);
 }
 
 void Powerup::oneUp() {
@@ -107,7 +108,9 @@ void Powerup::grantPowerUp(ParticleGroup& particleGroup) {
 
 void Powerup::update(ParticleGroup& particleGroup) {
 	this->sprite.move(0, speed);
-	if (powerupSelect == defines::Coin && isOffScreen()) {
+	if (powerupSelect == defines::Bomb) {
+		this->sprite.scale({1.005f, 1.005f});
+	} else if (powerupSelect == defines::Coin && isOffScreen()) {
 		coinOffScreen(particleGroup);
 	}
 }
