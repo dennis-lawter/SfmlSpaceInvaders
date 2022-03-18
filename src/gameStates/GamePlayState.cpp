@@ -153,7 +153,7 @@ void GamePlayState::calculateUfo() {
 	if (ufo && ufo->hasFired && !powerup && !didUfoFire) {
 		int randomPowerUpInt = util::rangedRand(0, defines::PowerUp::COUNT - 1);
 		// UNCOMMENT TO FORCE POWERUP
-		randomPowerUpInt = defines::PowerUp::Bomb;
+		// randomPowerUpInt = defines::PowerUp::Bomb;
 		randomPowerup = static_cast<defines::PowerUp>(randomPowerUpInt);
 		powerup = new Powerup(randomPowerup, ufo->getX(), defender);
 		switch (randomPowerup)
