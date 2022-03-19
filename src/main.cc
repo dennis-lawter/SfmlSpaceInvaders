@@ -3,6 +3,8 @@
 #include "gameStates/TitleState.hpp"
 #include "gameStates/GameOverState.hpp"
 #include "gameStates/AttractState.hpp"
+#include "gameStates/ShowScoreState.hpp"
+// #include "gameStates/EnterInitialsState.hpp"
 #include "score.hh"
 using namespace sf;
 using namespace std;
@@ -55,6 +57,7 @@ void windowInit() {
 void update() {
 	GamePlayState* asGamePlayState;
 	TitleState* asTitleState;
+	ShowScoreState* asShowScoreState;
 	bool didWin;
 
 	gameState->update(window);
@@ -68,12 +71,24 @@ void update() {
 			asTitleState->bufferTick = asTitleState->BUFFERTIMER;
 			stateLevel = GameState::Title;
 			break;
+		case GameState::ShowScore:
+			asShowScoreState = (ShowScoreState*)gameState;
+			if (asShowScoreState->idle) {
+				delete gameState;
+				gameState = new AttractState();
+				stateLevel = GameState::Attract;
+			} else {
+				delete gameState;
+				gameState = new TitleState();
+				stateLevel = GameState::Title;
+			}
+			break;
 		case GameState::Title:
 			asTitleState = (TitleState*)gameState;
 			if (asTitleState->idle) {
 				delete gameState;
-				gameState = new AttractState();
-				stateLevel = GameState::Attract;
+				gameState = new ShowScoreState();
+				stateLevel = GameState::ShowScore;
 			} else {
 				delete gameState;
 				gameState = new GamePlayState();

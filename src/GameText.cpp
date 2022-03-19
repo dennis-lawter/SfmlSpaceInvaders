@@ -39,9 +39,9 @@ void GameText::setInternalOrigin() {
 			widestLine = fullWidth;
 		}
 		if (textBounds.top > 0.f) {
-			totalHeight += 80.f;
+			totalHeight += (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 		} else if (textBounds.height > 0.f) {
-			totalHeight += 80.f;
+			totalHeight += (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 		}
 	}
 	Vector2f origin;
@@ -98,7 +98,7 @@ void GameText::setLinePositions() {
 		}
 		tempPosition.y += heightOffset;
 		text.setPosition(tempPosition);
-		heightOffset = scale * 80.f;
+		heightOffset = scale * (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 	}
 }
 
@@ -145,6 +145,12 @@ void GameText::setHAlign(HAlign align) {
 void GameText::setVAlign(VAlign align) {
 	this->vAlign = align;
 	this->dirty = true;
+}
+
+void GameText::move(Vector2f movement) {
+	for (Text& text : texts) {
+		text.move(movement);
+	}
 }
 
 Vector2f GameText::getPosition() {

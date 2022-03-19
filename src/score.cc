@@ -74,6 +74,7 @@ namespace score {
 		int i = 0;
 		int matchScoreResult = matchScore();
 		for (int score : scoreList) {
+			highScores << "DLL ";
 			if (!currentScoreVisible && i == matchScoreResult) {
 				highScores << "        \n";
 			} else {
@@ -90,6 +91,7 @@ namespace score {
 		highScoreText.setText(getScoreTextString(currentScoreVisible));
 		highScoreText.setHAlign(GameText::CENTER);
 		highScoreText.setVAlign(GameText::MIDDLE);
+		highScoreText.setSize(GameText::LARGE);
 		highScoreText.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
 
 		return highScoreText;

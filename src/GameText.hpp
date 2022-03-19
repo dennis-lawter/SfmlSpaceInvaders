@@ -28,7 +28,7 @@ public:
 		SMALL,
 	};
 private:
-	static const int FIXED_LINE_HEIGHT = 9;
+	static const int FIXED_LINE_HEIGHT = 8;
 	vector<Text> texts;
 	vector<string> stringLines;
 	stringstream stringStream;
@@ -37,6 +37,7 @@ private:
 	Size size;
 	HAlign hAlign;
 	VAlign vAlign;
+	float verticalSpacing = 1.0f;
 	bool dirty = false;
 
 	float widestLine = 0.f;
@@ -46,7 +47,6 @@ private:
 	void setInternalOrigin();
 	void setInternalScale();
 	void setLinePositions();
-	void reRender();
 public:
 	GameText();
 
@@ -61,6 +61,9 @@ public:
 	void setSize(Size size);
 	void setHAlign(HAlign align);
 	void setVAlign(VAlign align);
+	void move(Vector2f movement);
+
+	void reRender();
 
 	void draw(RenderWindow& window);
 };
