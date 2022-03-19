@@ -32,7 +32,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		*/
 		for (int x = COLUMNS - 1; x >= 0; x--) {
 			for (int y = 0; y < ROWS; y++) {
-				if (baddies[x][y]) {
+				if (baddies[x][y] && !baddies[x][y]->eesComing) {
 					baddiesSpeed = baddies[x][y]->speed;
 					return (baddies[x][y]->getX() >= 120 + 4);
 				}
@@ -46,7 +46,7 @@ bool BaddieGroup::isBaddiesAdvance() {
 		*/
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
-				if (baddies[x][y]) {
+				if (baddies[x][y] && !baddies[x][y]->eesComing) {
 					baddiesSpeed = baddies[x][y]->speed;
 					return (baddies[x][y]->getX() <= 0 + 4);
 				}
@@ -74,6 +74,13 @@ void BaddieGroup::moveBaddiesSound() {
 }
 
 void BaddieGroup::moveBaddies() {
+	for (int x = 0; x < COLUMNS; x++) {
+		for (int y = 0; y < ROWS; y++) {
+			if (baddies[x][y]) {
+				baddies[x][y]->update();
+			}
+		}
+	}
 	if (isBaddiesAdvance()) {
 		shakeSpeed += 0.1f;
 		allMoveRight = !allMoveRight;
@@ -83,7 +90,7 @@ void BaddieGroup::moveBaddies() {
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
-				if (baddies[x][y]) {
+				if (baddies[x][y] && !baddies[x][y]->eesComing) {
 					baddies[x][y]->moveDown();
 				}
 			}
@@ -92,7 +99,7 @@ void BaddieGroup::moveBaddies() {
 		// order is irrelevant
 		for (int x = 0; x < COLUMNS; x++) {
 			for (int y = 0; y < ROWS; y++) {
-				if (baddies[x][y]) {
+				if (baddies[x][y] && !baddies[x][y]->eesComing) {
 					if (allMoveRight) {
 						baddies[x][y]->moveRight();
 					} else {
@@ -138,7 +145,7 @@ void BaddieGroup::chooseBaddieCuss() {
 
 void BaddieGroup::baddieShoot() {
 	if (shootTimer > SHOOT_DELAY) {
-		randomColumn = util::rangedRand(0, COLUMNS-1);
+		randomColumn = util::rangedRand(0, COLUMNS - 1);
 		// Bottom-up
 		for (int y = ROWS - 1; y >= 0; y--) {
 			if (baddies[randomColumn][y]) {
@@ -168,6 +175,17 @@ void BaddieGroup::deleteBaddie(int x, int y) {
 	delete baddies[x][y];
 	baddies[x][y] = nullptr;
 	baddieDeath.play();
+}
+
+void BaddieGroup::baddieOffScreen() {
+	for (int y = ROWS - 1; y >= 0; y--) {
+		for (int x = COLUMNS - 1; x >= 0; x--) {
+			if (baddies[x][y] && baddies[x][y]->getY() > defines::HEIGHT) {
+				deleteBaddie(x,y);
+				baddiesKilledThisFrame++;
+			}
+		}
+	}
 }
 
 bool BaddieGroup::testOneForCollision(GameObject* obj, bool deleteMine) {
@@ -235,7 +253,7 @@ bool BaddieGroup::isBaddiesWin() {
 	*/
 	for (int y = ROWS - 1; y >= 0; y--) {
 		for (int x = 0; x < COLUMNS; x++) {
-			if (baddies[x][y]) {
+			if (baddies[x][y] && !baddies[x][y]->eesComing) {
 				return (baddies[x][y]->getY() >= 115);
 			}
 		}
@@ -286,6 +304,7 @@ void BaddieGroup::update() {
 	accelerateBaddies();
 	baddieShoot();
 	bulletUpdate();
+	baddieOffScreen();
 }
 
 void BaddieGroup::windowShake(RenderWindow& window) {

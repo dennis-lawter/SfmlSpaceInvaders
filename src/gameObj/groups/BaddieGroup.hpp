@@ -54,6 +54,7 @@ public:
 	void chooseBaddieCuss();
 	void animateIntro(int framesElapsed);
 	void playerDeathAnimation(int framesElapsed);
+	void baddieOffScreen();
 
 	void update();
 	void windowShake(RenderWindow& window);

@@ -129,6 +129,14 @@ bool Player::testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs) {
 	return false;
 }
 
+bool Player::testKamiCollision(Baddie& objs) {
+	if (testCollision(objs)) {
+		return true;
+	}
+	return false;
+}
+
+
 void Player::animateIntro(int framesElapsed) {
 	Vector2f start = this->startingPosition;
 	Vector2f destination = { 60, 120 };
@@ -148,13 +156,13 @@ void Player::update() {
 		}
 		bullet->update();
 		Vector2f bulletPosition = bullet->getPosition();
-		bulletPosition.x -= 60*2;
-		Color color (0x0000ff00);
+		bulletPosition.x -= 60 * 2;
+		Color color(0x0000ff00);
 		int alpha = 0;
-		for(int x = -60; x < 61; x++) {
-			alpha = (260-(x*x/4));
-			alpha = alpha>255 ? 0 : alpha;
-			alpha = alpha<0 ? 0 : alpha;
+		for (int x = -60; x < 61; x++) {
+			alpha = (260 - (x * x / 4));
+			alpha = alpha > 255 ? 0 : alpha;
+			alpha = alpha < 0 ? 0 : alpha;
 			alpha /= 2;
 			color.a = alpha;
 			particleGroup.createParticleObject({
@@ -164,7 +172,7 @@ void Player::update() {
 				6,
 				color,
 				Color::Transparent
-			});
+				});
 			bulletPosition.x += 2;
 		}
 	}

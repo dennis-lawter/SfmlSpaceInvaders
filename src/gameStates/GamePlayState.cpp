@@ -19,7 +19,7 @@ GamePlayState::GamePlayState()
 	pause.setHAlign(GameText::CENTER);
 	pause.setVAlign(GameText::MIDDLE);
 	pause.setSize(GameText::TITLE);
-	pause.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
+	pause.setPosition({ defines::WIDTH / 2.f, defines::HEIGHT / 2.f });
 
 	stringstream roundTitleStringStream;
 	roundTitleStringStream
@@ -31,7 +31,7 @@ GamePlayState::GamePlayState()
 	roundTitle.setHAlign(GameText::CENTER);
 	roundTitle.setVAlign(GameText::MIDDLE);
 	roundTitle.setSize(GameText::LARGE);
-	roundTitle.setPosition({defines::WIDTH/2.f, defines::HEIGHT/2.f});
+	roundTitle.setPosition({ defines::WIDTH / 2.f, defines::HEIGHT / 2.f });
 
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
@@ -86,6 +86,19 @@ void GamePlayState::detectCollisions() {
 		score::currentLives--;
 		defender.isInvuln = true;
 		playerDeath.play();
+	}
+
+	// defender touches kamikaze baddie
+	for (int x = 0; x < killemAll.COLUMNS; x++) {
+		for (int y = 0; y < killemAll.ROWS; y++) {
+			if (killemAll.baddies[x][y]) {
+				if (defender.testKamiCollision(*killemAll.baddies[x][y]) && !defender.isInvuln) {
+					score::currentLives--;
+					defender.isInvuln = true;
+					playerDeath.play();
+				}
+			}
+		}
 	}
 
 	// barrier touches baddie bullet
@@ -214,15 +227,15 @@ void GamePlayState::processInput(Event& event) {
 			(
 				event.joystickButton.button < 4 ||
 				event.joystickButton.button > 11
-			)
-		) {
+				)
+			) {
 			return;
 		}
 	}
 
 	switch (event.type) {
 	case Event::JoystickButtonPressed:
-		switch(event.joystickButton.button) {
+		switch (event.joystickButton.button) {
 		case 0:
 		case 1:
 		case 2:

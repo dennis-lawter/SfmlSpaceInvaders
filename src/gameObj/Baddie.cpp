@@ -37,10 +37,29 @@ void Baddie::moveDown() {
 	this->sprite.move(0, ADVANCE_DISTANCE);
 }
 
-void Baddie::draw(RenderWindow& window) {
-	if (util::rangedRand(0, 20) == 0) {
-		this->sprite.setRotation(util::rangedRandFloat(-10.0, 10.0, 200));
+void Baddie::kamikaze() {
+	if (gettingAngry < 180 && isUpright) {
+		this->sprite.setRotation(gettingAngryShakes);
+		gettingAngryShakes = -gettingAngryShakes;
+		this->sprite.scale(1.003f, 1.003f);
+		gettingAngry++;
+		isUpright = false;
+	} else if (gettingAngry < 180 && !isUpright) {
+		this->sprite.setRotation(0.f);
+		this->sprite.scale(1.003f, 1.003f);
+		gettingAngry++;
+		isUpright = true;
+	} else if (!eesComing && gettingAngry >= 180) {
+		eesComing = true;
 	} else {
+		this->sprite.move(0, 2);
+	}
+}
+
+void Baddie::draw(RenderWindow& window) {
+	if (!ohHeMad && util::rangedRand(0, 20) == 0) {
+		this->sprite.setRotation(util::rangedRandFloat(-10.0, 10.0, 200));
+	} else if (!ohHeMad) {
 		this->sprite.setRotation(0.f);
 	}
 	if (animationSwap && animationBuffer > animationTimer) {
@@ -52,6 +71,15 @@ void Baddie::draw(RenderWindow& window) {
 		animationSwap = !animationSwap;
 		animationBuffer = 0;
 	}
-	animationBuffer += util::rangedRand(1,2);
+	animationBuffer += util::rangedRand(1, 2);
 	GameObject::draw(window);
+}
+
+void Baddie::update() {
+	if (util::rangedRand(0, KAMI_RANDOM) == 0) {
+		ohHeMad = true;
+	}
+	if (ohHeMad) {
+		kamikaze();
+	}
 }

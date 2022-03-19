@@ -127,7 +127,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Juice?
 - [x] Cuss to pay respects
 - [x] Make blood splatter on the screen
-- [ ] Have them randomly decide to kamikaze
+- [x] Have them randomly decide to kamikaze
 - [x] Have the baddies come in from all different directions durring opening round
 - [x] Have defender and barriers rise slowly into position
 - [x] Make baddies jitter

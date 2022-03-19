@@ -46,6 +46,7 @@ public:
 	void curved();
 	void testBulletCollisions(BaddieGroup& baddies, BarrierGroup& barriers, ParticleGroup& particles);
 	bool testManyForCollisionWithBaddieBullet(vector<BaddieBullet>& objs);
+	bool testKamiCollision(Baddie& objs);
 	void update();
 	void draw(RenderWindow& window);
 	void animateIntro(int framesElapsed);
