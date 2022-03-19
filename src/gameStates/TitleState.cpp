@@ -81,6 +81,7 @@ void TitleState::processInput(Event& event) {
 
 
 void TitleState::update(RenderWindow& window) {
+	drawTitle1.reRender();
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
 	} else if (bufferTick >= BUFFERTIMER) {

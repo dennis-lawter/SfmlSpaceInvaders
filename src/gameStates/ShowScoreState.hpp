@@ -1,7 +1,5 @@
 #ifndef SHOWSCORESTATE_HPP_
 #define SHOWSCORESTATE_HPP_
-#include <iomanip>
-#include <iostream>
 #include "GameState.hpp"
 
 class ShowScoreState : public GameState {

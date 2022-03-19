@@ -13,7 +13,7 @@ GameText::GameText() {
 	this->size = GameText::MEDIUM;
 	this->hAlign = GameText::LEFT;
 	this->vAlign = GameText::TOP;
-	this->stringStream.str("");
+	this->stringStream.clear();
 }
 
 void GameText::setTexts() {
@@ -25,6 +25,7 @@ void GameText::setTexts() {
 	while (std::getline(stringStream, temp, '\n')) {
 		texts.emplace_back(temp, resources::font, 80U);
 	}
+	stringStream.clear();
 	stringStream.str("");
 	stringStream << keepValue;
 }

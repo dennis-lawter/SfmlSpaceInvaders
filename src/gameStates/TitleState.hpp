@@ -1,7 +1,5 @@
 #ifndef TITLESTATE_HPP_
 #define TITLESTATE_HPP_
-#include <iomanip>
-#include <iostream>
 #include "GameState.hpp"
 
 class TitleState : public GameState {
