@@ -4,7 +4,7 @@
 #include "gameStates/GameOverState.hpp"
 #include "gameStates/AttractState.hpp"
 #include "gameStates/ShowScoreState.hpp"
-// #include "gameStates/EnterInitialsState.hpp"
+#include "gameStates/EnterInitialsState.hpp"
 #include "score.hh"
 using namespace sf;
 using namespace std;
@@ -64,6 +64,10 @@ void update() {
 
 	if (gameState->isEnding) {
 		switch (stateLevel) {
+		case GameState::EnterInitials:
+			delete gameState;
+			gameState = new GameOverState();
+			stateLevel = GameState::GameOver;
 		case GameState::Attract:
 			delete gameState;
 			gameState = new TitleState();
@@ -106,10 +110,15 @@ void update() {
 				gameState = new GamePlayState();
 				stateLevel = GameState::GamePlay;
 				break;
+			} else if (score::newScoreIsAHighScore()) {
+				delete gameState;
+				gameState = new EnterInitialsState();
+				stateLevel = GameState::EnterInitials;
+			} else {
+				delete gameState;
+				gameState = new GameOverState();
+				stateLevel = GameState::GameOver;
 			}
-			delete gameState;
-			gameState = new GameOverState();
-			stateLevel = GameState::GameOver;
 			break;
 		case GameState::GameOver:
 			delete gameState;

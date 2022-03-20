@@ -114,6 +114,7 @@ void GameText::reRender() {
 
 void GameText::setText(string s) {
 	this->stringStream.clear();
+	this->stringStream.str("");
 	this->stringStream << s;
 	this->dirty = true;
 }

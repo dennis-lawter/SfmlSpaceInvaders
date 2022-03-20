@@ -9,11 +9,11 @@ GameOverState::GameOverState() {
 
 	gameOverText.setHAlign(GameText::CENTER);
 	gameOverText.setSize(GameText::TITLE);
-	gameOverText.setPosition({defines::WIDTH/2.f, 20.f});
+	gameOverText.setPosition({defines::WIDTH/2.f, 15.f});
 	gameOverText.setText(gameOver);
 
 	pressAnyKeyText.setHAlign(GameText::CENTER);
-	pressAnyKeyText.setPosition({defines::WIDTH/2.f, 100.f});
+	pressAnyKeyText.setPosition({defines::WIDTH/2.f, 110.f});
 	pressAnyKeyText.setText(pressAnyKey);
 }
 

@@ -7,11 +7,15 @@ private:
 	GameText newHighScoreText;
 	GameText instructionsText;
 	GameText playerEnteredText;
-	string playerInitials = "   ";
+	string playerInitials = " ___ ";
 	Vector2f screenCenter = {defines::WIDTH/2.f, defines::HEIGHT/2.f};
 	bool isBlink = false;
-	char displayedChar = ' ';
-	int currentCharIndex = 0;
+	const int BLINK_TIMEOUT = 10;
+	int isBlinkTimer = 0;
+	char displayedChar = '_';
+	int currentCharIndex = 1;
+
+	void updateEnteredText();
 public:
 	EnterInitialsState();
 
