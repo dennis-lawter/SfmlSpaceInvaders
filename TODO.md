@@ -135,5 +135,5 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Defender slides towards next challenge
 - [x] Background gradient to follow the player bullet
 - [x] Defender explodes when their final life is lost
-- [ ] Invaders animate their victory in some way
+- [x] Invaders animate their victory in some way
 - [x] The bomb should be more threatening, either it grows or splits into several bombs

@@ -58,9 +58,16 @@ void GamePlayState::endRound() {
 }
 
 void GamePlayState::loseGame() {
-	defender.defenderExplode();
-	killemAll.playerDeathAnimation(endRoundBuffer);
-	endRoundBuffer++;
+
+	if (score::currentLives < 0) {
+		defender.defenderExplode();
+		killemAll.playerDeathAnimation(endRoundBuffer);
+		endRoundBuffer++;
+	} else {
+		defender.defenderExplode();
+		killemAll.baddiesWinAnimation(endRoundBuffer);
+		endRoundBuffer++;
+	}
 }
 
 void GamePlayState::updateComponents() {
@@ -275,9 +282,9 @@ void GamePlayState::processInput(Event& event) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
 			// God Button
-			// case Keyboard::BackSlash:
-			// 	defender.isPunch = true;
-			// 	break;
+			case Keyboard::BackSlash:
+				killemAll.forceKami();
+				break;
 		case Keyboard::A:
 		case Keyboard::Left:
 			defender.playerIsMovingLeft = true;

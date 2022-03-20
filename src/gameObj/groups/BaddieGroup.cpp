@@ -181,8 +181,19 @@ void BaddieGroup::baddieOffScreen() {
 	for (int y = ROWS - 1; y >= 0; y--) {
 		for (int x = COLUMNS - 1; x >= 0; x--) {
 			if (baddies[x][y] && baddies[x][y]->getY() > defines::HEIGHT) {
-				deleteBaddie(x,y);
+				deleteBaddie(x, y);
 				baddiesKilledThisFrame++;
+			}
+		}
+	}
+}
+
+void BaddieGroup::forceKami() {
+	for (int y = ROWS - 1; y >= 0; y--) {
+		for (int x = COLUMNS - 1; x >= 0; x--) {
+			if (baddies[x][y]) {
+				baddies[x][y]->ohHeMad = true;
+				return;
 			}
 		}
 	}
@@ -279,6 +290,9 @@ void BaddieGroup::playerDeathAnimation(int framesElapsed) {
 	for (int y = 0; y < ROWS; y++) {
 		for (int x = 0; x < COLUMNS; x++) {
 			if (!baddies[x][y]) continue;
+			if (baddies[x][y]->ohHeMad) {
+				deleteBaddie(x, y);
+			}
 			if (framesElapsed == 0) {
 				baddies[x][y]->startingPosition = baddies[x][y]->getPosition();
 				baddies[x][y]->destination.y = 132.f;
@@ -294,8 +308,22 @@ void BaddieGroup::playerDeathAnimation(int framesElapsed) {
 	}
 }
 
-void BaddieGroup::baddiesWinAnimation() {
-
+void BaddieGroup::baddiesWinAnimation(int framesElapsed) {
+	for (int y = 0; y < ROWS; y++) {
+		for (int x = 0; x < COLUMNS; x++) {
+			if (baddies[x][y] && baddies[x][y]->ohHeMad) {
+				deleteBaddie(x, y);
+			}
+			if (!baddies[x][y]) continue;
+			if (setJump < currentBaddies) {
+				baddies[x][y]->jump = (x % 2 == 0);
+				setJump++;
+			}
+			if (framesElapsed % 20 == 0) {
+				baddies[x][y]->jumpAnimate();
+			}
+		}
+	}
 }
 
 void BaddieGroup::update() {

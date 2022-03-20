@@ -18,6 +18,7 @@ private:
 	int shootTimer = 0;
 	int baddieMoveTimer = 100;
 	int baddieMoveTimerBuffer = 0;
+	int setJump = 0;
 	float baddiesSpeed = 0;
 
 	Sound baddiepew;
@@ -54,7 +55,9 @@ public:
 	void chooseBaddieCuss();
 	void animateIntro(int framesElapsed);
 	void playerDeathAnimation(int framesElapsed);
+	void baddiesWinAnimation(int framesElapsed);
 	void baddieOffScreen();
+	void forceKami();
 
 	void update();
 	void windowShake(RenderWindow& window);

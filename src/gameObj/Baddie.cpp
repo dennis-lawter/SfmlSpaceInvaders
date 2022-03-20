@@ -56,6 +56,19 @@ void Baddie::kamikaze() {
 	}
 }
 
+void Baddie::jumpAnimate() {
+	if (beforeWinPosition == Vector2f(0.f, 0.f)) {
+		beforeWinPosition = this->getPosition();
+	}
+	if (jump) {
+		this->sprite.move(0,-15);
+		jump = false;
+	} else if (!jump) {
+		this->setPosition(beforeWinPosition);
+		jump = true;
+	}
+}
+
 void Baddie::draw(RenderWindow& window) {
 	if (!ohHeMad && util::rangedRand(0, 20) == 0) {
 		this->sprite.setRotation(util::rangedRandFloat(-10.0, 10.0, 200));
@@ -78,6 +91,7 @@ void Baddie::draw(RenderWindow& window) {
 void Baddie::update() {
 	if (util::rangedRand(0, KAMI_RANDOM) == 0) {
 		ohHeMad = true;
+		
 	}
 	if (ohHeMad) {
 		kamikaze();

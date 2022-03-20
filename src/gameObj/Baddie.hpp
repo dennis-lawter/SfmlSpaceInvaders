@@ -11,8 +11,8 @@ private:
 	int gettingAngry = 0;
 	float gettingAngryShakes = 15.f;
 	bool animationSwap = true;
-	bool ohHeMad = false;
 	bool isUpright = true;
+	Vector2f beforeWinPosition = { 0.f,0.f };
 
 	void kamikaze();
 public:
@@ -20,6 +20,8 @@ public:
 	int animationPlayerDead;
 	float speed = 0.03;
 	bool eesComing = false;
+	bool jump = false;
+	bool ohHeMad = false;
 	Vector2f destination;
 	Vector2f startingPosition;
 
@@ -28,6 +30,7 @@ public:
 	void moveRight();
 	void moveLeft();
 	void moveDown();
+	void jumpAnimate();
 
 	void draw(RenderWindow& window);
 	void update();
