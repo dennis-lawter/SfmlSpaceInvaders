@@ -228,6 +228,7 @@ void GamePlayState::calculateStateStatus() {
 }
 
 void GamePlayState::processInput(Event& event) {
+	int joystickId = -1;
 	if (roundStart) {
 		return;
 	}
@@ -275,17 +276,16 @@ void GamePlayState::processInput(Event& event) {
 		}
 		break;
 	case Event::JoystickMoved:
-		if (Joystick::isConnected(0)) {
-			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -15) {
-				defender.playerIsMovingLeft = true;
-				defender.playerIsMovingRight = false;
-			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
-				defender.playerIsMovingRight = true;
-				defender.playerIsMovingLeft = false;
-			} else {
-				defender.playerIsMovingLeft = false;
-				defender.playerIsMovingRight = false;
-			}
+		joystickId = event.joystickMove.joystickId;
+		if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < -15) {
+			defender.playerIsMovingLeft = true;
+			defender.playerIsMovingRight = false;
+		} else if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > 15) {
+			defender.playerIsMovingRight = true;
+			defender.playerIsMovingLeft = false;
+		} else {
+			defender.playerIsMovingLeft = false;
+			defender.playerIsMovingRight = false;
 		}
 		break;
 	case Event::KeyPressed:
