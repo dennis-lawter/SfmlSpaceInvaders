@@ -51,6 +51,8 @@ namespace defines {
 
 	static const vector<string> SOUND_FILE_NAMES = {
 		"1up",
+		"accept",
+		"backspace",
 		"bad",
 		"baddieadvance",
 		"baddieboom",
@@ -58,6 +60,7 @@ namespace defines {
 		"baddiemove2",
 		"baddiepew",
 		"barrierboom",
+		"blip",
 		"boss",
 		"defenderboom",
 		"defenderpew",

@@ -10,6 +10,9 @@ private:
 	string playerInitials = " ___ ";
 	Vector2f screenCenter = {defines::WIDTH/2.f, defines::HEIGHT/2.f};
 	Sound fanfare;
+	Sound accept;
+	Sound backspace;
+	Sound blip;
 	bool isBlink = false;
 	const int BLINK_TIMEOUT = 10;
 	int isBlinkTimer = 0;
