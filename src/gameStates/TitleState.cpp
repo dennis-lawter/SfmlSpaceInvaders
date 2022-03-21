@@ -15,7 +15,7 @@ TitleState::TitleState() {
 	float center = defines::WIDTH / 2.f;
 	float rightCenter = 0.75f * defines::WIDTH;
 
-	drawTitle1.setPosition({center, 5.f});
+	drawTitle1.setPosition({center, 10.f});
 	drawTitle1.setHAlign(GameText::CENTER);
 	drawTitle1.setSize(GameText::TITLE);
 	drawTitle1.setText(defines::GAME_TITLE_SCREEN);
@@ -81,7 +81,6 @@ void TitleState::processInput(Event& event) {
 
 
 void TitleState::update(RenderWindow& window) {
-	drawTitle1.reRender();
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
 	} else if (bufferTick >= BUFFERTIMER) {
@@ -96,6 +95,12 @@ void TitleState::update(RenderWindow& window) {
 	} else if (isEnding != true) {
 		isEnding = true;
 		idle = true;
+	}
+
+	if ((idleTimer / 30) % 2 == 0) {
+		drawTitle1.move({0, -.2f});
+	} else {
+		drawTitle1.move({0, .2f});
 	}
 }
 

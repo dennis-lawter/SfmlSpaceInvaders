@@ -117,6 +117,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Don't display "press any button" text if it's not possible to press a button yet
 - [x] Can fire as the round ends
 - [x] Error log: "AL lib: (EE) alc_cleanup: 1 device not closed"
+- [ ] Attract mode auto-wins, no baddies?
 
 ### Performance Improvements
 - [x] Convert all sf::Text to GameText objects
@@ -142,7 +143,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [ ] Initials entry sounds on button presses
 - [ ] Chime plays when the high scores are being shown during idling
 - [x] Support more than Controller #0
-- [ ] Animate title on the title screen
+- [x] Animate title on the title screen
 
 ### Likely Won't Do
 - [ ] D-pad support?
