@@ -68,7 +68,7 @@ void EnterInitialsState::processInput(Event& event) {
 		break;
 	case Event::JoystickMoved:
 		if (Joystick::isConnected(0)) {
-			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -15) {
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -50 && isJoyStickCentered) {
 				// go back
 				if (currentCharIndex <= 1) {
 					break;
@@ -76,9 +76,10 @@ void EnterInitialsState::processInput(Event& event) {
 					playerInitials[currentCharIndex] = '_';
 				}
 				currentCharIndex--;
+				isJoyStickCentered = false;
 				updateEnteredText();
 				break;
-			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 50 && isJoyStickCentered) {
 				// accept
 				if (currentCharIndex >= 3) {
 					score::initials = playerInitials.substr(1, 3);
@@ -86,9 +87,10 @@ void EnterInitialsState::processInput(Event& event) {
 					break;
 				}
 				currentCharIndex++;
+				isJoyStickCentered = false;
 				updateEnteredText();
 				break;
-			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -15) {
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -50 && isJoyStickCentered) {
 				// down
 				if (displayedChar == '_') {
 					displayedChar = 'Z';
@@ -98,8 +100,9 @@ void EnterInitialsState::processInput(Event& event) {
 					displayedChar--;
 				}
 				updateEnteredText();
+				isJoyStickCentered = false;
 				break;
-			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 50 && isJoyStickCentered) {
 				// up
 				if (displayedChar == '_') {
 					displayedChar = 'A';
@@ -109,6 +112,10 @@ void EnterInitialsState::processInput(Event& event) {
 					displayedChar++;
 				}
 				updateEnteredText();
+				isJoyStickCentered = false;
+				break;
+			} else {
+				isJoyStickCentered = true;
 				break;
 			}
 		}
