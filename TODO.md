@@ -137,11 +137,11 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] The bomb should be more threatening, either it grows or splits into several bombs
 
 ### Polish
-- [ ] Victory chime
+- [x] Victory chime
 - [ ] New high score chime
 - [ ] Initials entry sounds on button presses
 - [ ] Chime plays when the high scores are being shown during idling
-- [ ] Support more than Controller #0
+- [x] Support more than Controller #0
 - [ ] Animate title on the title screen
 
 ### Likely Won't Do
