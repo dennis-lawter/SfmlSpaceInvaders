@@ -114,7 +114,12 @@ void EnterInitialsState::processInput(Event& event) {
 				}
 				updateEnteredText();
 				break;
-			} else {
+			} else if (
+				sf::Joystick::getAxisPosition(0, sf::Joystick::X) > -30 &&
+				sf::Joystick::getAxisPosition(0, sf::Joystick::X) < 30 &&
+				sf::Joystick::getAxisPosition(0, sf::Joystick::Y) > -30 &&
+				sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < 30
+				) {
 				isJoyStickCentered = true;
 				break;
 			}
