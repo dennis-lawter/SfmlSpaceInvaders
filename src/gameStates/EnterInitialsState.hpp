@@ -17,6 +17,11 @@ private:
 	bool isJoyStickCentered = false;
 
 	void updateEnteredText();
+
+	void playerPressedUp();
+	void playerPressedDown();
+	void playerPressedAccept();
+	void playerPressedBackspace();
 public:
 	EnterInitialsState();
 

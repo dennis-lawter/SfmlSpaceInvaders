@@ -29,29 +29,59 @@ void EnterInitialsState::updateEnteredText() {
 	playerInitials[currentCharIndex] = displayedChar;
 }
 
+void EnterInitialsState::playerPressedUp() {
+	if (displayedChar == '_') {
+		displayedChar = 'A';
+	} else if (displayedChar == 'Z') {
+		displayedChar = 'A';
+	} else {
+		displayedChar++;
+	}
+	updateEnteredText();
+}
+
+void EnterInitialsState::playerPressedDown() {
+	if (displayedChar == '_') {
+		displayedChar = 'Z';
+	} else if (displayedChar == 'A') {
+		displayedChar = 'Z';
+	} else {
+		displayedChar--;
+	}
+	updateEnteredText();
+}
+
+void EnterInitialsState::playerPressedAccept() {
+	if (displayedChar == '_') return;
+	
+	if (currentCharIndex >= 3) {
+		score::initials = playerInitials.substr(1, 3);
+		isEnding = true;
+		return;
+	}
+	currentCharIndex++;
+	updateEnteredText();
+}
+
+void EnterInitialsState::playerPressedBackspace() {
+	if (currentCharIndex <= 1) {
+		return;
+	} else if (currentCharIndex <= 3) {
+		playerInitials[currentCharIndex] = '_';
+	}
+	currentCharIndex--;
+	updateEnteredText();
+}
+
 void EnterInitialsState::processInput(Event& event) {
 	switch (event.type) {
 	case Event::JoystickButtonPressed:
 		switch (event.joystickButton.button) {
 		case 0:
-			// accept
-			if (currentCharIndex >= 3) {
-				score::initials = playerInitials.substr(1, 3);
-				isEnding = true;
-				break;
-			}
-			currentCharIndex++;
-			updateEnteredText();
+			playerPressedAccept();
 			break;
 		case 1:
-			// go back
-			if (currentCharIndex <= 1) {
-				break;
-			} else if (currentCharIndex <= 3) {
-				playerInitials[currentCharIndex] = '_';
-			}
-			currentCharIndex--;
-			updateEnteredText();
+			playerPressedBackspace();
 			break;
 		case 2:
 		case 3:
@@ -69,50 +99,20 @@ void EnterInitialsState::processInput(Event& event) {
 	case Event::JoystickMoved:
 		if (Joystick::isConnected(0)) {
 			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -50 && isJoyStickCentered) {
-				// go back
 				isJoyStickCentered = false;
-				if (currentCharIndex <= 1) {
-					break;
-				} else if (currentCharIndex <= 3) {
-					playerInitials[currentCharIndex] = '_';
-				}
-				currentCharIndex--;
-				updateEnteredText();
+				playerPressedBackspace();
 				break;
 			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 50 && isJoyStickCentered) {
-				// accept
 				isJoyStickCentered = false;
-				if (currentCharIndex >= 3) {
-					score::initials = playerInitials.substr(1, 3);
-					isEnding = true;
-					break;
-				}
-				currentCharIndex++;
-				updateEnteredText();
+				playerPressedAccept();
 				break;
 			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) > 50 && isJoyStickCentered) {
-				// down
 				isJoyStickCentered = false;
-				if (displayedChar == '_') {
-					displayedChar = 'Z';
-				} else if (displayedChar == 'A') {
-					displayedChar = 'Z';
-				} else {
-					displayedChar--;
-				}
-				updateEnteredText();
+				playerPressedDown();
 				break;
 			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -50 && isJoyStickCentered) {
-				// up
 				isJoyStickCentered = false;
-				if (displayedChar == '_') {
-					displayedChar = 'A';
-				} else if (displayedChar == 'Z') {
-					displayedChar = 'A';
-				} else {
-					displayedChar++;
-				}
-				updateEnteredText();
+				playerPressedUp();
 				break;
 			} else if (
 				sf::Joystick::getAxisPosition(0, sf::Joystick::X) > -30 &&
@@ -130,51 +130,21 @@ void EnterInitialsState::processInput(Event& event) {
 		case Keyboard::Left:
 		case Keyboard::Backspace:
 		case Keyboard::A:
-			// go back
-			if (currentCharIndex <= 1) {
-				break;
-			} else if (currentCharIndex <= 3) {
-				playerInitials[currentCharIndex] = '_';
-			}
-			currentCharIndex--;
-			updateEnteredText();
+			playerPressedBackspace();
 			break;
 		case Keyboard::Right:
 		case Keyboard::Space:
 		case Keyboard::Enter:
 		case Keyboard::D:
-			// accept
-			if (currentCharIndex >= 3) {
-				score::initials = playerInitials.substr(1, 3);
-				isEnding = true;
-				break;
-			}
-			currentCharIndex++;
-			updateEnteredText();
+			playerPressedAccept();
 			break;
 		case Keyboard::W:
 		case Keyboard::Up:
-			// up
-			if (displayedChar == '_') {
-				displayedChar = 'A';
-			} else if (displayedChar == 'Z') {
-				displayedChar = 'A';
-			} else {
-				displayedChar++;
-			}
-			updateEnteredText();
+			playerPressedUp();
 			break;
 		case Keyboard::S:
 		case Keyboard::Down:
-			// down
-			if (displayedChar == '_') {
-				displayedChar = 'Z';
-			} else if (displayedChar == 'A') {
-				displayedChar = 'Z';
-			} else {
-				displayedChar--;
-			}
-			updateEnteredText();
+			playerPressedDown();
 			break;
 		default:
 			break;
@@ -192,8 +162,8 @@ void EnterInitialsState::update(RenderWindow& window) {
 		(isBlink && isBlinkTimer >= BLINK_TIMEOUT / 2)
 		) {
 		isBlink = !isBlink;
-		updateEnteredText();
 		isBlinkTimer = 0;
+		updateEnteredText();
 	}
 }
 
