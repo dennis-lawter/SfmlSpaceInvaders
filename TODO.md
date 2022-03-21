@@ -99,7 +99,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Quality of Life
 - [x] Save the high score to a file on the player's device
 - [x] Load the high score from the file on the player's device upon starting the game
-- [ ] Allow the player to enter their initials when they achieve a new high score
+- [x] Allow the player to enter their initials when they achieve a new high score
 - [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [x] Animate the defender and invader sprites
 - [x] Show the amount of score gained on screen near the location where the score gaining event occurred

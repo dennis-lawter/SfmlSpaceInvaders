@@ -1,8 +1,5 @@
 #ifndef GAMEOVERSTATE_HPP_
 #define GAMEOVERSTATE_HPP_
-#include <iostream>
-#include <iomanip>
-#include <vector>
 #include "GameState.hpp"
 #include "GamePlayState.hpp"
 #include "../Hud.hpp"

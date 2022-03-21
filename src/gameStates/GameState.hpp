@@ -13,7 +13,9 @@ public:
 		Title,
 		GamePlay,
 		GameOver,
-		Attract
+		Attract,
+		ShowScore,
+		EnterInitials
 	};
 
 	bool isEnding = false;
