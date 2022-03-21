@@ -51,6 +51,7 @@ $(RELEASE_OUT_DIR)$(EXECUTABLE): $(OBJECTSOUT)
 	$(CC) $(LIBRARYDIR) -o $@ $(OBJECTSOUT) $(LIBRARIES)
 	$(CP) -R res/resource $(RELEASE_OUT_DIR)
 	$(CP) $(DLLS) $(RELEASE_OUT_DIR)
+	$(RM) resource/HighScore.txt
 
 $(RELEASE_OBJ_DIR)%.o: $(SRC_DIR)%.cc
 	$(dir_guard)

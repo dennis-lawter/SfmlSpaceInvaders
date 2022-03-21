@@ -76,8 +76,6 @@ To better learn C++, game development, and SFML the objetive is to create a clon
         - [x] Bomb sprite (bane): The player loses a life exactly as they would if the defender had collided with an invader bullet
         - [x] Speed Down sprite (bane): Until the level or game ends the defender has a 20% slower movement speed than it had previously
         - [x] Aggression sprite (bane): Until the level or game ends the invaders have a 20% faster movement speed than they had previously
-        - [ ] Ghost sprite (bane): Does not spawn if there are no dead invaders
-          - [ ] If collected, every column in the grid of invaders that has at least one missing invader respawns an invader in the further back available empty position, then all the invaders move up 10 pixels
         - [x] Curved bullet (boon): Have bullet move torward the center of the defender
 - [x] Pause screen
   - [x] The gameplay screen is displayed as usual
@@ -99,7 +97,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 ### Quality of Life
 - [x] Save the high score to a file on the player's device
 - [x] Load the high score from the file on the player's device upon starting the game
-- [ ] Allow the player to enter their initials when they achieve a new high score
+- [x] Allow the player to enter their initials when they achieve a new high score
 - [x] If the player resizes the window use letterboxing to restrict the game canvas to a 1:1 aspect ratio
 - [x] Animate the defender and invader sprites
 - [x] Show the amount of score gained on screen near the location where the score gaining event occurred
@@ -137,3 +135,19 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Defender explodes when their final life is lost
 - [x] Invaders animate their victory in some way
 - [x] The bomb should be more threatening, either it grows or splits into several bombs
+
+### Polish
+- [ ] Victory chime
+- [ ] New high score chime
+- [ ] Initials entry sounds on button presses
+- [ ] Chime plays when the high scores are being shown during idling
+- [ ] Support more than Controller #0
+- [ ] Animate title on the title screen
+
+### Likely Won't Do
+- [ ] D-pad support?
+- [ ] Text entry for initials
+- [ ] Keyrepeat-style entry for initials on controller (hold up to advance through aplhabet)
+- [ ] Support for more languages than English
+- [ ] Support for more controller models
+- [ ] MacOS Release
