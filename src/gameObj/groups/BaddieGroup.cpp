@@ -292,6 +292,7 @@ void BaddieGroup::playerDeathAnimation(int framesElapsed) {
 			if (!baddies[x][y]) continue;
 			if (baddies[x][y]->ohHeMad) {
 				deleteBaddie(x, y);
+				continue;
 			}
 			if (framesElapsed == 0) {
 				baddies[x][y]->startingPosition = baddies[x][y]->getPosition();
@@ -311,10 +312,11 @@ void BaddieGroup::playerDeathAnimation(int framesElapsed) {
 void BaddieGroup::baddiesWinAnimation(int framesElapsed) {
 	for (int y = 0; y < ROWS; y++) {
 		for (int x = 0; x < COLUMNS; x++) {
-			if (baddies[x][y] && baddies[x][y]->ohHeMad) {
-				deleteBaddie(x, y);
-			}
 			if (!baddies[x][y]) continue;
+			if (baddies[x][y]->ohHeMad) {
+				deleteBaddie(x, y);
+				continue;
+			}
 			if (setJump < currentBaddies) {
 				baddies[x][y]->jump = (x % 2 == 0);
 				setJump++;

@@ -24,6 +24,7 @@ protected:
 	Sound powerupSound;
 	Sound powerdownSound;
 	Sound playerDeath;
+	Sound victory;
 
 	// UNCOMMENT TO RECORD DEMO
 	// stringstream demo;

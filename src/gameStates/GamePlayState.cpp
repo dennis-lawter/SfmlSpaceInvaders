@@ -36,6 +36,7 @@ GamePlayState::GamePlayState()
 	powerupSound.setBuffer(resources::soundFile["1up"]);
 	powerdownSound.setBuffer(resources::soundFile["bad"]);
 	playerDeath.setBuffer(resources::soundFile["defenderboom"]);
+	victory.setBuffer(resources::soundFile["victory"]);
 }
 
 void GamePlayState::startRound() {
@@ -53,6 +54,9 @@ void GamePlayState::startRound() {
 }
 
 void GamePlayState::endRound() {
+	if (endRoundBuffer <= 0) {
+		victory.play();
+	}
 	defender.animateOutro(endRoundBuffer);
 	endRoundBuffer++;
 }
@@ -228,14 +232,19 @@ void GamePlayState::processInput(Event& event) {
 		return;
 	}
 	if (isPause) {
-		if (
-			event.key.code != Keyboard::Escape &&
-			event.type == Event::JoystickButtonPressed &&
-			(
-				event.joystickButton.button < 4 ||
-				event.joystickButton.button > 11
-				)
-			) {
+		switch (event.type) {
+		case Event::KeyPressed:
+			if (event.key.code != Keyboard::Escape) {
+				return;
+			}
+			break;
+		case Event::JoystickButtonPressed:
+			if (event.joystickButton.button < 4 ||
+				event.joystickButton.button > 11) {
+				return;
+			}
+			break;
+		default:
 			return;
 		}
 	}
@@ -282,9 +291,9 @@ void GamePlayState::processInput(Event& event) {
 	case Event::KeyPressed:
 		switch (event.key.code) {
 			// God Button
-			case Keyboard::BackSlash:
-				killemAll.forceKami();
-				break;
+		// case Keyboard::BackSlash:
+		// 	killemAll.forceKami();
+		// 	break;
 		case Keyboard::A:
 		case Keyboard::Left:
 			defender.playerIsMovingLeft = true;

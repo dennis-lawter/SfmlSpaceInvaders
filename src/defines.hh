@@ -67,6 +67,7 @@ namespace defines {
 		"speedup",
 		"ufo",
 		"ufoFire",
+		"victory",
 		"woah",
 		"wtf"
 	};
