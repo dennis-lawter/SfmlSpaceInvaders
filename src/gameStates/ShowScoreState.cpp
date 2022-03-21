@@ -9,6 +9,9 @@ ShowScoreState::ShowScoreState() {
 	highScoreTitleText.setHAlign(GameText::CENTER);
 	highScoreTitleText.setSize(GameText::TITLE);
 	highScoreTitleText.setText("HIGH SCORES");
+
+	idleScoreTune.setBuffer(resources::soundFile["idlescorelist"]);
+	idleScoreTune.play();
 }
 
 void ShowScoreState::processInput(Event& event) {

@@ -141,7 +141,7 @@ To better learn C++, game development, and SFML the objetive is to create a clon
 - [x] Victory chime
 - [x] New high score chime
 - [ ] Initials entry sounds on button presses
-- [ ] Chime plays when the high scores are being shown during idling
+- [x] Chime plays when the high scores are being shown during idling
 - [x] Support more than Controller #0
 - [x] Animate title on the title screen
 

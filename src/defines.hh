@@ -62,6 +62,7 @@ namespace defines {
 		"defenderboom",
 		"defenderpew",
 		"gameover",
+		"idlescorelist",
 		"newhighscore",
 		"randommusic",
 		"speeddown",
