@@ -1,14 +1,11 @@
 #ifndef TITLESTATE_HPP_
 #define TITLESTATE_HPP_
-#include <iomanip>
-#include <iostream>
 #include "GameState.hpp"
 
 class TitleState : public GameState {
 private:
 	GameText drawTitle1;
 	GameText pressStart;
-	GameText highScoreText;
 	GameText controls;
 	GameText boon;
 	GameText bane;
@@ -29,8 +26,8 @@ private:
 	int blinkBuffer = 0;
 	bool isBlink = false;
 
-	const int ATTRACT_MODE_TIMEOUT = 600;
-	int attractModeTimer = 0;
+	const int IDLE_TIMEOUT = 600;
+	int idleTimer = 0;
 public:
 	bool idle = true;
 	const int BUFFERTIMER = 90;

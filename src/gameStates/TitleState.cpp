@@ -5,7 +5,7 @@ TitleState::TitleState() {
 	score::score = 0;
 	score::currentLives = 2;
 	score::roundNumber = 1;
-	score::speedModifier = 0;
+	score::speedModifier = 0;	
 
 	score::loadScores();
 
@@ -14,8 +14,6 @@ TitleState::TitleState() {
 
 	float center = defines::WIDTH / 2.f;
 	float rightCenter = 0.75f * defines::WIDTH;
-
-	highScoreText = score::getScoreTextBlock();
 
 	drawTitle1.setPosition({center, 5.f});
 	drawTitle1.setHAlign(GameText::CENTER);
@@ -83,6 +81,7 @@ void TitleState::processInput(Event& event) {
 
 
 void TitleState::update(RenderWindow& window) {
+	drawTitle1.reRender();
 	if (blinkBuffer < BLINKTIMER) {
 		blinkBuffer++;
 	} else if (bufferTick >= BUFFERTIMER) {
@@ -92,8 +91,8 @@ void TitleState::update(RenderWindow& window) {
 	if (bufferTick < BUFFERTIMER) {
 		bufferTick++;
 	}
-	if (attractModeTimer < ATTRACT_MODE_TIMEOUT) {
-		attractModeTimer++;
+	if (idleTimer < IDLE_TIMEOUT) {
+		idleTimer++;
 	} else if (isEnding != true) {
 		isEnding = true;
 		idle = true;
@@ -106,7 +105,6 @@ void TitleState::draw(RenderWindow& window) {
 	if (isBlink) {
 		pressStart.draw(window);
 	}
-	highScoreText.draw(window);
 	controls.draw(window);
 	boon.draw(window);
 	bane.draw(window);

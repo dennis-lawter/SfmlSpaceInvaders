@@ -9,7 +9,8 @@ using namespace std;
 
 namespace score {
 	extern int score;
-	extern vector<int> scoreList;
+	extern string initials;
+	extern vector<pair<string, int>> scoreList;
 	extern int currentLives;
 	extern int roundNumber;
 	extern double speedModifier;
@@ -19,8 +20,9 @@ namespace score {
 
 	void loadScores();
 	void saveScores();
-	bool compareScores(int first, int second);
+	bool compareScores(pair<string, int> left, pair<string, int> right);
 	void addScore();
+	bool newScoreIsAHighScore();
 	int matchScore();
 
 	string getScoreTextString(bool currentScoreVisible = true);

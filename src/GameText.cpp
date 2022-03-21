@@ -13,7 +13,7 @@ GameText::GameText() {
 	this->size = GameText::MEDIUM;
 	this->hAlign = GameText::LEFT;
 	this->vAlign = GameText::TOP;
-	this->stringStream.str("");
+	this->stringStream.clear();
 }
 
 void GameText::setTexts() {
@@ -25,6 +25,7 @@ void GameText::setTexts() {
 	while (std::getline(stringStream, temp, '\n')) {
 		texts.emplace_back(temp, resources::font, 80U);
 	}
+	stringStream.clear();
 	stringStream.str("");
 	stringStream << keepValue;
 }
@@ -39,9 +40,9 @@ void GameText::setInternalOrigin() {
 			widestLine = fullWidth;
 		}
 		if (textBounds.top > 0.f) {
-			totalHeight += 80.f;
+			totalHeight += (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 		} else if (textBounds.height > 0.f) {
-			totalHeight += 80.f;
+			totalHeight += (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 		}
 	}
 	Vector2f origin;
@@ -98,7 +99,7 @@ void GameText::setLinePositions() {
 		}
 		tempPosition.y += heightOffset;
 		text.setPosition(tempPosition);
-		heightOffset = scale * 80.f;
+		heightOffset = scale * (FIXED_LINE_HEIGHT + verticalSpacing) * 10.f;
 	}
 }
 
@@ -113,6 +114,7 @@ void GameText::reRender() {
 
 void GameText::setText(string s) {
 	this->stringStream.clear();
+	this->stringStream.str("");
 	this->stringStream << s;
 	this->dirty = true;
 }
@@ -145,6 +147,12 @@ void GameText::setHAlign(HAlign align) {
 void GameText::setVAlign(VAlign align) {
 	this->vAlign = align;
 	this->dirty = true;
+}
+
+void GameText::move(Vector2f movement) {
+	for (Text& text : texts) {
+		text.move(movement);
+	}
 }
 
 Vector2f GameText::getPosition() {
