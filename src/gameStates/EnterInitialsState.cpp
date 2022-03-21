@@ -18,6 +18,10 @@ EnterInitialsState::EnterInitialsState() {
 
 	fanfare.setBuffer(resources::soundFile["newhighscore"]);
 	fanfare.play();
+
+	accept.setBuffer(resources::soundFile["accept"]);
+	backspace.setBuffer(resources::soundFile["backspace"]);
+	blip.setBuffer(resources::soundFile["blip"]);
 }
 
 void EnterInitialsState::updateEnteredText() {
@@ -40,6 +44,7 @@ void EnterInitialsState::playerPressedUp() {
 	} else {
 		displayedChar++;
 	}
+	blip.play();
 	updateEnteredText();
 }
 
@@ -51,6 +56,7 @@ void EnterInitialsState::playerPressedDown() {
 	} else {
 		displayedChar--;
 	}
+	blip.play();
 	updateEnteredText();
 }
 
@@ -62,6 +68,7 @@ void EnterInitialsState::playerPressedAccept() {
 		isEnding = true;
 		return;
 	}
+	accept.play();
 	currentCharIndex++;
 	updateEnteredText();
 }
@@ -72,6 +79,7 @@ void EnterInitialsState::playerPressedBackspace() {
 	} else if (currentCharIndex <= 3) {
 		playerInitials[currentCharIndex] = '_';
 	}
+	backspace.play();
 	currentCharIndex--;
 	updateEnteredText();
 }
