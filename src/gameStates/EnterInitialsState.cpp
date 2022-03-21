@@ -15,6 +15,9 @@ EnterInitialsState::EnterInitialsState() {
 	playerEnteredText.setVAlign(GameText::MIDDLE);
 	playerEnteredText.setSize(GameText::TITLE);
 	playerEnteredText.setText(playerInitials);
+
+	fanfare.setBuffer(resources::soundFile["newhighscore"]);
+	fanfare.play();
 }
 
 void EnterInitialsState::updateEnteredText() {
