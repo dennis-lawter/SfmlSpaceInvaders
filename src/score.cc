@@ -3,7 +3,7 @@
 namespace score {
 	int currentLives = 2;
 	int score = 0;
-	string initials = "";
+	string initials = " ";
 	int roundNumber = 1;
 	double speedModifier = 0;
 	double roundMultiplier = 0.005;
@@ -35,8 +35,8 @@ namespace score {
 		if (!loadScore.fail()) {
 			scoreList.clear();
 
-			int scoreFromFile;
-			char initialsFromFile [3];
+			int scoreFromFile = 0;
+			char initialsFromFile [4] = "   "; 
 			while (!loadScore.eof()) {
 				loadScore >> initialsFromFile;
 				loadScore >> scoreFromFile;
@@ -58,7 +58,7 @@ namespace score {
 		saveScore.open(resources::highScoresFileName, ofstream::trunc);
 		if (!saveScore.fail()) {
 			for (pair<string, int> singleScore : scoreList) {
-				saveScore << singleScore.first << " " << singleScore.second << endl;
+				saveScore << singleScore.first << '\t' << singleScore.second << '\n';
 			}
 		}
 		saveScore.close();
@@ -101,7 +101,7 @@ namespace score {
 		stringstream highScores;
 		int matchScoreResult = matchScore();
 		for (unsigned int i = 0; i < scoreList.size(); i++) {
-			if (!currentScoreVisible && matchScoreResult > 0 && i == ((unsigned int)matchScoreResult)) {
+			if (!currentScoreVisible && matchScoreResult >= 0 && i == ((unsigned int)matchScoreResult)) {
 				highScores << "            \n";
 			} else {
 				highScores << scoreList[i].first << " ";

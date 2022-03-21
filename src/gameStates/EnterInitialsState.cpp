@@ -1,12 +1,12 @@
 #include "EnterInitialsState.hpp"
 
 EnterInitialsState::EnterInitialsState() {
-	newHighScoreText.setPosition({screenCenter.x, 15.f});
+	newHighScoreText.setPosition({ screenCenter.x, 15.f });
 	newHighScoreText.setHAlign(GameText::CENTER);
 	newHighScoreText.setSize(GameText::HUGE);
 	newHighScoreText.setText("NEW HIGH SCORE");
 
-	instructionsText.setPosition({screenCenter.x, 30.f});
+	instructionsText.setPosition({ screenCenter.x, 30.f });
 	instructionsText.setHAlign(GameText::CENTER);
 	instructionsText.setText("ENTER INITIALS");
 
@@ -21,17 +21,19 @@ void EnterInitialsState::updateEnteredText() {
 	if (currentCharIndex > 3) return;
 	if (isBlink) {
 		playerInitials[currentCharIndex] = ' ';
+		playerEnteredText.setText(playerInitials);
 	} else {
 		playerInitials[currentCharIndex] = displayedChar;
+		playerEnteredText.setText(playerInitials);
 	}
-	playerEnteredText.setText(playerInitials);
+	playerInitials[currentCharIndex] = displayedChar;
 }
 
 void EnterInitialsState::processInput(Event& event) {
 	switch (event.type) {
-	// case Event::TextEntered:
-		
-	// 	break;
+		// case Event::TextEntered:
+
+		// 	break;
 	case Event::KeyPressed:
 		switch (event.key.code) {
 		case Keyboard::Left:
@@ -51,12 +53,11 @@ void EnterInitialsState::processInput(Event& event) {
 		case Keyboard::Enter:
 		case Keyboard::D:
 			// accept
-			if (currentCharIndex >= 4) {
+			if (currentCharIndex >= 3) {
 				score::initials = playerInitials.substr(1, 3);
 				isEnding = true;
 				break;
 			}
-			playerInitials[currentCharIndex] = displayedChar;
 			currentCharIndex++;
 			updateEnteredText();
 			break;
@@ -97,8 +98,8 @@ void EnterInitialsState::update(RenderWindow& window) {
 	isBlinkTimer++;
 	if (
 		(!isBlink && isBlinkTimer >= BLINK_TIMEOUT) ||
-		(isBlink && isBlinkTimer >= BLINK_TIMEOUT/2)
-	) {
+		(isBlink && isBlinkTimer >= BLINK_TIMEOUT / 2)
+		) {
 		isBlink = !isBlink;
 		updateEnteredText();
 		isBlinkTimer = 0;
