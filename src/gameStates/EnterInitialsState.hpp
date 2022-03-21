@@ -14,7 +14,7 @@ private:
 	int isBlinkTimer = 0;
 	char displayedChar = '_';
 	int currentCharIndex = 1;
-	bool isJoyStickCentered = true;
+	bool isJoyStickCentered = false;
 
 	void updateEnteredText();
 public:
