@@ -36,6 +36,7 @@ void EnterInitialsState::processInput(Event& event) {
 		switch (event.key.code) {
 		case Keyboard::Left:
 		case Keyboard::Backspace:
+		case Keyboard::A:
 			// go back
 			if (currentCharIndex <= 1) {
 				break;
@@ -48,6 +49,7 @@ void EnterInitialsState::processInput(Event& event) {
 		case Keyboard::Right:
 		case Keyboard::Space:
 		case Keyboard::Enter:
+		case Keyboard::D:
 			// accept
 			if (currentCharIndex >= 4) {
 				score::initials = playerInitials.substr(1, 3);
@@ -70,7 +72,7 @@ void EnterInitialsState::processInput(Event& event) {
 			}
 			updateEnteredText();
 			break;
-		case Keyboard::D:
+		case Keyboard::S:
 		case Keyboard::Down:
 			// down
 			if (displayedChar == '_') {

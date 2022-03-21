@@ -5,7 +5,7 @@ TitleState::TitleState() {
 	score::score = 0;
 	score::currentLives = 2;
 	score::roundNumber = 1;
-	score::speedModifier = 0;
+	score::speedModifier = 0;	
 
 	score::loadScores();
 

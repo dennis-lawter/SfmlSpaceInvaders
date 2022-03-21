@@ -68,6 +68,7 @@ void update() {
 			delete gameState;
 			gameState = new GameOverState();
 			stateLevel = GameState::GameOver;
+			break;
 		case GameState::Attract:
 			delete gameState;
 			gameState = new TitleState();
