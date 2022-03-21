@@ -31,9 +31,88 @@ void EnterInitialsState::updateEnteredText() {
 
 void EnterInitialsState::processInput(Event& event) {
 	switch (event.type) {
-		// case Event::TextEntered:
-
-		// 	break;
+	case Event::JoystickButtonPressed:
+		switch (event.joystickButton.button) {
+		case 0:
+			// accept
+			if (currentCharIndex >= 3) {
+				score::initials = playerInitials.substr(1, 3);
+				isEnding = true;
+				break;
+			}
+			currentCharIndex++;
+			updateEnteredText();
+			break;
+		case 1:
+			// go back
+			if (currentCharIndex <= 1) {
+				break;
+			} else if (currentCharIndex <= 3) {
+				playerInitials[currentCharIndex] = '_';
+			}
+			currentCharIndex--;
+			updateEnteredText();
+			break;
+		case 2:
+		case 3:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+		case 10:
+		case 11:
+			break;
+		default:
+			break;
+		}
+		break;
+	case Event::JoystickMoved:
+		if (Joystick::isConnected(0)) {
+			if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) < -15) {
+				// go back
+				if (currentCharIndex <= 1) {
+					break;
+				} else if (currentCharIndex <= 3) {
+					playerInitials[currentCharIndex] = '_';
+				}
+				currentCharIndex--;
+				updateEnteredText();
+				break;
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
+				// accept
+				if (currentCharIndex >= 3) {
+					score::initials = playerInitials.substr(1, 3);
+					isEnding = true;
+					break;
+				}
+				currentCharIndex++;
+				updateEnteredText();
+				break;
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::Y) < -15) {
+				// down
+				if (displayedChar == '_') {
+					displayedChar = 'Z';
+				} else if (displayedChar == 'A') {
+					displayedChar = 'Z';
+				} else {
+					displayedChar--;
+				}
+				updateEnteredText();
+				break;
+			} else if (sf::Joystick::getAxisPosition(0, sf::Joystick::X) > 15) {
+				// up
+				if (displayedChar == '_') {
+					displayedChar = 'A';
+				} else if (displayedChar == 'Z') {
+					displayedChar = 'A';
+				} else {
+					displayedChar++;
+				}
+				updateEnteredText();
+				break;
+			}
+		}
+		break;
 	case Event::KeyPressed:
 		switch (event.key.code) {
 		case Keyboard::Left:
