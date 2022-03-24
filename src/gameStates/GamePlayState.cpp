@@ -187,7 +187,6 @@ void GamePlayState::calculateUfo() {
 		case defines::PowerUp::Passive:
 		case defines::PowerUp::Curved:
 		case defines::PowerUp::Missile:
-		case defines::PowerUp::Passive:
 		case defines::PowerUp::Punch:
 		case defines::PowerUp::SpeedUp:
 			powerupSound.play();
