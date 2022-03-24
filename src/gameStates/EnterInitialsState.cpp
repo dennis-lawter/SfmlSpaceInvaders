@@ -110,28 +110,46 @@ void EnterInitialsState::processInput(Event& event) {
 		break;
 	case Event::JoystickMoved:
 		joystickId = event.joystickMove.joystickId;
-		if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < -50 && isJoyStickCentered) {
-			isJoyStickCentered = false;
-			playerPressedBackspace();
-			break;
-		} else if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > 50 && isJoyStickCentered) {
-			isJoyStickCentered = false;
-			playerPressedAccept();
-			break;
-		} else if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) > 50 && isJoyStickCentered) {
-			isJoyStickCentered = false;
-			playerPressedDown();
-			break;
-		} else if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) < -50 && isJoyStickCentered) {
-			isJoyStickCentered = false;
-			playerPressedUp();
-			break;
+		if (isJoyStickCentered) {
+			if (
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < -50 ||
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) < -50
+			) {
+				isJoyStickCentered = false;
+				playerPressedBackspace();
+				break;
+			} else if (
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > 50 ||
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) > 50
+			) {
+				isJoyStickCentered = false;
+				playerPressedAccept();
+				break;
+			} else if (
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) < -50 ||
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovY) < -50
+			) {
+				isJoyStickCentered = false;
+				playerPressedUp();
+				break;
+			}  else if (
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) > 50 ||
+				sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovY) > 50
+			) {
+				isJoyStickCentered = false;
+				playerPressedDown();
+				break;
+			}
 		} else if (
 			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > -30 &&
 			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < 30 &&
 			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) > -30 &&
-			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) < 30
-			) {
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::Y) < 30 &&
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) > -30 &&
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) < 30 &&
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovY) > -30 &&
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovY) < 30
+		) {
 			isJoyStickCentered = true;
 			break;
 		}

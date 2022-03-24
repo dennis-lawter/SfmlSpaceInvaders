@@ -184,16 +184,16 @@ void GamePlayState::calculateUfo() {
 		{
 		case defines::PowerUp::OneUp:
 		case defines::PowerUp::Coin:
+		case defines::PowerUp::Passive:
 		case defines::PowerUp::Curved:
 		case defines::PowerUp::Missile:
 		case defines::PowerUp::Punch:
-		case defines::PowerUp::SpeedDown:
 		case defines::PowerUp::SpeedUp:
 			powerupSound.play();
 			break;
 		case defines::PowerUp::Aggressive:
 		case defines::PowerUp::Bomb:
-		case defines::PowerUp::Passive:
+		case defines::PowerUp::SpeedDown:
 			powerdownSound.play();
 			break;
 		default:
@@ -277,10 +277,16 @@ void GamePlayState::processInput(Event& event) {
 		break;
 	case Event::JoystickMoved:
 		joystickId = event.joystickMove.joystickId;
-		if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < -15) {
+		if (
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) < -15 ||
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) < -15
+		) {
 			defender.playerIsMovingLeft = true;
 			defender.playerIsMovingRight = false;
-		} else if (sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > 15) {
+		} else if (
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::X) > 15 ||
+			sf::Joystick::getAxisPosition(joystickId, sf::Joystick::PovX) > 15
+		) {
 			defender.playerIsMovingRight = true;
 			defender.playerIsMovingLeft = false;
 		} else {
