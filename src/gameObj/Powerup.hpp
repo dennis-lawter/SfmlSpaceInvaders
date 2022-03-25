@@ -20,8 +20,8 @@ public:
 
 	Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defender);
 
-	void oneUp();
-	void coin();
+	void oneUp(ParticleGroup& particleGroup);
+	void coin(ParticleGroup& particleGroup);
 	void coinOffScreen(ParticleGroup& particleGroup);
 	void speedUp();
 	void speedDown();

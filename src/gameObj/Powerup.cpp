@@ -8,16 +8,18 @@ Powerup::Powerup(defines::PowerUp powerupSelect, float ufoPosition, Player& defe
 	this->sprite.setOrigin(4, 4);
 }
 
-void Powerup::oneUp() {
+void Powerup::oneUp(ParticleGroup& particleGroup) {
 	if (score::currentLives < defines::LIVES_CAP) {
 		score::currentLives++;
 	} else {
 		score::score += 1000;
+		particleGroup.createParticleText("+1000", getPosition(), Color::Cyan);
 	}
 }
 
-void Powerup::coin() {
+void Powerup::coin(ParticleGroup& particleGroup) {
 	score::score += 1000;
+	particleGroup.createParticleText("+1000", getPosition(), Color::Cyan);
 }
 
 void Powerup::coinOffScreen(ParticleGroup& particleGroup) {
@@ -77,11 +79,10 @@ bool Powerup::isOffScreen() {
 void Powerup::grantPowerUp(ParticleGroup& particleGroup) {
 	switch (powerupSelect) {
 	case defines::PowerUp::OneUp:
-		oneUp();
+		oneUp(particleGroup);
 		break;
 	case defines::PowerUp::Coin:
-		coin();
-		particleGroup.createParticleText("+1000", getPosition(), Color::Cyan);
+		coin(particleGroup);
 		break;
 	case defines::PowerUp::SpeedUp:
 		speedUp();
